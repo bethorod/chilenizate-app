@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Calendar, MapPin, Users, ChevronDown, ChevronUp, Mountain, TreePine, Coins, Flag, Leaf, Globe } from 'lucide-react';
@@ -496,9 +497,9 @@ const History = () => {
 
                   {expandedCultural === section.id && (
                     <CardContent className="pt-0">
-                      {section.id === 'idioms' && (
+                      {section.id === 'idioms' && Array.isArray(section.content) && (
                         <div className="grid md:grid-cols-2 gap-4">
-                          {section.content.map((idiom, idx) => (
+                          {section.content.map((idiom: any, idx: number) => (
                             <div key={idx} className="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-400">
                               <h5 className="font-bold text-yellow-800 text-lg">{idiom.phrase}</h5>
                               <p className="text-yellow-700 font-medium">{idiom.meaning}</p>
@@ -508,9 +509,9 @@ const History = () => {
                         </div>
                       )}
 
-                      {section.id === 'folklore' && (
+                      {section.id === 'folklore' && Array.isArray(section.content) && (
                         <div className="space-y-4">
-                          {section.content.map((item, idx) => (
+                          {section.content.map((item: any, idx: number) => (
                             <div key={idx} className="bg-red-50 p-4 rounded-lg">
                               <h5 className="font-bold text-red-800 text-lg">{item.name}</h5>
                               <p className="text-red-700">{item.description}</p>
@@ -520,12 +521,12 @@ const History = () => {
                         </div>
                       )}
 
-                      {section.id === 'geography' && (
+                      {section.id === 'geography' && typeof section.content === 'object' && 'regions' in section.content && (
                         <div className="space-y-6">
                           <div>
                             <h4 className="font-semibold text-gray-900 mb-3">Regions of Chile</h4>
                             <div className="grid md:grid-cols-2 gap-4">
-                              {section.content.regions.map((region, idx) => (
+                              {section.content.regions.map((region: any, idx: number) => (
                                 <div key={idx} className="bg-green-50 p-4 rounded-lg">
                                   <h5 className="font-bold text-green-800">{region.name}</h5>
                                   <p className="text-green-700">Capital: {region.capital}</p>
@@ -537,7 +538,7 @@ const History = () => {
                           <div>
                             <h4 className="font-semibold text-gray-900 mb-3">Natural Wonders</h4>
                             <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
-                              {section.content.naturalWonders.map((wonder, idx) => (
+                              {section.content.naturalWonders.map((wonder: string, idx: number) => (
                                 <div key={idx} className="bg-green-100 p-3 rounded text-center text-green-800 font-medium">
                                   {wonder}
                                 </div>
@@ -547,9 +548,9 @@ const History = () => {
                         </div>
                       )}
 
-                      {section.id === 'resources' && (
+                      {section.id === 'resources' && Array.isArray(section.content) && (
                         <div className="grid md:grid-cols-2 gap-4">
-                          {section.content.map((resource, idx) => (
+                          {section.content.map((resource: any, idx: number) => (
                             <div key={idx} className="bg-amber-50 p-4 rounded-lg">
                               <h5 className="font-bold text-amber-800 text-lg">{resource.resource}</h5>
                               <p className="text-amber-700">{resource.description}</p>
@@ -559,12 +560,12 @@ const History = () => {
                         </div>
                       )}
 
-                      {section.id === 'symbols' && (
+                      {section.id === 'symbols' && typeof section.content === 'object' && 'animals' in section.content && (
                         <div className="space-y-6">
                           <div>
                             <h4 className="font-semibold text-gray-900 mb-3">National Animals</h4>
                             <div className="space-y-3">
-                              {section.content.animals.map((animal, idx) => (
+                              {section.content.animals.map((animal: any, idx: number) => (
                                 <div key={idx} className="bg-emerald-50 p-4 rounded-lg">
                                   <h5 className="font-bold text-emerald-800">{animal.name}</h5>
                                   <p className="text-emerald-700">{animal.description}</p>
@@ -576,7 +577,7 @@ const History = () => {
                           <div>
                             <h4 className="font-semibold text-gray-900 mb-3">National Trees & Flora</h4>
                             <div className="space-y-3">
-                              {section.content.trees.map((tree, idx) => (
+                              {section.content.trees.map((tree: any, idx: number) => (
                                 <div key={idx} className="bg-emerald-50 p-4 rounded-lg">
                                   <h5 className="font-bold text-emerald-800">{tree.name}</h5>
                                   <p className="text-emerald-700">{tree.description}</p>
@@ -588,9 +589,9 @@ const History = () => {
                         </div>
                       )}
 
-                      {section.id === 'currency' && (
+                      {section.id === 'currency' && Array.isArray(section.content) && (
                         <div className="space-y-4">
-                          {section.content.map((era, idx) => (
+                          {section.content.map((era: any, idx: number) => (
                             <div key={idx} className="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-400">
                               <h5 className="font-bold text-blue-800">{era.period}</h5>
                               <p className="font-medium text-blue-700">{era.currency}</p>
