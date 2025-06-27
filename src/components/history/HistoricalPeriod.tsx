@@ -1,7 +1,6 @@
-
-import { useState } from 'react';
 import { Calendar, MapPin, Users, ChevronDown, ChevronUp } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface HistoricalPeriodData {
   id: string;
@@ -21,6 +20,8 @@ interface HistoricalPeriodProps {
 }
 
 const HistoricalPeriod = ({ period, index, isExpanded, onToggle }: HistoricalPeriodProps) => {
+  const { t } = useLanguage();
+
   return (
     <Card className="overflow-hidden hover:shadow-lg transition-shadow">
       <CardHeader 
@@ -55,7 +56,7 @@ const HistoricalPeriod = ({ period, index, isExpanded, onToggle }: HistoricalPer
             <div>
               <h4 className="font-semibold text-gray-900 mb-3 flex items-center">
                 <MapPin className="h-4 w-4 mr-2" />
-                Key Events & Developments
+                {t('sections.keyEvents')}
               </h4>
               <ul className="space-y-2">
                 {period.keyPoints.map((point, idx) => (
@@ -70,7 +71,7 @@ const HistoricalPeriod = ({ period, index, isExpanded, onToggle }: HistoricalPer
             <div>
               <h4 className="font-semibold text-gray-900 mb-3 flex items-center">
                 <Users className="h-4 w-4 mr-2" />
-                Key Figures
+                {t('sections.keyFigures')}
               </h4>
               <div className="space-y-2">
                 {period.keyFigures.map((figure, idx) => (
