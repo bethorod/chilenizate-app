@@ -4,31 +4,34 @@ import { Link } from 'react-router-dom';
 import { Book, Trophy, AlertCircle, ChevronRight, MapPin, Calendar, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import LanguageSelector from '@/components/LanguageSelector';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Index = () => {
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
+  const { t } = useLanguage();
 
   const features = [
     {
       id: 'history',
-      title: 'Explore History',
-      description: 'Discover Chile\'s rich historical timeline from pre-Columbian times to modern day',
+      title: t('features.exploreHistory'),
+      description: t('features.exploreHistoryDesc'),
       icon: Book,
       color: 'from-red-500 to-red-600',
       link: '/history'
     },
     {
       id: 'quiz',
-      title: '30-Question Quiz',
-      description: 'Test your knowledge with our comprehensive Chilean history quiz',
+      title: t('features.quiz30'),
+      description: t('features.quiz30Desc'),
       icon: Trophy,
       color: 'from-blue-500 to-blue-600',
       link: '/quiz'
     },
     {
       id: 'errors',
-      title: 'Error Bin',
-      description: 'Review and retry questions you got wrong to improve your understanding',
+      title: t('features.errorBin'),
+      description: t('features.errorBinDesc'),
       icon: AlertCircle,
       color: 'from-amber-500 to-amber-600',
       link: '/error-bin'
@@ -36,9 +39,9 @@ const Index = () => {
   ];
 
   const stats = [
-    { icon: MapPin, label: 'Regions Covered', value: '16' },
-    { icon: Calendar, label: 'Historical Periods', value: '8' },
-    { icon: Users, label: 'Key Figures', value: '50+' }
+    { icon: MapPin, label: t('stats.regionsCovered'), value: '16' },
+    { icon: Calendar, label: t('stats.historicalPeriods'), value: '8' },
+    { icon: Users, label: t('stats.keyFigures'), value: '50+' }
   ];
 
   return (
@@ -55,11 +58,14 @@ const Index = () => {
                 I wanna Chilean
               </h1>
             </div>
-            <nav className="hidden md:flex space-x-6">
-              <Link to="/history" className="text-gray-700 hover:text-red-600 transition-colors">History</Link>
-              <Link to="/quiz" className="text-gray-700 hover:text-red-600 transition-colors">Quiz</Link>
-              <Link to="/error-bin" className="text-gray-700 hover:text-red-600 transition-colors">Error Bin</Link>
-            </nav>
+            <div className="flex items-center space-x-4">
+              <LanguageSelector />
+              <nav className="hidden md:flex space-x-6">
+                <Link to="/history" className="text-gray-700 hover:text-red-600 transition-colors">{t('nav.history')}</Link>
+                <Link to="/quiz" className="text-gray-700 hover:text-red-600 transition-colors">{t('nav.quiz')}</Link>
+                <Link to="/error-bin" className="text-gray-700 hover:text-red-600 transition-colors">{t('nav.errorBin')}</Link>
+              </nav>
+            </div>
           </div>
         </div>
       </header>
@@ -68,23 +74,22 @@ const Index = () => {
       <section className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-5xl font-bold text-gray-900 mb-6">
-            Learn Chilean History
-            <span className="block text-3xl text-red-600 mt-2">The Interactive Way</span>
+            {t('main.learnHistory')}
+            <span className="block text-3xl text-red-600 mt-2">{t('main.interactiveWay')}</span>
           </h2>
           <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-            Discover the fascinating story of Chile through interactive lessons, engaging quizzes, 
-            and personalized learning tools. From ancient civilizations to modern democracy.
+            {t('main.discover')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/history">
               <Button size="lg" className="bg-red-600 hover:bg-red-700 text-white px-8 py-3">
-                Start Learning
+                {t('main.startLearning')}
                 <ChevronRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
             <Link to="/quiz">
               <Button size="lg" variant="outline" className="border-red-600 text-red-600 hover:bg-red-50 px-8 py-3">
-                Take Quiz
+                {t('main.takeQuiz')}
               </Button>
             </Link>
           </div>
@@ -112,8 +117,8 @@ const Index = () => {
       <section className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-gray-900 mb-4">Everything You Need to Learn</h3>
-            <p className="text-gray-600 text-lg">Comprehensive tools designed to make Chilean history engaging and memorable</p>
+            <h3 className="text-3xl font-bold text-gray-900 mb-4">{t('features.title')}</h3>
+            <p className="text-gray-600 text-lg">{t('features.subtitle')}</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -153,11 +158,11 @@ const Index = () => {
             </div>
             <h4 className="text-xl font-bold">I wanna Chilean</h4>
           </div>
-          <p className="text-gray-400 mb-6">Learn Chilean history the interactive way</p>
+          <p className="text-gray-400 mb-6">{t('main.interactiveWay')}</p>
           <div className="flex justify-center space-x-6 text-sm text-gray-400">
-            <Link to="/history" className="hover:text-white transition-colors">History</Link>
-            <Link to="/quiz" className="hover:text-white transition-colors">Quiz</Link>
-            <Link to="/error-bin" className="hover:text-white transition-colors">Error Bin</Link>
+            <Link to="/history" className="hover:text-white transition-colors">{t('nav.history')}</Link>
+            <Link to="/quiz" className="hover:text-white transition-colors">{t('nav.quiz')}</Link>
+            <Link to="/error-bin" className="hover:text-white transition-colors">{t('nav.errorBin')}</Link>
           </div>
         </div>
       </footer>

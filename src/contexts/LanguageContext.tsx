@@ -26,6 +26,31 @@ const translations = {
     'main.title': 'Descubre Chile: Historia, Cultura y Geografía',
     'main.subtitle': 'Explora el rico tapiz de la civilización chilena, desde la historia antigua hasta la cultura moderna, geografía y tradiciones',
     'main.testKnowledge': 'Pon a Prueba tu Conocimiento',
+    'main.learnHistory': 'Aprende Historia Chilena',
+    'main.interactiveWay': 'De Forma Interactiva',
+    'main.discover': 'Descubre la fascinante historia de Chile a través de lecciones interactivas, cuestionarios entretenidos y herramientas de aprendizaje personalizadas. Desde civilizaciones antiguas hasta la democracia moderna.',
+    'main.startLearning': 'Comenzar Aprendizaje',
+    'main.takeQuiz': 'Hacer Quiz',
+    
+    // Navigation
+    'nav.history': 'Historia',
+    'nav.quiz': 'Quiz',
+    'nav.errorBin': 'Bin de Errores',
+    
+    // Features
+    'features.title': 'Todo lo que Necesitas para Aprender',
+    'features.subtitle': 'Herramientas integrales diseñadas para hacer la historia chilena atractiva y memorable',
+    'features.exploreHistory': 'Explorar Historia',
+    'features.exploreHistoryDesc': 'Descubre la rica cronología histórica de Chile desde tiempos precolombinos hasta hoy',
+    'features.quiz30': 'Quiz de 30 Preguntas',
+    'features.quiz30Desc': 'Pon a prueba tu conocimiento con nuestro cuestionario integral de historia chilena',
+    'features.errorBin': 'Bin de Errores',
+    'features.errorBinDesc': 'Revisa y vuelve a intentar preguntas que respondiste mal para mejorar tu comprensión',
+    
+    // Stats
+    'stats.regionsCovered': 'Regiones Cubiertas',
+    'stats.historicalPeriods': 'Períodos Históricos',
+    'stats.keyFigures': 'Figuras Clave',
     
     // Tabs
     'tabs.history': 'Cronología Histórica',
@@ -54,6 +79,31 @@ const translations = {
     'main.title': 'Descubra o Chile: História, Cultura e Geografia',
     'main.subtitle': 'Explore a rica tapeçaria da civilização chilena, desde a história antiga até a cultura moderna, geografia e tradições',
     'main.testKnowledge': 'Teste Seu Conhecimento',
+    'main.learnHistory': 'Aprenda História Chilena',
+    'main.interactiveWay': 'De Forma Interativa',
+    'main.discover': 'Descubra a fascinante história do Chile através de lições interativas, questionários envolventes e ferramentas de aprendizagem personalizadas. Desde civilizações antigas até a democracia moderna.',
+    'main.startLearning': 'Começar Aprendizagem',
+    'main.takeQuiz': 'Fazer Quiz',
+    
+    // Navigation
+    'nav.history': 'História',
+    'nav.quiz': 'Quiz',
+    'nav.errorBin': 'Lixeira de Erros',
+    
+    // Features
+    'features.title': 'Tudo o que Você Precisa para Aprender',
+    'features.subtitle': 'Ferramentas abrangentes projetadas para tornar a história chilena envolvente e memorável',
+    'features.exploreHistory': 'Explorar História',
+    'features.exploreHistoryDesc': 'Descubra a rica cronologia histórica do Chile desde os tempos pré-colombianos até hoje',
+    'features.quiz30': 'Quiz de 30 Perguntas',
+    'features.quiz30Desc': 'Teste seu conhecimento com nosso questionário abrangente de história chilena',
+    'features.errorBin': 'Lixeira de Erros',
+    'features.errorBinDesc': 'Revise e tente novamente perguntas que você errou para melhorar sua compreensão',
+    
+    // Stats
+    'stats.regionsCovered': 'Regiões Cobertas',
+    'stats.historicalPeriods': 'Períodos Históricos',
+    'stats.keyFigures': 'Figuras Principais',
     
     // Tabs
     'tabs.history': 'Cronologia Histórica',
