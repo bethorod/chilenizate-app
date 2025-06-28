@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Clock, CheckCircle, XCircle, RotateCcw, Trophy } from 'lucide-react';
@@ -7,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Progress } from '@/components/ui/progress';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface Question {
   id: number;
@@ -18,6 +18,7 @@ interface Question {
 }
 
 const Quiz = () => {
+  const { t } = useLanguage();
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<string>('');
   const [showResult, setShowResult] = useState(false);
@@ -29,242 +30,242 @@ const Quiz = () => {
   const questions: Question[] = [
     {
       id: 1,
-      question: "Who founded the city of Santiago in 1541?",
-      options: ["Pedro de Valdivia", "Diego de Almagro", "Francisco Pizarro", "Hernán Cortés"],
+      question: t('quiz.q1.question'),
+      options: [t('quiz.q1.opt1'), t('quiz.q1.opt2'), t('quiz.q1.opt3'), t('quiz.q1.opt4')],
       correct: 0,
-      explanation: "Pedro de Valdivia founded Santiago on February 12, 1541, naming it Santiago del Nuevo Extremo.",
+      explanation: t('quiz.q1.explanation'),
       difficulty: 'easy'
     },
     {
       id: 2,
-      question: "What was the name of the fierce Mapuche warrior who led resistance against the Spanish?",
-      options: ["Caupolicán", "Lautaro", "Galvarino", "Colocolo"],
+      question: t('quiz.q2.question'),
+      options: [t('quiz.q2.opt1'), t('quiz.q2.opt2'), t('quiz.q2.opt3'), t('quiz.q2.opt4')],
       correct: 1,
-      explanation: "Lautaro was a young Mapuche warrior who learned Spanish military tactics and led successful campaigns against the conquistadors.",
+      explanation: t('quiz.q2.explanation'),
       difficulty: 'medium'
     },
     {
       id: 3,
-      question: "In what year did Chile declare its independence?",
-      options: ["1810", "1817", "1818", "1820"],
+      question: t('quiz.q3.question'),
+      options: [t('quiz.q3.opt1'), t('quiz.q3.opt2'), t('quiz.q3.opt3'), t('quiz.q3.opt4')],
       correct: 2,
-      explanation: "Chile formally declared independence on February 12, 1818, though the process began in 1810.",
+      explanation: t('quiz.q3.explanation'),
       difficulty: 'easy'
     },
     {
       id: 4,
-      question: "Who is known as the 'Father of Chilean Independence'?",
-      options: ["José Miguel Carrera", "Bernardo O'Higgins", "José de San Martín", "Manuel Rodríguez"],
+      question: t('quiz.q4.question'),
+      options: [t('quiz.q4.opt1'), t('quiz.q4.opt2'), t('quiz.q4.opt3'), t('quiz.q4.opt4')],
       correct: 1,
-      explanation: "Bernardo O'Higgins is considered the Father of Chilean Independence and served as the first Supreme Director.",
+      explanation: t('quiz.q4.explanation'),
       difficulty: 'easy'
     },
     {
       id: 5,
-      question: "The War of the Pacific (1879-1884) was fought between Chile and which countries?",
-      options: ["Argentina and Bolivia", "Peru and Bolivia", "Peru and Ecuador", "Bolivia and Brazil"],
+      question: t('quiz.q5.question'),
+      options: [t('quiz.q5.opt1'), t('quiz.q5.opt2'), t('quiz.q5.opt3'), t('quiz.q5.opt4')],
       correct: 1,
-      explanation: "The War of the Pacific was fought between Chile against Peru and Bolivia, resulting in Chilean territorial gains.",
+      explanation: t('quiz.q5.explanation'),
       difficulty: 'medium'
     },
     {
       id: 6,
-      question: "Which Chilean poet won the Nobel Prize in Literature in 1945?",
-      options: ["Pablo Neruda", "Gabriela Mistral", "Vicente Huidobro", "Nicanor Parra"],
+      question: t('quiz.q6.question'),
+      options: [t('quiz.q6.opt1'), t('quiz.q6.opt2'), t('quiz.q6.opt3'), t('quiz.q6.opt4')],
       correct: 1,
-      explanation: "Gabriela Mistral was the first Latin American woman to win the Nobel Prize in Literature in 1945.",
+      explanation: t('quiz.q6.explanation'),
       difficulty: 'medium'
     },
     {
       id: 7,
-      question: "What was the primary export that made Chile wealthy in the late 19th century?",
-      options: ["Copper", "Nitrates", "Silver", "Wheat"],
+      question: t('quiz.q7.question'),
+      options: [t('quiz.q7.opt1'), t('quiz.q7.opt2'), t('quiz.q7.opt3'), t('quiz.q7.opt4')],
       correct: 1,
-      explanation: "Nitrates from the northern desert made Chile extremely wealthy during the late 19th and early 20th centuries.",
+      explanation: t('quiz.q7.explanation'),
       difficulty: 'medium'
     },
     {
       id: 8,
-      question: "Who was the first woman president of Chile?",
-      options: ["Soledad Alvear", "Michelle Bachelet", "Evelyn Matthei", "Carolina Tohá"],
+      question: t('quiz.q8.question'),
+      options: [t('quiz.q8.opt1'), t('quiz.q8.opt2'), t('quiz.q8.opt3'), t('quiz.q8.opt4')],
       correct: 1,
-      explanation: "Michelle Bachelet served as Chile's first female president from 2006-2010 and again from 2014-2018.",
+      explanation: t('quiz.q8.explanation'),
       difficulty: 'easy'
     },
     {
       id: 9,
-      question: "The military coup that overthrew Salvador Allende occurred on which date?",
-      options: ["September 11, 1973", "September 4, 1973", "October 11, 1973", "August 11, 1973"],
+      question: t('quiz.q9.question'),
+      options: [t('quiz.q9.opt1'), t('quiz.q9.opt2'), t('quiz.q9.opt3'), t('quiz.q9.opt4')],
       correct: 0,
-      explanation: "The military coup led by Augusto Pinochet occurred on September 11, 1973.",
+      explanation: t('quiz.q9.explanation'),
       difficulty: 'medium'
     },
     {
       id: 10,
-      question: "What was the name of Salvador Allende's political coalition?",
-      options: ["Popular Front", "Popular Unity", "Socialist Alliance", "Left Coalition"],
+      question: t('quiz.q10.question'),
+      options: [t('quiz.q10.opt1'), t('quiz.q10.opt2'), t('quiz.q10.opt3'), t('quiz.q10.opt4')],
       correct: 1,
-      explanation: "Popular Unity (Unidad Popular) was Allende's left-wing political coalition that won the 1970 election.",
+      explanation: t('quiz.q10.explanation'),
       difficulty: 'hard'
     },
     {
       id: 11,
-      question: "Which indigenous group primarily inhabited central Chile before Spanish arrival?",
-      options: ["Incas", "Mapuche", "Atacameños", "Tehuelches"],
+      question: t('quiz.q11.question'),
+      options: [t('quiz.q11.opt1'), t('quiz.q11.opt2'), t('quiz.q11.opt3'), t('quiz.q11.opt4')],
       correct: 1,
-      explanation: "The Mapuche people were the dominant indigenous group in central and southern Chile.",
+      explanation: t('quiz.q11.explanation'),
       difficulty: 'easy'
     },
     {
       id: 12,
-      question: "What was the 'Chicago Boys' economic policy implemented in Chile?",
-      options: ["Import substitution", "Neoliberalism", "State socialism", "Mixed economy"],
+      question: t('quiz.q12.question'),
+      options: [t('quiz.q12.opt1'), t('quiz.q12.opt2'), t('quiz.q12.opt3'), t('quiz.q12.opt4')],
       correct: 1,
-      explanation: "The 'Chicago Boys' implemented neoliberal economic policies based on free-market principles during the Pinochet era.",
+      explanation: t('quiz.q12.explanation'),
       difficulty: 'hard'
     },
     {
       id: 13,
-      question: "Which battle secured Chilean independence in 1817?",
-      options: ["Battle of Rancagua", "Battle of Chacabuco", "Battle of Maipú", "Battle of Cancha Rayada"],
+      question: t('quiz.q13.question'),
+      options: [t('quiz.q13.opt1'), t('quiz.q13.opt2'), t('quiz.q13.opt3'), t('quiz.q13.opt4')],
       correct: 1,
-      explanation: "The Battle of Chacabuco on February 12, 1817, was the decisive victory that secured Chilean independence.",
+      explanation: t('quiz.q13.explanation'),
       difficulty: 'medium'
     },
     {
       id: 14,
-      question: "Who was known as the 'Guerrillero of Death' during the independence wars?",
-      options: ["José Miguel Carrera", "Manuel Rodríguez", "Ramón Freire", "Francisco de la Lastra"],
+      question: t('quiz.q14.question'),
+      options: [t('quiz.q14.opt1'), t('quiz.q14.opt2'), t('quiz.q14.opt3'), t('quiz.q14.opt4')],
       correct: 1,
-      explanation: "Manuel Rodríguez was a folk hero known for his guerrilla warfare tactics against Spanish forces.",
+      explanation: t('quiz.q14.explanation'),
       difficulty: 'hard'
     },
     {
       id: 15,
-      question: "What was the period called when Spanish forces reconquered Chile (1814-1817)?",
-      options: ["Reconquista", "Restauración", "Reconstitución", "Reconvención"],
+      question: t('quiz.q15.question'),
+      options: [t('quiz.q15.opt1'), t('quiz.q15.opt2'), t('quiz.q15.opt3'), t('quiz.q15.opt4')],
       correct: 0,
-      explanation: "The Reconquista was the period when Spanish forces under Mariano Osorio reconquered Chile.",
+      explanation: t('quiz.q15.explanation'),
       difficulty: 'hard'
     },
     {
       id: 16,
-      question: "Which Chilean president implemented major land reforms in the 1960s?",
-      options: ["Jorge Alessandri", "Eduardo Frei Montalva", "Carlos Ibáñez", "Gabriel González Videla"],
+      question: t('quiz.q16.question'),
+      options: [t('quiz.q16.opt1'), t('quiz.q16.opt2'), t('quiz.q16.opt3'), t('quiz.q16.opt4')],
       correct: 1,
-      explanation: "Eduardo Frei Montalva implemented significant land reforms as part of his 'Revolution in Liberty' program.",
+      explanation: t('quiz.q16.explanation'),
       difficulty: 'medium'
     },
     {
       id: 17,
-      question: "What was the name of the truth commission that investigated human rights violations?",
-      options: ["Rettig Commission", "Valech Commission", "Truth Commission", "Reconciliation Commission"],
+      question: t('quiz.q17.question'),
+      options: [t('quiz.q17.opt1'), t('quiz.q17.opt2'), t('quiz.q17.opt3'), t('quiz.q17.opt4')],
       correct: 0,
-      explanation: "The Rettig Commission (officially the National Commission for Truth and Reconciliation) investigated human rights violations.",
+      explanation: t('quiz.q17.explanation'),
       difficulty: 'hard'
     },
     {
       id: 18,
-      question: "Which desert in northern Chile is considered the driest in the world?",
-      options: ["Atacama Desert", "Patagonian Desert", "Monte Desert", "Sechura Desert"],
+      question: t('quiz.q18.question'),
+      options: [t('quiz.q18.opt1'), t('quiz.q18.opt2'), t('quiz.q18.opt3'), t('quiz.q18.opt4')],
       correct: 0,
-      explanation: "The Atacama Desert is recognized as the driest non-polar desert in the world.",
+      explanation: t('quiz.q18.explanation'),
       difficulty: 'easy'
     },
     {
       id: 19,
-      question: "Who wrote the influential political essay 'The Portalian Republic'?",
-      options: ["Diego Portales", "Andrés Bello", "José Victorino Lastarria", "Alberto Edwards"],
+      question: t('quiz.q19.question'),
+      options: [t('quiz.q19.opt1'), t('quiz.q19.opt2'), t('quiz.q19.opt3'), t('quiz.q19.opt4')],
       correct: 3,
-      explanation: "Alberto Edwards wrote about the 'Portalian Republic' concept, referring to Diego Portales' political system.",
+      explanation: t('quiz.q19.explanation'),
       difficulty: 'hard'
     },
     {
       id: 20,
-      question: "What was the main cause of the War of the Pacific?",
-      options: ["Territorial disputes", "Nitrate deposits", "Trade routes", "Religious differences"],
+      question: t('quiz.q20.question'),
+      options: [t('quiz.q20.opt1'), t('quiz.q20.opt2'), t('quiz.q20.opt3'), t('quiz.q20.opt4')],
       correct: 1,
-      explanation: "Control over nitrate deposits in the Atacama Desert was the primary cause of the War of the Pacific.",
+      explanation: t('quiz.q20.explanation'),
       difficulty: 'medium'
     },
     {
       id: 21,
-      question: "Which Chilean city was the capital before Santiago?",
-      options: ["La Serena", "Valparaíso", "There was none", "Concepción"],
+      question: t('quiz.q21.question'),
+      options: [t('quiz.q21.opt1'), t('quiz.q21.opt2'), t('quiz.q21.opt3'), t('quiz.q21.opt4')],
       correct: 2,
-      explanation: "Santiago has been Chile's capital since its founding in 1541; there was no previous capital city.",
+      explanation: t('quiz.q21.explanation'),
       difficulty: 'medium'
     },
     {
       id: 22,
-      question: "What was the 'Plebiscite of 1988' about?",
-      options: ["New constitution", "Pinochet's continuation", "Independence referendum", "Regional autonomy"],
+      question: t('quiz.q22.question'),
+      options: [t('quiz.q22.opt1'), t('quiz.q22.opt2'), t('quiz.q22.opt3'), t('quiz.q22.opt4')],
       correct: 1,
-      explanation: "The 1988 plebiscite asked Chileans to vote 'Yes' or 'No' on extending Pinochet's presidency for 8 more years.",
+      explanation: t('quiz.q22.explanation'),
       difficulty: 'medium'
     },
     {
       id: 23,
-      question: "Who was the last president before the 1973 military coup?",
-      options: ["Eduardo Frei Montalva", "Jorge Alessandri", "Salvador Allende", "Carlos Ibáñez"],
+      question: t('quiz.q23.question'),
+      options: [t('quiz.q23.opt1'), t('quiz.q23.opt2'), t('quiz.q23.opt3'), t('quiz.q23.opt4')],
       correct: 2,
-      explanation: "Salvador Allende was the democratically elected president who was overthrown in the 1973 coup.",
+      explanation: t('quiz.q23.explanation'),
       difficulty: 'easy'
     },
     {
       id: 24,
-      question: "What was the name of the economic crisis that hit Chile in 1982-1983?",
-      options: ["The Great Depression", "The Debt Crisis", "The Banking Crisis", "The Currency Crisis"],
+      question: t('quiz.q24.question'),
+      options: [t('quiz.q24.opt1'), t('quiz.q24.opt2'), t('quiz.q24.opt3'), t('quiz.q24.opt4')],
       correct: 1,
-      explanation: "Chile suffered a severe debt crisis in 1982-1983, leading to massive unemployment and economic recession.",
+      explanation: t('quiz.q24.explanation'),
       difficulty: 'medium'
     },
     {
       id: 25,
-      question: "Which Chilean won the Nobel Prize in Literature in 1971?",
-      options: ["Gabriela Mistral", "Pablo Neruda", "Isabel Allende", "Roberto Bolaño"],
+      question: t('quiz.q25.question'),
+      options: [t('quiz.q25.opt1'), t('quiz.q25.opt2'), t('quiz.q25.opt3'), t('quiz.q25.opt4')],
       correct: 1,
-      explanation: "Pablo Neruda won the Nobel Prize in Literature in 1971 for his poetry.",
+      explanation: t('quiz.q25.explanation'),
       difficulty: 'easy'
     },
     {
       id: 26,
-      question: "What was the 'Matanza del Seguro Obrero' (1938)?",
-      options: ["Labor strike", "Political massacre", "Economic reform", "Military uprising"],
+      question: t('quiz.q26.question'),
+      options: [t('quiz.q26.opt1'), t('quiz.q26.opt2'), t('quiz.q26.opt3'), t('quiz.q26.opt4')],
       correct: 1,
-      explanation: "The Seguro Obrero Massacre was when police killed young National Socialists attempting a coup in 1938.",
+      explanation: t('quiz.q26.explanation'),
       difficulty: 'hard'
     },
     {
       id: 27,
-      question: "Who was Chile's first president after return to democracy in 1990?",
-      options: ["Eduardo Frei Ruiz-Tagle", "Patricio Aylwin", "Ricardo Lagos", "Michelle Bachelet"],
+      question: t('quiz.q27.question'),
+      options: [t('quiz.q27.opt1'), t('quiz.q27.opt2'), t('quiz.q27.opt3'), t('quiz.q27.opt4')],
       correct: 1,
-      explanation: "Patricio Aylwin was Chile's first president after the return to democracy, serving from 1990-1994.",
+      explanation: t('quiz.q27.explanation'),
       difficulty: 'medium'
     },
     {
       id: 28,
-      question: "What was the 'Revolution of 1891' primarily about?",
-      options: ["Social reforms", "Constitutional crisis", "Economic policies", "Territorial disputes"],
+      question: t('quiz.q28.question'),
+      options: [t('quiz.q28.opt1'), t('quiz.q28.opt2'), t('quiz.q28.opt3'), t('quiz.q28.opt4')],
       correct: 1,
-      explanation: "The 1891 Civil War was a constitutional crisis over the balance of power between president and congress.",
+      explanation: t('quiz.q28.explanation'),
       difficulty: 'hard'
     },
     {
       id: 29,
-      question: "Which European country had the largest immigration to Chile in the 19th century?",
-      options: ["Spain", "Germany", "Italy", "France"],
+      question: t('quiz.q29.question'),
+      options: [t('quiz.q29.opt1'), t('quiz.q29.opt2'), t('quiz.q29.opt3'), t('quiz.q29.opt4')],
       correct: 1,
-      explanation: "German immigration to southern Chile was particularly significant in the 19th century, especially to Valdivia and Osorno.",
+      explanation: t('quiz.q29.explanation'),
       difficulty: 'medium'
     },
     {
       id: 30,
-      question: "What percentage of 'Yes' votes was needed in the 1988 plebiscite for Pinochet to continue?",
-      options: ["Simple majority", "60%", "66%", "75%"],
+      question: t('quiz.q30.question'),
+      options: [t('quiz.q30.opt1'), t('quiz.q30.opt2'), t('quiz.q30.opt3'), t('quiz.q30.opt4')],
       correct: 0,
-      explanation: "A simple majority (over 50%) of 'Yes' votes would have extended Pinochet's presidency, but 'No' won with 56%.",
+      explanation: t('quiz.q30.explanation'),
       difficulty: 'hard'
     }
   ];
@@ -342,10 +343,10 @@ const Quiz = () => {
               <Link to="/">
                 <Button variant="ghost" size="sm">
                   <ArrowLeft className="h-4 w-4 mr-2" />
-                  Home
+                  {t('quiz.home')}
                 </Button>
               </Link>
-              <h1 className="text-xl font-bold text-gray-900">Quiz Results</h1>
+              <h1 className="text-xl font-bold text-gray-900">{t('quiz.results')}</h1>
             </div>
           </div>
         </header>
@@ -353,9 +354,9 @@ const Quiz = () => {
         <div className="max-w-2xl mx-auto py-12 px-4 sm:px-6 lg:px-8 text-center">
           <div className="mb-8">
             <Trophy className={`mx-auto h-16 w-16 mb-4 ${percentage >= 70 ? 'text-yellow-500' : 'text-gray-400'}`} />
-            <h2 className="text-3xl font-bold text-gray-900 mb-2">Quiz Completed!</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-2">{t('quiz.completed')}</h2>
             <p className="text-xl text-gray-600">
-              You scored {score} out of {questions.length} questions
+              {t('quiz.scored')} {score} {t('quiz.outOf')} {questions.length} {t('quiz.questions')}
             </p>
           </div>
 
@@ -366,16 +367,16 @@ const Quiz = () => {
               </div>
               <div className="grid grid-cols-2 gap-4 text-sm text-gray-600">
                 <div>
-                  <div className="font-semibold">Time Spent</div>
+                  <div className="font-semibold">{t('quiz.timeSpent')}</div>
                   <div className="flex items-center justify-center">
                     <Clock className="h-4 w-4 mr-1" />
                     {getTimeSpent()}
                   </div>
                 </div>
                 <div>
-                  <div className="font-semibold">Grade</div>
+                  <div className="font-semibold">{t('quiz.grade')}</div>
                   <div className="font-bold">
-                    {percentage >= 90 ? 'Excellent!' : percentage >= 70 ? 'Good Job!' : percentage >= 50 ? 'Not Bad!' : 'Keep Studying!'}
+                    {percentage >= 90 ? t('quiz.excellent') : percentage >= 70 ? t('quiz.goodJob') : percentage >= 50 ? t('quiz.notBad') : t('quiz.keepStudying')}
                   </div>
                 </div>
               </div>
@@ -385,11 +386,11 @@ const Quiz = () => {
           <div className="space-y-4">
             <Button onClick={resetQuiz} className="bg-red-600 hover:bg-red-700 mr-4">
               <RotateCcw className="h-4 w-4 mr-2" />
-              Retry Quiz
+              {t('quiz.retryQuiz')}
             </Button>
             <Link to="/error-bin">
               <Button variant="outline" className="border-red-600 text-red-600 hover:bg-red-50">
-                Review Mistakes
+                {t('quiz.reviewMistakes')}
               </Button>
             </Link>
           </div>
@@ -410,20 +411,20 @@ const Quiz = () => {
             <Link to="/">
               <Button variant="ghost" size="sm">
                 <ArrowLeft className="h-4 w-4 mr-2" />
-                Home
+                {t('quiz.home')}
               </Button>
             </Link>
             <div className="text-center">
-              <h1 className="text-xl font-bold text-gray-900">Chilean History Quiz</h1>
-              <p className="text-sm text-gray-600">Question {currentQuestion + 1} of {questions.length}</p>
+              <h1 className="text-xl font-bold text-gray-900">{t('quiz.title')}</h1>
+              <p className="text-sm text-gray-600">{t('quiz.questionNumber')} {currentQuestion + 1} {t('quiz.of')} {questions.length}</p>
             </div>
             <div className="text-right">
               <div className="text-sm text-gray-600">
-                Difficulty: <span className={`font-semibold ${
+                {t('quiz.difficulty')}: <span className={`font-semibold ${
                   currentQ.difficulty === 'easy' ? 'text-green-600' :
                   currentQ.difficulty === 'medium' ? 'text-yellow-600' : 'text-red-600'
                 }`}>
-                  {currentQ.difficulty}
+                  {t(`quiz.${currentQ.difficulty}`)}
                 </span>
               </div>
             </div>
@@ -490,7 +491,7 @@ const Quiz = () => {
                 variant="outline" 
                 onClick={() => setCurrentQuestion(currentQuestion - 1)}
               >
-                Previous
+                {t('quiz.previous')}
               </Button>
             )}
           </div>
@@ -501,14 +502,14 @@ const Quiz = () => {
                 disabled={!selectedAnswer}
                 className="bg-red-600 hover:bg-red-700"
               >
-                Show Answer
+                {t('quiz.showAnswer')}
               </Button>
             ) : (
               <Button 
                 onClick={handleNextQuestion}
                 className="bg-red-600 hover:bg-red-700"
               >
-                {currentQuestion < questions.length - 1 ? 'Next Question' : 'Finish Quiz'}
+                {currentQuestion < questions.length - 1 ? t('quiz.nextQuestion') : t('quiz.finishQuiz')}
               </Button>
             )}
           </div>
