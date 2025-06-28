@@ -1,7 +1,6 @@
-
 import React, { createContext, useContext, useState } from 'react';
 
-type Language = 'es' | 'pt';
+type Language = 'es' | 'pt' | 'en';
 
 interface LanguageContextType {
   language: Language;
@@ -121,6 +120,60 @@ const translations = {
     // Language selector
     'language.spanish': 'Español',
     'language.portuguese': 'Português'
+  },
+  en: {
+    // Header
+    'header.title': 'Chilean History and Culture',
+    'header.takeQuiz': 'Take Quiz',
+    'header.back': 'Back',
+    
+    // Main content
+    'main.title': 'Discover Chile: History, Culture and Geography',
+    'main.subtitle': 'Explore the rich tapestry of Chilean civilization, from ancient history to modern culture, geography and traditions',
+    'main.testKnowledge': 'Test Your Knowledge',
+    'main.learnHistory': 'Learn Chilean History',
+    'main.interactiveWay': 'In an Interactive Way',
+    'main.discover': 'Discover the fascinating history of Chile through interactive lessons, engaging quizzes and personalized learning tools. From ancient civilizations to modern democracy.',
+    'main.startLearning': 'Start Learning',
+    'main.takeQuiz': 'Take Quiz',
+    
+    // Navigation
+    'nav.history': 'History',
+    'nav.quiz': 'Quiz',
+    'nav.errorBin': 'Error Bin',
+    
+    // Features
+    'features.title': 'Everything You Need to Learn',
+    'features.subtitle': 'Comprehensive tools designed to make Chilean history engaging and memorable',
+    'features.exploreHistory': 'Explore History',
+    'features.exploreHistoryDesc': 'Discover Chile\'s rich historical timeline from pre-Columbian times to today',
+    'features.quiz30': '30-Question Quiz',
+    'features.quiz30Desc': 'Test your knowledge with our comprehensive Chilean history quiz',
+    'features.errorBin': 'Error Bin',
+    'features.errorBinDesc': 'Review and retry questions you got wrong to improve your understanding',
+    
+    // Stats
+    'stats.regionsCovered': 'Regions Covered',
+    'stats.historicalPeriods': 'Historical Periods',
+    'stats.keyFigures': 'Key Figures',
+    
+    // Tabs
+    'tabs.history': 'Historical Timeline',
+    'tabs.culture': 'Culture and Geography',
+    
+    // Sections
+    'sections.keyEvents': 'Key Events and Developments',
+    'sections.keyFigures': 'Key Figures',
+    'sections.nationalAnimals': 'National Animals',
+    'sections.nationalTrees': 'National Trees and Flora',
+    'sections.regionsOfChile': 'Regions of Chile',
+    'sections.naturalWonders': 'Natural Wonders',
+    'sections.capital': 'Capital',
+    
+    // Language selector
+    'language.spanish': 'Español',
+    'language.portuguese': 'Português',
+    'language.english': 'English'
   }
 };
 
