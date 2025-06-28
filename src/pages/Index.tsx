@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Book, Trophy, AlertCircle, ChevronRight, MapPin, Calendar, Users } from 'lucide-react';
@@ -55,7 +54,7 @@ const Index = () => {
                 <span className="text-white font-bold text-xl">🇨🇱</span>
               </div>
               <h1 className="text-2xl font-bold bg-gradient-to-r from-red-600 to-blue-600 bg-clip-text text-transparent">
-                I wanna Chilean
+                Chilenizate
               </h1>
             </div>
             <div className="flex items-center space-x-4">
@@ -156,7 +155,7 @@ const Index = () => {
             <div className="w-8 h-8 bg-gradient-to-br from-red-500 to-blue-500 rounded-lg flex items-center justify-center">
               <span className="text-white font-bold">🇨🇱</span>
             </div>
-            <h4 className="text-xl font-bold">I wanna Chilean</h4>
+            <h4 className="text-xl font-bold">Chilenizate</h4>
           </div>
           <p className="text-gray-400 mb-6">{t('main.interactiveWay')}</p>
           <div className="flex justify-center space-x-6 text-sm text-gray-400">
