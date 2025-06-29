@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Trash2, BookOpen, RotateCcw, CheckCircle } from 'lucide-react';
@@ -14,7 +13,7 @@ interface ErrorQuestion {
   id: string;
   question_id: number;
   question_text: string;
-  options: string[];
+  options: string[]; // This should match what we expect from the parsed JSON
   correct_answer: number;
   user_answer: number;
   explanation: string;
@@ -49,7 +48,14 @@ const ErrorBin = () => {
 
       if (error) throw error;
 
-      setErrorQuestions(data || []);
+      // Transform the data to match our interface, ensuring options is properly typed
+      const transformedData = (data || []).map(item => ({
+        ...item,
+        options: Array.isArray(item.options) ? item.options : [],
+        difficulty: item.difficulty as 'easy' | 'medium' | 'hard'
+      }));
+
+      setErrorQuestions(transformedData);
     } catch (error) {
       console.error('Error loading error questions:', error);
       toast({
