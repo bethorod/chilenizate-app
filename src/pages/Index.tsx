@@ -1,14 +1,17 @@
+
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Book, Trophy, AlertCircle, ChevronRight, MapPin, Calendar, Users } from 'lucide-react';
+import { Book, Trophy, AlertCircle, ChevronRight, MapPin, Calendar, Users, LogOut, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import LanguageSelector from '@/components/LanguageSelector';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useAuth } from '@/contexts/AuthContext';
 
 const Index = () => {
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
   const { t } = useLanguage();
+  const { user, signOut } = useAuth();
 
   const features = [
     {
@@ -43,6 +46,10 @@ const Index = () => {
     { icon: Users, label: t('stats.keyFigures'), value: '50+' }
   ];
 
+  const handleSignOut = async () => {
+    await signOut();
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-red-50 via-white to-blue-50">
       {/* Header */}
@@ -59,6 +66,31 @@ const Index = () => {
             </div>
             <div className="flex items-center space-x-4">
               <LanguageSelector />
+              
+              {user ? (
+                <div className="flex items-center space-x-4">
+                  <div className="flex items-center space-x-2 text-sm text-gray-600">
+                    <User className="h-4 w-4" />
+                    <span>{user.email}</span>
+                  </div>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={handleSignOut}
+                    className="text-red-600 border-red-600 hover:bg-red-50"
+                  >
+                    <LogOut className="h-4 w-4 mr-2" />
+                    Sign Out
+                  </Button>
+                </div>
+              ) : (
+                <Link to="/auth">
+                  <Button size="sm" className="bg-red-600 hover:bg-red-700">
+                    Sign In
+                  </Button>
+                </Link>
+              )}
+              
               <nav className="hidden md:flex space-x-6">
                 <Link to="/history" className="text-gray-700 hover:text-red-600 transition-colors">{t('nav.history')}</Link>
                 <Link to="/quiz" className="text-gray-700 hover:text-red-600 transition-colors">{t('nav.quiz')}</Link>
@@ -80,17 +112,28 @@ const Index = () => {
             {t('main.discover')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/history">
-              <Button size="lg" className="bg-red-600 hover:bg-red-700 text-white px-8 py-3">
-                {t('main.startLearning')}
-                <ChevronRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
-            <Link to="/quiz">
-              <Button size="lg" variant="outline" className="border-red-600 text-red-600 hover:bg-red-50 px-8 py-3">
-                {t('main.takeQuiz')}
-              </Button>
-            </Link>
+            {user ? (
+              <>
+                <Link to="/history">
+                  <Button size="lg" className="bg-red-600 hover:bg-red-700 text-white px-8 py-3">
+                    {t('main.startLearning')}
+                    <ChevronRight className="ml-2 h-5 w-5" />
+                  </Button>
+                </Link>
+                <Link to="/quiz">
+                  <Button size="lg" variant="outline" className="border-red-600 text-red-600 hover:bg-red-50 px-8 py-3">
+                    {t('main.takeQuiz')}
+                  </Button>
+                </Link>
+              </>
+            ) : (
+              <Link to="/auth">
+                <Button size="lg" className="bg-red-600 hover:bg-red-700 text-white px-8 py-3">
+                  Sign In to Start Learning
+                  <ChevronRight className="ml-2 h-5 w-5" />
+                </Button>
+              </Link>
+            )}
           </div>
         </div>
       </section>

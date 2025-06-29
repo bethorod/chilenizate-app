@@ -7,6 +7,9 @@ import { Progress } from '@/components/ui/progress';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useAuth } from '@/contexts/AuthContext';
+import { supabase } from '@/integrations/supabase/client';
+import { useToast } from '@/hooks/use-toast';
 
 interface Question {
   id: number;
@@ -19,6 +22,8 @@ interface Question {
 
 const Quiz = () => {
   const { t } = useLanguage();
+  const { user } = useAuth();
+  const { toast } = useToast();
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<string>('');
   const [showResult, setShowResult] = useState(false);
@@ -26,6 +31,7 @@ const Quiz = () => {
   const [quizCompleted, setQuizCompleted] = useState(false);
   const [startTime, setStartTime] = useState<Date | null>(null);
   const [endTime, setEndTime] = useState<Date | null>(null);
+  const [saving, setSaving] = useState(false);
 
   const questions: Question[] = [
     {
@@ -276,11 +282,76 @@ const Quiz = () => {
     }
   }, []);
 
+  const saveQuizResults = async (finalAnswers: number[], timeSpent: number) => {
+    if (!user) return;
+    
+    setSaving(true);
+    try {
+      const score = getScoreFromAnswers(finalAnswers);
+      const percentage = Math.round((score / questions.length) * 100);
+
+      // Save quiz results
+      const { error: quizError } = await supabase
+        .from('quiz_results')
+        .insert({
+          user_id: user.id,
+          score,
+          total_questions: questions.length,
+          percentage,
+          time_spent_seconds: timeSpent,
+          answers: finalAnswers
+        });
+
+      if (quizError) throw quizError;
+
+      // Save incorrect answers to error_questions
+      const incorrectQuestions = questions
+        .map((q, index) => ({ ...q, userAnswer: finalAnswers[index], index }))
+        .filter(q => q.userAnswer !== q.correct);
+
+      if (incorrectQuestions.length > 0) {
+        const errorData = incorrectQuestions.map(q => ({
+          user_id: user.id,
+          question_id: q.id,
+          question_text: q.question,
+          options: q.options,
+          correct_answer: q.correct,
+          user_answer: q.userAnswer,
+          explanation: q.explanation,
+          difficulty: q.difficulty
+        }));
+
+        const { error: errorError } = await supabase
+          .from('error_questions')
+          .upsert(errorData, { 
+            onConflict: 'user_id,question_id',
+            ignoreDuplicates: false 
+          });
+
+        if (errorError) throw errorError;
+      }
+
+      toast({
+        title: "Results Saved",
+        description: "Your quiz results have been saved successfully!",
+      });
+    } catch (error) {
+      console.error('Error saving quiz results:', error);
+      toast({
+        title: "Error",
+        description: "Failed to save quiz results. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setSaving(false);
+    }
+  };
+
   const handleAnswerSelect = (value: string) => {
     setSelectedAnswer(value);
   };
 
-  const handleNextQuestion = () => {
+  const handleNextQuestion = async () => {
     const answerIndex = parseInt(selectedAnswer);
     const newAnswers = [...answers, answerIndex];
     setAnswers(newAnswers);
@@ -290,16 +361,14 @@ const Quiz = () => {
       setSelectedAnswer('');
       setShowResult(false);
     } else {
+      const endTime = new Date();
+      setEndTime(endTime);
       setQuizCompleted(true);
-      setEndTime(new Date());
       
-      // Save incorrect answers to localStorage for error bin
-      const incorrectAnswers = questions.filter((q, index) => newAnswers[index] !== q.correct);
-      const existingErrors = JSON.parse(localStorage.getItem('errorBin') || '[]');
-      const updatedErrors = [...existingErrors, ...incorrectAnswers.filter(q => 
-        !existingErrors.some(existing => existing.id === q.id)
-      )];
-      localStorage.setItem('errorBin', JSON.stringify(updatedErrors));
+      if (startTime) {
+        const timeSpent = Math.floor((endTime.getTime() - startTime.getTime()) / 1000);
+        await saveQuizResults(newAnswers, timeSpent);
+      }
     }
   };
 
@@ -318,7 +387,11 @@ const Quiz = () => {
   };
 
   const getScore = () => {
-    return answers.filter((answer, index) => answer === questions[index].correct).length;
+    return getScoreFromAnswers(answers);
+  };
+
+  const getScoreFromAnswers = (answerArray: number[]) => {
+    return answerArray.filter((answer, index) => answer === questions[index].correct).length;
   };
 
   const getTimeSpent = () => {
@@ -358,6 +431,7 @@ const Quiz = () => {
             <p className="text-xl text-gray-600">
               {t('quiz.scored')} {score} {t('quiz.outOf')} {questions.length} {t('quiz.questions')}
             </p>
+            {saving && <p className="text-sm text-blue-600 mt-2">Saving results...</p>}
           </div>
 
           <Card className="mb-8">
@@ -508,6 +582,7 @@ const Quiz = () => {
               <Button 
                 onClick={handleNextQuestion}
                 className="bg-red-600 hover:bg-red-700"
+                disabled={saving}
               >
                 {currentQuestion < questions.length - 1 ? t('quiz.nextQuestion') : t('quiz.finishQuiz')}
               </Button>

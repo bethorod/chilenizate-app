@@ -6,18 +6,26 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
+import { useAuth } from '@/contexts/AuthContext';
+import { supabase } from '@/integrations/supabase/client';
+import { useToast } from '@/hooks/use-toast';
 
-interface Question {
-  id: number;
-  question: string;
+interface ErrorQuestion {
+  id: string;
+  question_id: number;
+  question_text: string;
   options: string[];
-  correct: number;
+  correct_answer: number;
+  user_answer: number;
   explanation: string;
   difficulty: 'easy' | 'medium' | 'hard';
 }
 
 const ErrorBin = () => {
-  const [errorQuestions, setErrorQuestions] = useState<Question[]>([]);
+  const { user } = useAuth();
+  const { toast } = useToast();
+  const [errorQuestions, setErrorQuestions] = useState<ErrorQuestion[]>([]);
+  const [loading, setLoading] = useState(true);
   const [practiceMode, setPracticeMode] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<string>('');
@@ -26,25 +34,92 @@ const ErrorBin = () => {
   const [practiceCompleted, setPracticeCompleted] = useState(false);
 
   useEffect(() => {
-    const savedErrors = JSON.parse(localStorage.getItem('errorBin') || '[]');
-    setErrorQuestions(savedErrors);
-  }, []);
+    if (user) {
+      loadErrorQuestions();
+    }
+  }, [user]);
 
-  const clearErrorBin = () => {
-    localStorage.removeItem('errorBin');
-    setErrorQuestions([]);
-    setPracticeMode(false);
-    setCurrentQuestion(0);
-    setSelectedAnswer('');
-    setShowResult(false);
-    setPracticeAnswers([]);
-    setPracticeCompleted(false);
+  const loadErrorQuestions = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('error_questions')
+        .select('*')
+        .eq('user_id', user?.id)
+        .order('created_at', { ascending: false });
+
+      if (error) throw error;
+
+      setErrorQuestions(data || []);
+    } catch (error) {
+      console.error('Error loading error questions:', error);
+      toast({
+        title: "Error",
+        description: "Failed to load error questions.",
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const removeQuestion = (questionId: number) => {
-    const updatedErrors = errorQuestions.filter(q => q.id !== questionId);
-    setErrorQuestions(updatedErrors);
-    localStorage.setItem('errorBin', JSON.stringify(updatedErrors));
+  const clearErrorBin = async () => {
+    if (!user) return;
+
+    try {
+      const { error } = await supabase
+        .from('error_questions')
+        .delete()
+        .eq('user_id', user.id);
+
+      if (error) throw error;
+
+      setErrorQuestions([]);
+      setPracticeMode(false);
+      setCurrentQuestion(0);
+      setSelectedAnswer('');
+      setShowResult(false);
+      setPracticeAnswers([]);
+      setPracticeCompleted(false);
+
+      toast({
+        title: "Success",
+        description: "Error bin cleared successfully!",
+      });
+    } catch (error) {
+      console.error('Error clearing error bin:', error);
+      toast({
+        title: "Error",
+        description: "Failed to clear error bin.",
+        variant: "destructive",
+      });
+    }
+  };
+
+  const removeQuestion = async (questionId: string) => {
+    try {
+      const { error } = await supabase
+        .from('error_questions')
+        .delete()
+        .eq('id', questionId)
+        .eq('user_id', user?.id);
+
+      if (error) throw error;
+
+      const updatedErrors = errorQuestions.filter(q => q.id !== questionId);
+      setErrorQuestions(updatedErrors);
+
+      toast({
+        title: "Success",
+        description: "Question removed from error bin!",
+      });
+    } catch (error) {
+      console.error('Error removing question:', error);
+      toast({
+        title: "Error",
+        description: "Failed to remove question.",
+        variant: "destructive",
+      });
+    }
   };
 
   const startPractice = () => {
@@ -65,14 +140,14 @@ const ErrorBin = () => {
     setShowResult(true);
   };
 
-  const handleNextQuestion = () => {
+  const handleNextQuestion = async () => {
     const answerIndex = parseInt(selectedAnswer);
     const newAnswers = [...practiceAnswers, answerIndex];
     setPracticeAnswers(newAnswers);
 
     // If answered correctly, remove from error bin
-    if (answerIndex === errorQuestions[currentQuestion].correct) {
-      removeQuestion(errorQuestions[currentQuestion].id);
+    if (answerIndex === errorQuestions[currentQuestion].correct_answer) {
+      await removeQuestion(errorQuestions[currentQuestion].id);
     }
 
     if (currentQuestion < errorQuestions.length - 1) {
@@ -92,6 +167,17 @@ const ErrorBin = () => {
     setPracticeAnswers([]);
     setPracticeCompleted(false);
   };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-red-50 via-white to-blue-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-8 h-8 border-4 border-red-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading error questions...</p>
+        </div>
+      </div>
+    );
+  }
 
   if (practiceCompleted) {
     return (
@@ -163,7 +249,7 @@ const ErrorBin = () => {
         <div className="max-w-2xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
           <Card className="mb-8">
             <CardHeader>
-              <CardTitle className="text-xl">{currentQ.question}</CardTitle>
+              <CardTitle className="text-xl">{currentQ.question_text}</CardTitle>
               <CardDescription>
                 This question was previously answered incorrectly. Answer correctly to remove it from your error bin.
               </CardDescription>
@@ -186,16 +272,16 @@ const ErrorBin = () => {
                     <div 
                       key={index} 
                       className={`p-3 rounded-lg border-2 ${
-                        index === currentQ.correct 
+                        index === currentQ.correct_answer 
                           ? 'border-green-500 bg-green-50' 
-                          : index === parseInt(selectedAnswer) && index !== currentQ.correct
+                          : index === parseInt(selectedAnswer) && index !== currentQ.correct_answer
                           ? 'border-red-500 bg-red-50'
                           : 'border-gray-200'
                       }`}
                     >
                       <div className="flex items-center">
-                        {index === currentQ.correct && <CheckCircle className="h-5 w-5 text-green-500 mr-2" />}
-                        <span className={index === currentQ.correct ? 'font-semibold' : ''}>{option}</span>
+                        {index === currentQ.correct_answer && <CheckCircle className="h-5 w-5 text-green-500 mr-2" />}
+                        <span className={index === currentQ.correct_answer ? 'font-semibold' : ''}>{option}</span>
                       </div>
                     </div>
                   ))}
@@ -288,7 +374,7 @@ const ErrorBin = () => {
             </div>
 
             <div className="grid gap-6">
-              {errorQuestions.map((question, index) => (
+              {errorQuestions.map((question) => (
                 <Card key={question.id} className="hover:shadow-md transition-shadow">
                   <CardHeader>
                     <div className="flex items-start justify-between">
@@ -301,9 +387,9 @@ const ErrorBin = () => {
                           }`}>
                             {question.difficulty}
                           </span>
-                          <span className="text-sm text-gray-500">Question #{question.id}</span>
+                          <span className="text-sm text-gray-500">Question #{question.question_id}</span>
                         </div>
-                        <CardTitle className="text-lg">{question.question}</CardTitle>
+                        <CardTitle className="text-lg">{question.question_text}</CardTitle>
                       </div>
                       <Button 
                         variant="ghost" 
@@ -321,12 +407,12 @@ const ErrorBin = () => {
                         <div 
                           key={optIndex}
                           className={`p-2 rounded border ${
-                            optIndex === question.correct 
+                            optIndex === question.correct_answer 
                               ? 'border-green-500 bg-green-50 font-semibold' 
                               : 'border-gray-200'
                           }`}
                         >
-                          {optIndex === question.correct && '✓ '}{option}
+                          {optIndex === question.correct_answer && '✓ '}{option}
                         </div>
                       ))}
                     </div>
