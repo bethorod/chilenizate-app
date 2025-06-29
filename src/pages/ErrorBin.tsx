@@ -51,7 +51,9 @@ const ErrorBin = () => {
       // Transform the data to match our interface, ensuring options is properly typed
       const transformedData = (data || []).map(item => ({
         ...item,
-        options: Array.isArray(item.options) ? item.options : [],
+        options: Array.isArray(item.options) 
+          ? (item.options as string[]).filter(opt => typeof opt === 'string')
+          : [],
         difficulty: item.difficulty as 'easy' | 'medium' | 'hard'
       }));
 
