@@ -273,6 +273,176 @@ const Quiz = () => {
       correct: 0,
       explanation: t('quiz.q30.explanation'),
       difficulty: 'hard'
+    },
+    
+    // New Cultural Questions
+    {
+      id: 31,
+      question: t('quiz.q31.question'),
+      options: [t('quiz.q31.opt1'), t('quiz.q31.opt2'), t('quiz.q31.opt3'), t('quiz.q31.opt4')],
+      correct: 0,
+      explanation: t('quiz.q31.explanation'),
+      difficulty: 'easy'
+    },
+    {
+      id: 32,
+      question: t('quiz.q32.question'),
+      options: [t('quiz.q32.opt1'), t('quiz.q32.opt2'), t('quiz.q32.opt3'), t('quiz.q32.opt4')],
+      correct: 2,
+      explanation: t('quiz.q32.explanation'),
+      difficulty: 'medium'
+    },
+    {
+      id: 33,
+      question: t('quiz.q33.question'),
+      options: [t('quiz.q33.opt1'), t('quiz.q33.opt2'), t('quiz.q33.opt3'), t('quiz.q33.opt4')],
+      correct: 1,
+      explanation: t('quiz.q33.explanation'),
+      difficulty: 'easy'
+    },
+    {
+      id: 34,
+      question: t('quiz.q34.question'),
+      options: [t('quiz.q34.opt1'), t('quiz.q34.opt2'), t('quiz.q34.opt3'), t('quiz.q34.opt4')],
+      correct: 0,
+      explanation: t('quiz.q34.explanation'),
+      difficulty: 'medium'
+    },
+    {
+      id: 35,
+      question: t('quiz.q35.question'),
+      options: [t('quiz.q35.opt1'), t('quiz.q35.opt2'), t('quiz.q35.opt3'), t('quiz.q35.opt4')],
+      correct: 2,
+      explanation: t('quiz.q35.explanation'),
+      difficulty: 'hard'
+    },
+    
+    // Geography Questions
+    {
+      id: 36,
+      question: t('quiz.q36.question'),
+      options: [t('quiz.q36.opt1'), t('quiz.q36.opt2'), t('quiz.q36.opt3'), t('quiz.q36.opt4')],
+      correct: 1,
+      explanation: t('quiz.q36.explanation'),
+      difficulty: 'easy'
+    },
+    {
+      id: 37,
+      question: t('quiz.q37.question'),
+      options: [t('quiz.q37.opt1'), t('quiz.q37.opt2'), t('quiz.q37.opt3'), t('quiz.q37.opt4')],
+      correct: 0,
+      explanation: t('quiz.q37.explanation'),
+      difficulty: 'medium'
+    },
+    {
+      id: 38,
+      question: t('quiz.q38.question'),
+      options: [t('quiz.q38.opt1'), t('quiz.q38.opt2'), t('quiz.q38.opt3'), t('quiz.q38.opt4')],
+      correct: 3,
+      explanation: t('quiz.q38.explanation'),
+      difficulty: 'medium'
+    },
+    {
+      id: 39,
+      question: t('quiz.q39.question'),
+      options: [t('quiz.q39.opt1'), t('quiz.q39.opt2'), t('quiz.q39.opt3'), t('quiz.q39.opt4')],
+      correct: 1,
+      explanation: t('quiz.q39.explanation'),
+      difficulty: 'hard'
+    },
+    {
+      id: 40,
+      question: t('quiz.q40.question'),
+      options: [t('quiz.q40.opt1'), t('quiz.q40.opt2'), t('quiz.q40.opt3'), t('quiz.q40.opt4')],
+      correct: 2,
+      explanation: t('quiz.q40.explanation'),
+      difficulty: 'easy'
+    },
+
+    // Natural Resources Questions
+    {
+      id: 41,
+      question: t('quiz.q41.question'),
+      options: [t('quiz.q41.opt1'), t('quiz.q41.opt2'), t('quiz.q41.opt3'), t('quiz.q41.opt4')],
+      correct: 0,
+      explanation: t('quiz.q41.explanation'),
+      difficulty: 'easy'
+    },
+    {
+      id: 42,
+      question: t('quiz.q42.question'),
+      options: [t('quiz.q42.opt1'), t('quiz.q42.opt2'), t('quiz.q42.opt3'), t('quiz.q42.opt4')],
+      correct: 1,
+      explanation: t('quiz.q42.explanation'),
+      difficulty: 'medium'
+    },
+    {
+      id: 43,
+      question: t('quiz.q43.question'),
+      options: [t('quiz.q43.opt1'), t('quiz.q43.opt2'), t('quiz.q43.opt3'), t('quiz.q43.opt4')],
+      correct: 2,
+      explanation: t('quiz.q43.explanation'),
+      difficulty: 'medium'
+    },
+
+    // National Symbols Questions
+    {
+      id: 44,
+      question: t('quiz.q44.question'),
+      options: [t('quiz.q44.opt1'), t('quiz.q44.opt2'), t('quiz.q44.opt3'), t('quiz.q44.opt4')],
+      correct: 0,
+      explanation: t('quiz.q44.explanation'),
+      difficulty: 'easy'
+    },
+    {
+      id: 45,
+      question: t('quiz.q45.question'),
+      options: [t('quiz.q45.opt1'), t('quiz.q45.opt2'), t('quiz.q45.opt3'), t('quiz.q45.opt4')],
+      correct: 1,
+      explanation: t('quiz.q45.explanation'),
+      difficulty: 'medium'
+    },
+    {
+      id: 46,
+      question: t('quiz.q46.question'),
+      options: [t('quiz.q46.opt1'), t('quiz.q46.opt2'), t('quiz.q46.opt3'), t('quiz.q46.opt4')],
+      correct: 2,
+      explanation: t('quiz.q46.explanation'),
+      difficulty: 'hard'
+    },
+    {
+      id: 47,
+      question: t('quiz.q47.question'),
+      options: [t('quiz.q47.opt1'), t('quiz.q47.opt2'), t('quiz.q47.opt3'), t('quiz.q47.opt4')],
+      correct: 1,
+      explanation: t('quiz.q47.explanation'),
+      difficulty: 'medium'
+    },
+
+    // Currency History Questions
+    {
+      id: 48,
+      question: t('quiz.q48.question'),
+      options: [t('quiz.q48.opt1'), t('quiz.q48.opt2'), t('quiz.q48.opt3'), t('quiz.q48.opt4')],
+      correct: 3,
+      explanation: t('quiz.q48.explanation'),
+      difficulty: 'hard'
+    },
+    {
+      id: 49,
+      question: t('quiz.q49.question'),
+      options: [t('quiz.q49.opt1'), t('quiz.q49.opt2'), t('quiz.q49.opt3'), t('quiz.q49.opt4')],
+      correct: 0,
+      explanation: t('quiz.q49.explanation'),
+      difficulty: 'medium'
+    },
+    {
+      id: 50,
+      question: t('quiz.q50.question'),
+      options: [t('quiz.q50.opt1'), t('quiz.q50.opt2'), t('quiz.q50.opt3'), t('quiz.q50.opt4')],
+      correct: 1,
+      explanation: t('quiz.q50.explanation'),
+      difficulty: 'easy'
     }
   ];
 
