@@ -17,7 +17,7 @@ interface LanguageProviderProps {
 const translations = {
   es: {
     // Header
-    'header.title': 'Historia y Cultura Chilena',
+    'header.title': 'Historia, Cultura Chilena y más',
     'header.takeQuiz': 'Hacer Quiz',
     'header.back': 'Volver',
     
