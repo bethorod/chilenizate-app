@@ -3,21 +3,6 @@ import { Users, MapPin, Mountain, TreePine, Coins, Flag, Leaf } from 'lucide-rea
 
 export const historicalPeriods = [
   {
-    id: 'pre-columbian',
-    title: 'Era Precolombina',
-    period: '12,000 a.C. - 1540 d.C.',
-    description: 'Los primeros habitantes de Chile y sus civilizaciones',
-    keyPoints: [
-      'El pueblo mapuche dominó el centro y sur de Chile',
-      'Los incas controlaron brevemente el norte de Chile en el siglo XV',
-      'Sociedades cazadoras-recolectoras en la Patagonia y el norte',
-      'Técnicas agrícolas avanzadas en el desierto de Atacama',
-      'Ricas tradiciones orales y creencias espirituales'
-    ],
-    keyFigures: ['Lautaro', 'Caupolicán', 'Galvarino'],
-    color: 'from-green-500 to-green-600'
-  },
-  {
     id: 'spanish-conquest',
     title: 'Conquista Española y Período Colonial',
     period: '1540 - 1810',

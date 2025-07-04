@@ -62,7 +62,7 @@ const Index = () => {
               <nav className="hidden md:flex space-x-6">
                 <Link to="/history" className="text-gray-700 hover:text-red-600 transition-colors">{t('nav.history')}</Link>
                 <Link to="/quiz" className="text-gray-700 hover:text-red-600 transition-colors">{t('nav.quiz')}</Link>
-                <Link to="/error-bin" className="text-gray-700 hover:text-red-600 transition-colors">{t('nav.errorBin')}</Link>
+              {/*  <Link to="/error-bin" className="text-gray-700 hover:text-red-600 transition-colors">{t('nav.errorBin')}</Link> */}
               </nav>
             </div>
           </div>
@@ -157,7 +157,7 @@ const Index = () => {
             </div>
             <h4 className="text-xl font-bold">Chilenizate</h4>
           </div>
-          <p className="text-gray-400 mb-6">{t('main.interactiveWay')}</p>
+          <p className="text-gray-400 mb-6">By Heberto Rodríguez</p>
           <div className="flex justify-center space-x-6 text-sm text-gray-400">
             <Link to="/history" className="hover:text-white transition-colors">{t('nav.history')}</Link>
             <Link to="/quiz" className="hover:text-white transition-colors">{t('nav.quiz')}</Link>

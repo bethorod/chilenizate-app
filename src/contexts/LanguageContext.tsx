@@ -22,19 +22,19 @@ const translations = {
     'header.back': 'Volver',
     
     // Main content
-    'main.title': 'Descubre Chile: Historia, Cultura y Geografía',
+    'main.title': 'Descubre Chile: Su historia, cultura y geografía',
     'main.subtitle': 'Explora el rico tapiz de la civilización chilena, desde la historia antigua hasta la cultura moderna, geografía y tradiciones',
     'main.testKnowledge': 'Pon a Prueba tu Conocimiento',
-    'main.learnHistory': 'Aprende Historia Chilena',
-    'main.interactiveWay': 'De Forma Interactiva',
-    'main.discover': 'Descubre la fascinante historia de Chile a través de lecciones interactivas, cuestionarios entretenidos y herramientas de aprendizaje personalizadas. Desde civilizaciones antiguas hasta la democracia moderna.',
-    'main.startLearning': 'Comenzar Aprendizaje',
-    'main.takeQuiz': 'Hacer Quiz',
+    'main.learnHistory': 'Conoce un poco más de Chile',
+    'main.interactiveWay': '¡De una forma más entretenida!',
+    'main.discover': 'Aquí vas a poder prepararte para tu entrevista en tu proceso de nacionalización, con la información a la mano, resumida y relevante, y pondrás en práctica lo aprendido con un Quiz entretenido.',
+    'main.startLearning': '!Comencemos, ponle bueno!',
+    'main.takeQuiz': 'Empezar Quiz',
     
     // Navigation
-    'nav.history': 'Historia',
+    'nav.history': 'Descubre Chile',
     'nav.quiz': 'Quiz',
-    'nav.errorBin': 'Bin de Errores',
+    'nav.errorBin': 'Errores del Quiz',
     
     // Features
     'features.title': 'Todo lo que Necesitas para Aprender',
@@ -43,7 +43,7 @@ const translations = {
     'features.exploreHistoryDesc': 'Descubre la rica cronología histórica de Chile desde tiempos precolombinos hasta hoy',
     'features.quiz30': 'Quiz de 30 Preguntas',
     'features.quiz30Desc': 'Pon a prueba tu conocimiento con nuestro cuestionario integral de historia chilena',
-    'features.errorBin': 'Bin de Errores',
+    'features.errorBin': 'Almacen de errores',
     'features.errorBinDesc': 'Revisa y vuelve a intentar preguntas que respondiste mal para mejorar tu comprensión',
     
     // Stats
