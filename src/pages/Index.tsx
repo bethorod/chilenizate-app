@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { Book, Trophy, AlertCircle, ChevronRight, MapPin, Calendar, Users, LogOut, User, Music2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import LanguageSelector from '@/components/LanguageSelector';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useAuth } from '@/contexts/AuthContext';
 
@@ -81,8 +80,6 @@ const Index = () => {
               </h1>
             </div>
             <div className="flex items-center space-x-4">
-              <LanguageSelector />
-              
               {user ? (
                 <div className="flex items-center space-x-4">
                   <div className="flex items-center space-x-2 text-sm text-gray-600">

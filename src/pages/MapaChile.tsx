@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Map } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import RegionTileMap from '@/components/mapa/RegionTileMap';
+import ChileCommunesMap from '@/components/mapa/ChileCommunesMap';
 import comunas from '@/data/comunas.json';
 
 const MapaChile: React.FC = () => {
@@ -14,8 +14,8 @@ const MapaChile: React.FC = () => {
 
   const filteredComunas = useMemo(() => {
     const s = search.trim().toLowerCase();
-    if (!s) return comunas.slice(0, 60); // limitar por rendimiento
-    return comunas.filter((c) => c.toLowerCase().includes(s)).slice(0, 100);
+    if (!s) return comunas.slice(0, 60);
+    return comunas.filter((c) => c.toLowerCase().includes(s)).slice(0, 120);
   }, [search]);
 
   return (
@@ -48,9 +48,9 @@ const MapaChile: React.FC = () => {
       <main className="max-w-7xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
         <section className="grid grid-cols-1 lg:grid-cols-3 gap-10 items-start">
           <article className="lg:col-span-2">
-            <RegionTileMap />
+            <ChileCommunesMap />
             <p className="mt-4 text-sm text-muted-foreground">
-              Pasa el cursor por cada región para ver su nombre. Próximamente: mapa por comunas.
+              Pasa el cursor por cada comuna para ver su nombre y región.
             </p>
           </article>
 

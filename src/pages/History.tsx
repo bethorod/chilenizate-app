@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import HistoricalPeriod from '@/components/history/HistoricalPeriod';
 import CulturalSection from '@/components/history/CulturalSection';
-import LanguageSelector from '@/components/LanguageSelector';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { historicalPeriods, culturalSections } from '@/data/historyData';
 
@@ -43,7 +43,6 @@ const History = () => {
               </h1>
             </div>
             <div className="flex items-center space-x-4">
-              <LanguageSelector />
               <Link to="/quiz">
                 <Button className="bg-red-600 hover:bg-red-700">
                   {t('header.takeQuiz')}
