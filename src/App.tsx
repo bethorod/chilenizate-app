@@ -13,6 +13,8 @@ import Quiz from "./pages/Quiz";
 import ErrorBin from "./pages/ErrorBin";
 import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
+import MapaChile from "./pages/MapaChile";
+import HimnoChile from "./pages/HimnoChile";
 
 const queryClient = new QueryClient();
 
@@ -33,11 +35,9 @@ const App = () => (
                   <Quiz />
                 </ProtectedRoute>
               } />
-              <Route path="/error-bin" element={
-                <ProtectedRoute>
-                  <ErrorBin />
-                </ProtectedRoute>
-              } />
+              <Route path="/error-bin" element={<ErrorBin />} />
+              <Route path="/himno" element={<HimnoChile />} />
+              <Route path="/mapa" element={<MapaChile />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

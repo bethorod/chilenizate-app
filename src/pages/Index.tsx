@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Book, Trophy, AlertCircle, ChevronRight, MapPin, Calendar, Users, LogOut, User } from 'lucide-react';
+import { Book, Trophy, AlertCircle, ChevronRight, MapPin, Calendar, Users, LogOut, User, Music2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import LanguageSelector from '@/components/LanguageSelector';
@@ -37,6 +37,22 @@ const Index = () => {
       icon: AlertCircle,
       color: 'from-amber-500 to-amber-600',
       link: '/error-bin'
+    },
+    {
+      id: 'mapa',
+      title: 'Mapa interactivo',
+      description: 'Explora regiones y comunas de Chile en un mapa interactivo.',
+      icon: MapPin,
+      color: 'from-emerald-500 to-emerald-600',
+      link: '/mapa'
+    },
+    {
+      id: 'himno',
+      title: 'Himno de Chile',
+      description: 'Escucha el himno nacional y aprende su letra.',
+      icon: Music2,
+      color: 'from-fuchsia-500 to-fuchsia-600',
+      link: '/himno'
     }
   ];
 
@@ -61,7 +77,7 @@ const Index = () => {
                 <span className="text-white font-bold text-xl">🇨🇱</span>
               </div>
               <h1 className="text-2xl font-bold bg-gradient-to-r from-red-600 to-blue-600 bg-clip-text text-transparent">
-                Chilenizate
+                Chilenízate
               </h1>
             </div>
             <div className="flex items-center space-x-4">
@@ -80,19 +96,21 @@ const Index = () => {
                     className="text-red-600 border-red-600 hover:bg-red-50"
                   >
                     <LogOut className="h-4 w-4 mr-2" />
-                    Sign Out
+                    Cerrar sesión
                   </Button>
                 </div>
               ) : (
                 <Link to="/auth">
                   <Button size="sm" className="bg-red-600 hover:bg-red-700">
-                    Sign In
+                    Iniciar sesión
                   </Button>
                 </Link>
               )}
               
               <nav className="hidden md:flex space-x-6">
                 <Link to="/history" className="text-gray-700 hover:text-red-600 transition-colors">{t('nav.history')}</Link>
+                <Link to="/mapa" className="text-gray-700 hover:text-red-600 transition-colors">Mapa</Link>
+                <Link to="/himno" className="text-gray-700 hover:text-red-600 transition-colors">Himno</Link>
                 <Link to="/quiz" className="text-gray-700 hover:text-red-600 transition-colors">{t('nav.quiz')}</Link>
                 <Link to="/error-bin" className="text-gray-700 hover:text-red-600 transition-colors">{t('nav.errorBin')}</Link>
               </nav>
@@ -127,9 +145,9 @@ const Index = () => {
                 </Link>
               </>
             ) : (
-              <Link to="/auth">
+              <Link to="/history">
                 <Button size="lg" className="bg-red-600 hover:bg-red-700 text-white px-8 py-3">
-                  Sign In to Start Learning
+                  Comenzar a aprender
                   <ChevronRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
@@ -198,11 +216,13 @@ const Index = () => {
             <div className="w-8 h-8 bg-gradient-to-br from-red-500 to-blue-500 rounded-lg flex items-center justify-center">
               <span className="text-white font-bold">🇨🇱</span>
             </div>
-            <h4 className="text-xl font-bold">Chilenizate</h4>
+            <h4 className="text-xl font-bold">Chilenízate</h4>
           </div>
           <p className="text-gray-400 mb-6">{t('main.interactiveWay')}</p>
           <div className="flex justify-center space-x-6 text-sm text-gray-400">
             <Link to="/history" className="hover:text-white transition-colors">{t('nav.history')}</Link>
+            <Link to="/mapa" className="hover:text-white transition-colors">Mapa</Link>
+            <Link to="/himno" className="hover:text-white transition-colors">Himno</Link>
             <Link to="/quiz" className="hover:text-white transition-colors">{t('nav.quiz')}</Link>
             <Link to="/error-bin" className="hover:text-white transition-colors">{t('nav.errorBin')}</Link>
           </div>
