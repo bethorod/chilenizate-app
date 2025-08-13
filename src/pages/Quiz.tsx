@@ -410,20 +410,6 @@ const Quiz = () => {
     
     return (
       <div className="min-h-screen bg-gradient-to-br from-red-50 via-white to-blue-50">
-        <header className="bg-white/80 backdrop-blur-sm border-b border-red-100">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center justify-between h-16">
-              <Link to="/">
-                <Button variant="ghost" size="sm">
-                  <ArrowLeft className="h-4 w-4 mr-2" />
-                  {t('quiz.home')}
-                </Button>
-              </Link>
-              <h1 className="text-xl font-bold text-gray-900">{t('quiz.results')}</h1>
-            </div>
-          </div>
-        </header>
-
         <div className="max-w-2xl mx-auto py-12 px-4 sm:px-6 lg:px-8 text-center">
           <div className="mb-8">
             <Trophy className={`mx-auto h-16 w-16 mb-4 ${percentage >= 70 ? 'text-yellow-500' : 'text-gray-400'}`} />
@@ -478,34 +464,6 @@ const Quiz = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-red-50 via-white to-blue-50">
-      {/* Header */}
-      <header className="bg-white/80 backdrop-blur-sm border-b border-red-100">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <Link to="/">
-              <Button variant="ghost" size="sm">
-                <ArrowLeft className="h-4 w-4 mr-2" />
-                {t('quiz.home')}
-              </Button>
-            </Link>
-            <div className="text-center">
-              <h1 className="text-xl font-bold text-gray-900">{t('quiz.title')}</h1>
-              <p className="text-sm text-gray-600">{t('quiz.questionNumber')} {currentQuestion + 1} {t('quiz.of')} {questions.length}</p>
-            </div>
-            <div className="text-right">
-              <div className="text-sm text-gray-600">
-                {t('quiz.difficulty')}: <span className={`font-semibold ${
-                  currentQ.difficulty === 'easy' ? 'text-green-600' :
-                  currentQ.difficulty === 'medium' ? 'text-yellow-600' : 'text-red-600'
-                }`}>
-                  {t(`quiz.${currentQ.difficulty}`)}
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
-
       <div className="max-w-2xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
         {/* Progress */}
         <div className="mb-8">

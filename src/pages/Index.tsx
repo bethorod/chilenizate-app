@@ -67,64 +67,14 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-red-50 via-white to-blue-50">
-      {/* Header */}
-      <header className="bg-white/80 backdrop-blur-sm border-b border-red-100 sticky top-0 z-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-red-500 to-blue-500 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">🇨🇱</span>
-              </div>
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-red-600 to-blue-600 bg-clip-text text-transparent">
-                Chilenízate
-              </h1>
-            </div>
-            <div className="flex items-center space-x-4">
-              {user ? (
-                <div className="flex items-center space-x-4">
-                  <div className="flex items-center space-x-2 text-sm text-gray-600">
-                    <User className="h-4 w-4" />
-                    <span>{user.email}</span>
-                  </div>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={handleSignOut}
-                    className="text-red-600 border-red-600 hover:bg-red-50"
-                  >
-                    <LogOut className="h-4 w-4 mr-2" />
-                    Cerrar sesión
-                  </Button>
-                </div>
-              ) : (
-                <Link to="/auth">
-                  <Button size="sm" className="bg-red-600 hover:bg-red-700">
-                    Iniciar sesión
-                  </Button>
-                </Link>
-              )}
-              
-              <nav className="hidden md:flex space-x-6">
-                <Link to="/history" className="text-gray-700 hover:text-red-600 transition-colors">{t('nav.history')}</Link>
-                <Link to="/mapa" className="text-gray-700 hover:text-red-600 transition-colors">Mapa</Link>
-                <Link to="/himno" className="text-gray-700 hover:text-red-600 transition-colors">Himno</Link>
-                <Link to="/practica" className="text-gray-700 hover:text-red-600 transition-colors">Práctica</Link>
-                <Link to="/quiz" className="text-gray-700 hover:text-red-600 transition-colors">{t('nav.quiz')}</Link>
-                <Link to="/error-bin" className="text-gray-700 hover:text-red-600 transition-colors">{t('nav.errorBin')}</Link>
-              </nav>
-            </div>
-          </div>
-        </div>
-      </header>
-
       {/* Hero Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
+      <section className="py-10 md:py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-5xl font-bold text-gray-900 mb-6">
+          <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
             {t('main.learnHistory')}
-            <span className="block text-3xl text-red-600 mt-2">{t('main.interactiveWay')}</span>
+            <span className="block text-xl md:text-3xl text-red-600 mt-2">{t('main.interactiveWay')}</span>
           </h2>
-          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+          <p className="text-base md:text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
             {t('main.discover')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

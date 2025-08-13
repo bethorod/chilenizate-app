@@ -16,6 +16,7 @@ import NotFound from "./pages/NotFound";
 import MapaChile from "./pages/MapaChile";
 import HimnoChile from "./pages/HimnoChile";
 import Practica from "./pages/Practica";
+import Layout from "@/components/layout/Layout";
 
 const queryClient = new QueryClient();
 
@@ -28,20 +29,22 @@ const App = () => (
           <Sonner />
           <BrowserRouter>
             <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/auth" element={<Auth />} />
-              <Route path="/history" element={<History />} />
-              <Route path="/quiz" element={
-                <ProtectedRoute>
-                  <Quiz />
-                </ProtectedRoute>
-              } />
-              <Route path="/error-bin" element={<ErrorBin />} />
-              <Route path="/himno" element={<HimnoChile />} />
-              <Route path="/mapa" element={<MapaChile />} />
-              <Route path="/practica" element={<Practica />} />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-              <Route path="*" element={<NotFound />} />
+              <Route element={<Layout />}>
+                <Route path="/" element={<Index />} />
+                <Route path="/auth" element={<Auth />} />
+                <Route path="/history" element={<History />} />
+                <Route path="/quiz" element={
+                  <ProtectedRoute>
+                    <Quiz />
+                  </ProtectedRoute>
+                } />
+                <Route path="/error-bin" element={<ErrorBin />} />
+                <Route path="/himno" element={<HimnoChile />} />
+                <Route path="/mapa" element={<MapaChile />} />
+                <Route path="/practica" element={<Practica />} />
+                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                <Route path="*" element={<NotFound />} />
+              </Route>
             </Routes>
           </BrowserRouter>
         </TooltipProvider>

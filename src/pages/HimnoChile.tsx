@@ -28,32 +28,7 @@ const HimnoChile: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-red-50 via-white to-blue-50">
-      <header className="bg-background/80 backdrop-blur-sm border-b sticky top-0 z-10">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center space-x-3">
-              <Link to="/">
-                <Button variant="ghost" size="sm">
-                  <ArrowLeft className="h-4 w-4 mr-2" />
-                  Volver
-                </Button>
-              </Link>
-              <div className="w-8 h-8 bg-gradient-to-br from-red-500 to-blue-500 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold">🇨🇱</span>
-              </div>
-              <h1 className="text-xl font-bold bg-gradient-to-r from-red-600 to-blue-600 bg-clip-text text-transparent">
-                Himno Nacional de Chile
-              </h1>
-            </div>
-            <div className="hidden sm:flex items-center space-x-2 text-muted-foreground">
-              <Music2 className="h-4 w-4" />
-              <span>Letra y audio</span>
-            </div>
-          </div>
-        </div>
-      </header>
-
+    <div className="min-h-screen bg-gradient-to-br from-red-50 via-white to-blue-50 pb-10">
       <main className="max-w-5xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
         <article className="bg-white/70 rounded-xl shadow-sm p-6 border animate-fade-in">
           <h2 className="text-2xl font-bold mb-4">Letra</h2>
