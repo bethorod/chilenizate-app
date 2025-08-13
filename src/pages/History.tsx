@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Calendar, Globe } from 'lucide-react';
+import { ArrowLeft, Calendar, Globe, Map, Music } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import HistoricalPeriod from '@/components/history/HistoricalPeriod';
 import CulturalSection from '@/components/history/CulturalSection';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { useLanguage } from '@/contexts/LanguageContext';
+import ChileCommunesMap from '@/components/mapa/ChileCommunesMap';
 import { historicalPeriods, culturalSections } from '@/data/historyData';
 
 const History = () => {
@@ -65,7 +65,7 @@ const History = () => {
         </div>
 
         <Tabs defaultValue="history" className="w-full">
-          <TabsList className="grid w-full grid-cols-2 mb-8">
+          <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 mb-8">
             <TabsTrigger value="history" className="flex items-center space-x-2">
               <Calendar className="h-4 w-4" />
               <span>{t('tabs.history')}</span>
@@ -73,6 +73,14 @@ const History = () => {
             <TabsTrigger value="culture" className="flex items-center space-x-2">
               <Globe className="h-4 w-4" />
               <span>{t('tabs.culture')}</span>
+            </TabsTrigger>
+            <TabsTrigger value="himno" className="flex items-center space-x-2">
+              <Music className="h-4 w-4" />
+              <span>Himno</span>
+            </TabsTrigger>
+            <TabsTrigger value="mapa" className="flex items-center space-x-2">
+              <Map className="h-4 w-4" />
+              <span>Mapa</span>
             </TabsTrigger>
           </TabsList>
 
@@ -100,6 +108,32 @@ const History = () => {
                   onToggle={toggleCultural}
                 />
               ))}
+            </div>
+          </TabsContent>
+
+          <TabsContent value="himno">
+            <div className="space-y-6">
+              <article className="bg-white/70 rounded-xl shadow-sm p-6 border">
+                <h3 className="text-lg font-semibold mb-2">Himno Nacional de Chile</h3>
+                <p className="text-sm text-muted-foreground mb-4">
+                  Letra principal del himno para leer y aprender.
+                </p>
+                <div className="space-y-3 text-sm leading-relaxed">
+                  <p>Puro, Chile, es tu cielo azulado; puras brisas te cruzan también,</p>
+                  <p>y tu campo de flores bordado es la copia feliz del Edén.</p>
+                  <p>Majestuosa es la blanca montaña que te dio por baluarte el Señor,</p>
+                  <p>y ese mar que tranquilo te baña te promete futuro esplendor.</p>
+                </div>
+              </article>
+            </div>
+          </TabsContent>
+
+          <TabsContent value="mapa">
+            <div className="space-y-4">
+              <ChileCommunesMap />
+              <p className="text-sm text-muted-foreground">
+                Pasa el cursor por cada comuna para ver su nombre y región.
+              </p>
             </div>
           </TabsContent>
         </Tabs>
