@@ -108,6 +108,7 @@ const Index = () => {
                 <Link to="/history" className="text-gray-700 hover:text-red-600 transition-colors">{t('nav.history')}</Link>
                 <Link to="/mapa" className="text-gray-700 hover:text-red-600 transition-colors">Mapa</Link>
                 <Link to="/himno" className="text-gray-700 hover:text-red-600 transition-colors">Himno</Link>
+                <Link to="/practica" className="text-gray-700 hover:text-red-600 transition-colors">Práctica</Link>
                 <Link to="/quiz" className="text-gray-700 hover:text-red-600 transition-colors">{t('nav.quiz')}</Link>
                 <Link to="/error-bin" className="text-gray-700 hover:text-red-600 transition-colors">{t('nav.errorBin')}</Link>
               </nav>
@@ -142,12 +143,19 @@ const Index = () => {
                 </Link>
               </>
             ) : (
-              <Link to="/history">
-                <Button size="lg" className="bg-red-600 hover:bg-red-700 text-white px-8 py-3">
-                  Comenzar a aprender
-                  <ChevronRight className="ml-2 h-5 w-5" />
-                </Button>
-              </Link>
+              <>
+                <Link to="/history">
+                  <Button size="lg" className="bg-red-600 hover:bg-red-700 text-white px-8 py-3">
+                    Comenzar a aprender
+                    <ChevronRight className="ml-2 h-5 w-5" />
+                  </Button>
+                </Link>
+                <Link to="/practica">
+                  <Button size="lg" variant="outline" className="border-red-600 text-red-600 hover:bg-red-50 px-8 py-3">
+                    Pon a prueba lo aprendido
+                  </Button>
+                </Link>
+              </>
             )}
           </div>
         </div>
