@@ -1,5 +1,5 @@
 
-import { Users, MapPin, Mountain, TreePine, Coins, Flag, Leaf } from 'lucide-react';
+import { Users, MapPin, Mountain, TreePine, Coins, Flag, Leaf, Scale, Landmark, Gem } from 'lucide-react';
 
 export const historicalPeriods = [
   {
@@ -331,5 +331,66 @@ export const culturalSections = [
         description: "Moneda actual, tipo de cambio flotante desde 1999, símbolo: $"
       }
     ]
+  }
+,
+  {
+    id: 'laws_institutions',
+    title: 'Leyes e Instituciones Públicas',
+    icon: Scale,
+    color: 'from-indigo-500 to-indigo-600',
+    content: {
+      institutions: [
+        { name: 'Congreso Nacional', role: 'Poder Legislativo: Cámara de Diputadas y Diputados y Senado; crea y reforma leyes.' },
+        { name: 'Poder Judicial', role: 'Administra justicia; incluye Corte Suprema, Cortes de Apelaciones y tribunales.' },
+        { name: 'Tribunal Constitucional', role: 'Controla la constitucionalidad de las leyes.' },
+        { name: 'Contraloría General de la República', role: 'Fiscaliza el uso de los recursos públicos y la legalidad administrativa.' },
+        { name: 'Servicio Electoral (SERVEL)', role: 'Organiza y supervisa elecciones y registros electorales.' },
+        { name: 'Gobiernos Regionales y Municipalidades', role: 'Autoridades locales y regionales encargadas de la gestión territorial.' }
+      ],
+      laws: [
+        { name: 'Constitución Política', year: '1980 (reformas varias)', description: 'Norma fundamental que organiza el Estado, reconoce derechos y define los poderes.' },
+        { name: 'Ley de Transparencia (20.285)', year: '2008', description: 'Garantiza el acceso a la información pública y la probidad.' },
+        { name: 'Ley de Participación Ciudadana (20.500)', year: '2011', description: 'Fortalece mecanismos de participación y consultas públicas.' },
+        { name: 'Ley Antidiscriminación (Zamudio, 20.609)', year: '2012', description: 'Sanciona actos de discriminación arbitraria.' },
+        { name: 'Ley del Consumidor (19.496)', year: '1997', description: 'Protege los derechos de consumidores y regula relaciones de consumo.' }
+      ]
+    }
+  },
+  {
+    id: 'political_system',
+    title: 'Sistema Político y Democrático',
+    icon: Landmark,
+    color: 'from-violet-500 to-violet-600',
+    content: {
+      branches: [
+        { name: 'Poder Ejecutivo', responsibilities: ['Presidente/a de la República', 'Ministros/as de Estado', 'Conduce la administración del Estado'] },
+        { name: 'Poder Legislativo', responsibilities: ['Elabora y reforma leyes', 'Fiscaliza al Ejecutivo', 'Cámara y Senado'] },
+        { name: 'Poder Judicial', responsibilities: ['Independiente', 'Resuelve conflictos', 'Garantiza el Estado de Derecho'] }
+      ],
+      elections: {
+        system: 'Representación proporcional (método D’Hondt) para el Congreso',
+        details: ['Voto personal, igual y secreto', 'Inscripción automática y voto voluntario', 'Elecciones periódicas y primarias'],
+        entities: ['SERVEL', 'Tricel', 'Juntas Electorales']
+      },
+      participation: ['Plebiscitos', 'Iniciativas populares de norma (según proceso)', 'Consejos de la sociedad civil', 'Audiencias públicas']
+    }
+  },
+  {
+    id: 'mining_history',
+    title: 'Minería e Historia',
+    icon: Gem,
+    color: 'from-amber-600 to-orange-600',
+    content: {
+      timeline: [
+        { era: 'Período Colonial', description: 'Extracción de oro y plata en el norte chico y centros andinos.', keyEvents: ['Fundación de minas auríferas', 'Encomiendas y mano de obra indígena'] },
+        { era: 'Siglo XIX – “Ciclo del Salitre”', description: 'Boom salitrero tras la Guerra del Pacífico; auge exportador.', keyEvents: ['Oficinas salitreras en Tarapacá y Antofagasta', 'Modernización y migración interna'] },
+        { era: 'Siglo XX – Cobre y estatalidad', description: 'Gran minería del cobre y “chilenización/nacionalización” (CODELCO).', keyEvents: ['Chuquicamata y El Teniente', 'Creación de CODELCO (1976)'] },
+        { era: 'Siglo XXI – Litio y sostenibilidad', description: 'Expansión del litio y desafíos ambientales y sociales.', keyEvents: ['Salar de Atacama', 'Nuevas regulaciones e innovación'] }
+      ],
+      current: {
+        minerals: ['Cobre', 'Litio', 'Oro', 'Molibdeno', 'Hierro'],
+        challenges: ['Diversificación productiva', 'Cuidado ambiental y del agua', 'Relación con comunidades', 'Valor agregado e innovación']
+      }
+    }
   }
 ];
