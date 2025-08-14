@@ -2,7 +2,7 @@ import { ChevronDown, ChevronUp } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { LucideIcon } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
-
+import { culturalSectionImages } from '@/data/sectionImages';
 interface CulturalSectionData {
   id: string;
   title: string;
@@ -256,6 +256,26 @@ const CulturalSection = ({ section, isExpanded, onToggle }: CulturalSectionProps
               </div>
             </div>
           )}
+          {culturalSectionImages[section.id]?.length ? (
+            <div className="mt-6 grid grid-cols-2 md:grid-cols-3 gap-3">
+              {culturalSectionImages[section.id].map((img, i) => (
+                <figure key={i} className="overflow-hidden rounded-lg border bg-white/70">
+                  <img
+                    src={img.imageUrl}
+                    alt={img.title}
+                    loading="lazy"
+                    className="w-full h-32 sm:h-40 object-cover"
+                  />
+                  <figcaption className="p-2">
+                    <p className="text-sm font-medium line-clamp-1">{img.title}</p>
+                    <p className="text-[11px] text-muted-foreground">
+                      Fuente: <a href={img.sourceUrl} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">{img.sourceName}</a>
+                    </p>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          ) : null}
         </CardContent>
       )}
     </Card>

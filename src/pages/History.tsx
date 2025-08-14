@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Calendar, Globe, Map, Music } from 'lucide-react';
+import { ArrowLeft, Calendar, Globe, Map, Music, Image as ImageIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import HistoricalPeriod from '@/components/history/HistoricalPeriod';
@@ -8,6 +8,7 @@ import CulturalSection from '@/components/history/CulturalSection';
 import { useLanguage } from '@/contexts/LanguageContext';
 import ChileCommunesMap from '@/components/mapa/ChileCommunesMap';
 import { historicalPeriods, culturalSections } from '@/data/historyData';
+import HistoryGallery from '@/components/gallery/HistoryGallery';
 
 const History = () => {
   const [expandedPeriod, setExpandedPeriod] = useState<string | null>(null);
@@ -24,19 +25,19 @@ const History = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-red-50 via-white to-blue-50">
-      {/* Content */}
+      {/* SEO: main title/h1 for the page */}
       <div className="max-w-6xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">
             {t('main.title')}
-          </h2>
+          </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             {t('main.subtitle')}
           </p>
         </div>
 
         <Tabs defaultValue="history" className="w-full">
-          <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 mb-8">
+          <TabsList className="grid w-full grid-cols-2 md:grid-cols-5 mb-8">
             <TabsTrigger value="history" className="flex items-center space-x-2">
               <Calendar className="h-4 w-4" />
               <span>{t('tabs.history')}</span>
@@ -52,6 +53,10 @@ const History = () => {
             <TabsTrigger value="mapa" className="flex items-center space-x-2">
               <Map className="h-4 w-4" />
               <span>Mapa</span>
+            </TabsTrigger>
+            <TabsTrigger value="galeria" className="flex items-center space-x-2">
+              <ImageIcon className="h-4 w-4" />
+              <span>Galería</span>
             </TabsTrigger>
           </TabsList>
 
@@ -106,6 +111,10 @@ const History = () => {
                 Pasa el cursor por cada comuna para ver su nombre y región.
               </p>
             </div>
+          </TabsContent>
+
+          <TabsContent value="galeria">
+            <HistoryGallery />
           </TabsContent>
         </Tabs>
 
