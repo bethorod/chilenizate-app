@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Mail, Lock, User, Eye, EyeOff } from 'lucide-react';
@@ -43,8 +42,8 @@ const Auth = () => {
           });
         } else {
           toast({
-            title: "Success",
-            description: "Logged in successfully!",
+            title: "Éxito",
+            description: "¡Inicio de sesión exitoso!",
           });
           navigate('/');
         }
@@ -58,15 +57,15 @@ const Auth = () => {
           });
         } else {
           toast({
-            title: "Success",
-            description: "Account created successfully! Please check your email to confirm your account.",
+            title: "Éxito",
+            description: "¡Cuenta creada exitosamente! Por favor revisa tu correo para confirmar tu cuenta.",
           });
         }
       }
     } catch (error) {
       toast({
         title: "Error",
-        description: "An unexpected error occurred.",
+        description: "Ocurrió un error inesperado.",
         variant: "destructive",
       });
     } finally {
@@ -88,12 +87,12 @@ const Auth = () => {
               </h1>
             </div>
             <CardTitle className="text-2xl">
-              {isLogin ? 'Welcome Back' : 'Create Account'}
+              {isLogin ? '¡Bienvenido!' : 'Crear cuenta'}
             </CardTitle>
             <CardDescription>
               {isLogin 
-                ? 'Sign in to your account to continue learning Chilean history' 
-                : 'Join Chilenizate to track your progress and save your results'
+                ? 'Inicia sesión para seguir aprendiendo todo sobre Chile' 
+                : 'Únete a Chilenizate para seguir tu progreso y guardar tus resultados'
               }
             </CardDescription>
           </CardHeader>
@@ -101,13 +100,13 @@ const Auth = () => {
             <form onSubmit={handleSubmit} className="space-y-4">
               {!isLogin && (
                 <div className="space-y-2">
-                  <Label htmlFor="fullName">Full Name</Label>
+                  <Label htmlFor="fullName">Nombre completo</Label>
                   <div className="relative">
                     <User className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
                     <Input
                       id="fullName"
                       type="text"
-                      placeholder="Enter your full name"
+                      placeholder="Ingresa tu nombre completo"
                       value={fullName}
                       onChange={(e) => setFullName(e.target.value)}
                       className="pl-10"
@@ -118,13 +117,13 @@ const Auth = () => {
               )}
               
               <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email">Correo electrónico</Label>
                 <div className="relative">
                   <Mail className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
                   <Input
                     id="email"
                     type="email"
-                    placeholder="Enter your email"
+                    placeholder="Ingresa tu correo electrónico"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     className="pl-10"
@@ -134,13 +133,13 @@ const Auth = () => {
               </div>
               
               <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password">Contraseña</Label>
                 <div className="relative">
                   <Lock className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
                   <Input
                     id="password"
                     type={showPassword ? 'text' : 'password'}
-                    placeholder="Enter your password"
+                    placeholder="Ingresa tu contraseña"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     className="pl-10 pr-10"
@@ -168,19 +167,19 @@ const Auth = () => {
                 className="w-full bg-red-600 hover:bg-red-700"
                 disabled={loading}
               >
-                {loading ? 'Please wait...' : (isLogin ? 'Sign In' : 'Create Account')}
+                {loading ? 'Por favor espera...' : (isLogin ? 'Iniciar sesión' : 'Crear cuenta')}
               </Button>
             </form>
 
             <div className="mt-6 text-center">
               <p className="text-sm text-gray-600">
-                {isLogin ? "Don't have an account?" : "Already have an account?"}{' '}
+                {isLogin ? "¿No tienes una cuenta?" : "¿Ya tienes una cuenta?"}{' '}
                 <Button
                   variant="link"
                   className="p-0 text-red-600 hover:text-red-700"
                   onClick={() => setIsLogin(!isLogin)}
                 >
-                  {isLogin ? 'Sign up' : 'Sign in'}
+                  {isLogin ? 'Regístrate' : 'Inicia sesión'}
                 </Button>
               </p>
             </div>
