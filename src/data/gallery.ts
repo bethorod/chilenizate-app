@@ -3,59 +3,58 @@ export interface GalleryItem {
   title: string;
   description: string;
   year?: string;
-  imageUrl: string; // External source URL
+  imageUrl: string; // Local file served from public/
   sourceName: string;
   sourceUrl: string;
 }
 
 export const historyGallery: GalleryItem[] = [
   {
-    id: 'maipo-embrace',
-    title: 'Independencia y símbolos',
-    description: 'Iconografía patriótica y símbolos nacionales que representaron la independencia de Chile.',
-    year: '1810-1818',
-    imageUrl: 'https://source.unsplash.com/1200x800/?chile,flag',
-    sourceName: 'Unsplash (consulta: chile,flag)',
-    sourceUrl: 'https://unsplash.com/',
+    id: 'la-moneda',
+    title: 'Palacio de La Moneda',
+    description: 'Sede del Poder Ejecutivo y símbolo del sistema político chileno.',
+    imageUrl: '/images/history/la-moneda.jpg',
+    sourceName: 'Wikimedia Commons',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:La_Moneda_Palace_Santiago_Chile.jpg',
+  },
+  {
+    id: 'congreso-valparaiso',
+    title: 'Congreso Nacional (Valparaíso)',
+    description: 'Institución clave del Poder Legislativo en Chile.',
+    imageUrl: '/images/history/congreso-valparaiso.jpg',
+    sourceName: 'Wikimedia Commons',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Edificio_del_Congreso_Nacional_de_Chile_(Valpara%C3%ADso).jpg',
+  },
+  {
+    id: 'chuquicamata',
+    title: 'Minería del cobre (Chuquicamata)',
+    description: 'Emblema de la gran minería del cobre, eje de la economía chilena.',
+    imageUrl: '/images/history/chuquicamata.jpg',
+    sourceName: 'Wikimedia Commons',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Chuquicamata_panorama.jpg',
+  },
+  {
+    id: 'atacama',
+    title: 'Laguna Tebinquinche (Atacama)',
+    description: 'Paisaje del desierto de Atacama, patrimonio natural y científico.',
+    imageUrl: '/images/history/atacama-laguna.jpg',
+    sourceName: 'Wikimedia Commons',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Laguna_Tebinquinche,_desierto_de_Atacama,_Chile,_2016-02-06,_DD_30.jpg',
   },
   {
     id: 'valparaiso',
     title: 'Puerto de Valparaíso',
-    description: 'Valparaíso, puerto histórico y patrimonio de la humanidad, clave en el comercio del Pacífico.',
-    imageUrl: 'https://source.unsplash.com/1200x800/?valparaiso,chile',
-    sourceName: 'Unsplash (consulta: valparaiso,chile)',
-    sourceUrl: 'https://unsplash.com/',
-  },
-  {
-    id: 'atacama',
-    title: 'Desierto de Atacama',
-    description: 'Paisaje del desierto más árido del mundo, territorio clave para minería y astronomía.',
-    imageUrl: 'https://source.unsplash.com/1200x800/?atacama,desert,chile',
-    sourceName: 'Unsplash (consulta: atacama,desert,chile)',
-    sourceUrl: 'https://unsplash.com/',
-  },
-  {
-    id: 'chuquicamata',
-    title: 'Minería del cobre',
-    description: 'Chuquicamata y la gran minería del cobre, eje económico e identitario del siglo XX y XXI.',
-    imageUrl: 'https://source.unsplash.com/1200x800/?mine,copper,chile',
-    sourceName: 'Unsplash (consulta: mine,copper,chile)',
-    sourceUrl: 'https://unsplash.com/',
-  },
-  {
-    id: 'la-moneda',
-    title: 'Palacio de La Moneda',
-    description: 'Sede del Poder Ejecutivo y símbolo del sistema político chileno.',
-    imageUrl: 'https://source.unsplash.com/1200x800/?la%20moneda,santiago,chile',
-    sourceName: 'Unsplash (consulta: la moneda,santiago,chile)',
-    sourceUrl: 'https://unsplash.com/',
+    description: 'Puerto histórico y patrimonio clave en el comercio del Pacífico.',
+    imageUrl: '/images/history/valparaiso-port.jpg',
+    sourceName: 'Wikimedia Commons',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Valparaiso_Port_(Chile)_-_new.jpg',
   },
   {
     id: 'torres-del-paine',
     title: 'Torres del Paine',
-    description: 'Patrimonio natural y parte esencial de la identidad geográfica y cultural de Chile.',
-    imageUrl: 'https://source.unsplash.com/1200x800/?torres%20del%20paine,chile',
-    sourceName: 'Unsplash (consulta: torres del paine,chile)',
-    sourceUrl: 'https://unsplash.com/',
+    description: 'Ícono del sur de Chile y su biodiversidad.',
+    imageUrl: '/images/history/torres-paine.jpg',
+    sourceName: 'Wikimedia Commons',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Cuernos_del_Paine,_Parque_Nacional_Torres_del_Paine,_Chile10.jpg',
   },
-]
+];

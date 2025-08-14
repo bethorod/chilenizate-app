@@ -8,81 +8,45 @@ export interface SectionImage {
 export const culturalSectionImages: Record<string, SectionImage[]> = {
   laws_institutions: [
     {
-      title: 'Congreso Nacional de Chile',
-      imageUrl: 'https://source.unsplash.com/800x600/?congress,santiago,chile',
-      sourceName: 'Unsplash (consulta: congress,santiago,chile)',
-      sourceUrl: 'https://unsplash.com/',
+      title: 'Edificio del Congreso Nacional (Valparaíso)',
+      imageUrl: '/images/history/congreso-valparaiso.jpg',
+      sourceName: 'Wikimedia Commons',
+      sourceUrl: 'https://commons.wikimedia.org/wiki/File:Edificio_del_Congreso_Nacional_de_Chile_(Valpara%C3%ADso).jpg',
     },
     {
-      title: 'Contraloría General y edificios públicos',
-      imageUrl: 'https://source.unsplash.com/800x600/?public,building,santiago',
-      sourceName: 'Unsplash (consulta: public,building,santiago)',
-      sourceUrl: 'https://unsplash.com/',
+      title: 'Palacio de La Moneda',
+      imageUrl: '/images/history/la-moneda.jpg',
+      sourceName: 'Wikimedia Commons',
+      sourceUrl: 'https://commons.wikimedia.org/wiki/File:La_Moneda_Palace_Santiago_Chile.jpg',
     },
   ],
   political_system: [
     {
       title: 'Palacio de La Moneda',
-      imageUrl: 'https://source.unsplash.com/800x600/?la%20moneda,chile',
-      sourceName: 'Unsplash (consulta: la moneda,chile)',
-      sourceUrl: 'https://unsplash.com/',
+      imageUrl: '/images/history/la-moneda.jpg',
+      sourceName: 'Wikimedia Commons',
+      sourceUrl: 'https://commons.wikimedia.org/wiki/File:La_Moneda_Palace_Santiago_Chile.jpg',
     },
   ],
   mining_history: [
     {
-      title: 'Minería del cobre en el norte',
-      imageUrl: 'https://source.unsplash.com/800x600/?mine,copper,chile',
-      sourceName: 'Unsplash (consulta: mine,copper,chile)',
-      sourceUrl: 'https://unsplash.com/',
+      title: 'Mina de Chuquicamata',
+      imageUrl: '/images/history/chuquicamata.jpg',
+      sourceName: 'Wikimedia Commons',
+      sourceUrl: 'https://commons.wikimedia.org/wiki/File:Chuquicamata_panorama.jpg',
     },
     {
-      title: 'Desierto de Atacama',
-      imageUrl: 'https://source.unsplash.com/800x600/?atacama,desert',
-      sourceName: 'Unsplash (consulta: atacama,desert)',
-      sourceUrl: 'https://unsplash.com/',
+      title: 'Laguna Tebinquinche (Atacama)',
+      imageUrl: '/images/history/atacama-laguna.jpg',
+      sourceName: 'Wikimedia Commons',
+      sourceUrl: 'https://commons.wikimedia.org/wiki/File:Laguna_Tebinquinche,_desierto_de_Atacama,_Chile,_2016-02-06,_DD_30.jpg',
     },
   ],
   folklore: [
-    {
-      title: 'Cueca chilena',
-      imageUrl: 'https://source.unsplash.com/800x600/?cueca,chile',
-      sourceName: 'Unsplash (consulta: cueca,chile)',
-      sourceUrl: 'https://unsplash.com/',
-    },
+    // Pendiente de fuente estable con licencia: por ahora no se muestra si no está disponible
   ],
 };
 
 export const historicalPeriodImages: Record<string, SectionImage[]> = {
-  independence: [
-    {
-      title: 'Símbolos de Independencia',
-      imageUrl: 'https://source.unsplash.com/800x600/?chile,flag',
-      sourceName: 'Unsplash (consulta: chile,flag)',
-      sourceUrl: 'https://unsplash.com/',
-    },
-  ],
-  'pre-columbian': [
-    {
-      title: 'Patagonia y culturas originarias',
-      imageUrl: 'https://source.unsplash.com/800x600/?patagonia,chile',
-      sourceName: 'Unsplash (consulta: patagonia,chile)',
-      sourceUrl: 'https://unsplash.com/',
-    },
-  ],
-  'spanish-conquest': [
-    {
-      title: 'Arquitectura colonial',
-      imageUrl: 'https://source.unsplash.com/800x600/?colonial,architecture,chile',
-      sourceName: 'Unsplash (consulta: colonial,architecture,chile)',
-      sourceUrl: 'https://unsplash.com/',
-    },
-  ],
-  'return-democracy': [
-    {
-      title: 'Santiago moderno y democracia',
-      imageUrl: 'https://source.unsplash.com/800x600/?santiago,chile,city',
-      sourceName: 'Unsplash (consulta: santiago,chile,city)',
-      sourceUrl: 'https://unsplash.com/',
-    },
-  ],
+  // Podemos ir agregando imágenes por período con fuentes de Commons
 };
