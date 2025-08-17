@@ -39,16 +39,16 @@ const Index = () => {
     },
     {
       id: 'mapa',
-      title: 'Mapa interactivo',
-      description: 'Explora regiones y comunas de Chile en un mapa interactivo.',
+      title: 'Geografía territorial',
+      description: 'Navega por las 16 regiones y sus comunas para comprender la organización territorial del país.',
       icon: MapPin,
       color: 'from-emerald-500 to-emerald-600',
       link: '/mapa'
     },
     {
       id: 'himno',
-      title: 'Himno de Chile',
-      description: 'Escucha el himno nacional y aprende su letra.',
+      title: 'Símbolos patrios',
+      description: 'Conoce el himno nacional, su significado y contexto histórico.',
       icon: Music2,
       color: 'from-fuchsia-500 to-fuchsia-600',
       link: '/himno'
@@ -71,11 +71,11 @@ const Index = () => {
       <section className="py-10 md:py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
-            {t('main.learnHistory')}
-            <span className="block text-xl md:text-3xl text-red-600 mt-2">{t('main.interactiveWay')}</span>
+            Conoce Chile en profundidad
+            <span className="block text-xl md:text-3xl text-red-600 mt-2">Tu guía completa para estudios e integración</span>
           </h2>
           <p className="text-base md:text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-            {t('main.discover')}
+            Descubre la historia, cultura y territorio chileno. Ideal para estudiantes, investigadores y extranjeros que buscan integrarse al país.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             {user ? (
@@ -96,13 +96,13 @@ const Index = () => {
               <>
                 <Link to="/history">
                   <Button size="lg" className="bg-red-600 hover:bg-red-700 text-white px-8 py-3">
-                    Comenzar a aprender
+                    Explorar contenido
                     <ChevronRight className="ml-2 h-5 w-5" />
                   </Button>
                 </Link>
                 <Link to="/practica">
                   <Button size="lg" variant="outline" className="border-red-600 text-red-600 hover:bg-red-50 px-8 py-3">
-                    Pon a prueba lo aprendido
+                    Evaluar conocimientos
                   </Button>
                 </Link>
               </>
