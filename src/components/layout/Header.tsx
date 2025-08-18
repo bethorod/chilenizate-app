@@ -6,12 +6,7 @@ import { useAuth } from "@/contexts/AuthContext";
 
 const navItems = [
   { to: "/", label: "Inicio" },
-  { to: "/history", label: "Historia" },
-  { to: "/mapa", label: "Mapa" },
-  { to: "/himno", label: "Himno" },
-  { to: "/practica", label: "Práctica" },
-  { to: "/quiz", label: "Quiz" },
-  { to: "/error-bin", label: "Errores" },
+  { to: "/history", label: "Contenido" },
 ];
 
 export default function Header() {

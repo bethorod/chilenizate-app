@@ -102,7 +102,7 @@ const Index = () => {
                 </Link>
                 <Link to="/practica">
                   <Button size="lg" variant="outline" className="border-red-600 text-red-600 hover:bg-red-50 px-8 py-3">
-                    Evaluar conocimientos
+                    Practica y juega
                   </Button>
                 </Link>
               </>
