@@ -13,23 +13,33 @@ interface RoscoItem {
 type Status = 'pendiente' | 'acierto' | 'error' | 'pasapalabra';
 
 const sampleData: RoscoItem[] = [
-  { letter: 'A', clue: 'Período en que Chile se independiza oficialmente (con la A).', answer: 'absolutismo', category: 'historia' },
-  { letter: 'B', clue: 'Billete chileno que tuvo el retrato de Andrés Bello (con la B).', answer: 'bello', category: 'moneda' },
-  { letter: 'C', clue: 'Expresión chilena para decir “amigo” (con la C).', answer: 'compadre', category: 'modismos' },
-  { letter: 'D', clue: 'Danza nacional de Chile.', answer: 'cueca', category: 'cultura' },
-  { letter: 'E', clue: 'Emblema patrio que ondea los 18 de septiembre.', answer: 'enseña', category: 'historia' },
-  { letter: 'F', clue: 'Forma de pago metálica anterior al peso actual.', answer: 'fuerte', category: 'moneda' },
-  { letter: 'G', clue: 'Grupo musical folclórico representativo (con la G).', answer: 'grupo', category: 'cultura' },
-  { letter: 'H', clue: 'Héroe naval de Iquique.', answer: 'prat', category: 'historia' },
-  { letter: 'I', clue: 'Impuesto que se aplica a compras (sigla).', answer: 'iva', category: 'cultura' },
-  { letter: 'J', clue: 'Jerga chilena para referirse a trabajo.', answer: 'pega', category: 'modismos' },
-  { letter: 'L', clue: 'Letra con la que empieza la moneda actual.', answer: 'peso', category: 'moneda' },
-  { letter: 'M', clue: 'Montaña blanca de nuestro escudo.', answer: 'andés', category: 'historia' },
-  { letter: 'P', clue: 'Palabra con la que se conoce a la bebida nacional hecha de vino con fruta.', answer: 'ponche', category: 'cultura' },
-  { letter: 'Q', clue: 'Quebrada donde se firmó parte de la independencia (con la Q).', answer: 'quillota', category: 'historia' },
-  { letter: 'S', clue: 'Sinónimo chileno de dinero (con la S).', answer: 'sope', category: 'modismos' },
-  { letter: 'T', clue: 'Tipo de cambio usado para comprar moneda extranjera.', answer: 'tasa', category: 'moneda' },
-  { letter: 'V', clue: 'Valparaíso es famosa por sus… (con la V).', answer: 'vistas', category: 'cultura' },
+  { letter: 'A', clue: 'Período de dominio español previo a la independencia de Chile.', answer: 'absolutismo', category: 'historia' },
+  { letter: 'B', clue: 'Moneda de Chile que contiene la letra B.', answer: 'billete', category: 'moneda' },
+  { letter: 'C', clue: 'Danza nacional de Chile que contiene la letra C.', answer: 'cueca', category: 'cultura' },
+  { letter: 'D', clue: 'Baile tradicional que representa el cortejo, con la letra D.', answer: 'danza', category: 'cultura' },
+  { letter: 'E', clue: 'Bandera nacional que ondea, contiene la letra E.', answer: 'emblema', category: 'historia' },
+  { letter: 'F', clue: 'Moneda de oro española usada en Chile colonial, con la letra F.', answer: 'fuerte', category: 'moneda' },
+  { letter: 'G', clue: 'Expresión chilena para referirse a una persona, con la letra G.', answer: 'gallo', category: 'modismos' },
+  { letter: 'H', clue: 'Canto patrio de Chile, contiene la letra H.', answer: 'himno', category: 'cultura' },
+  { letter: 'I', clue: 'Proceso histórico de liberación de Chile, contiene la letra I.', answer: 'independencia', category: 'historia' },
+  { letter: 'J', clue: 'Expresión chilena para decir que algo está genial, con la letra J.', answer: 'joya', category: 'modismos' },
+  { letter: 'K', clue: 'Pueblo mapuche del sur, contiene la letra K.', answer: 'kultrún', category: 'cultura' },
+  { letter: 'L', clue: 'Expresión chilena para mil pesos, contiene la letra L.', answer: 'luka', category: 'moneda' },
+  { letter: 'M', clue: 'Cordillera principal de Chile, contiene la letra M.', answer: 'montañas', category: 'historia' },
+  { letter: 'N', clue: 'Región extrema del país, contiene la letra N.', answer: 'norte', category: 'cultura' },
+  { letter: 'Ñ', clue: 'Expresión chilena cariñosa, contiene la letra Ñ.', answer: 'ñoño', category: 'modismos' },
+  { letter: 'O', clue: 'Libertador de Chile, contiene la letra O.', answer: 'ohiggins', category: 'historia' },
+  { letter: 'P', clue: 'Moneda oficial de Chile, contiene la letra P.', answer: 'peso', category: 'moneda' },
+  { letter: 'Q', clue: 'Pueblo originario del norte, contiene la letra Q.', answer: 'quechua', category: 'cultura' },
+  { letter: 'R', clue: 'Forma de gobierno de Chile, contiene la letra R.', answer: 'republica', category: 'historia' },
+  { letter: 'S', clue: 'Expresión chilena para dinero, contiene la letra S.', answer: 'sope', category: 'modismos' },
+  { letter: 'T', clue: 'Cambio de moneda, contiene la letra T.', answer: 'tasa', category: 'moneda' },
+  { letter: 'U', clue: 'Moneda de cuenta antigua chilena, contiene la letra U.', answer: 'unidad', category: 'moneda' },
+  { letter: 'V', clue: 'Puerto principal de Chile, contiene la letra V.', answer: 'valparaiso', category: 'cultura' },
+  { letter: 'W', clue: 'Territorio mapuche, contiene la letra W.', answer: 'wallmapu', category: 'cultura' },
+  { letter: 'X', clue: 'Letra poco común en español, con la letra X.', answer: 'xilófono', category: 'cultura' },
+  { letter: 'Y', clue: 'Región del extremo sur, contiene la letra Y.', answer: 'yaganes', category: 'historia' },
+  { letter: 'Z', clue: 'Región del extremo norte de Chile, contiene la letra Z.', answer: 'zona', category: 'historia' },
 ];
 
 // Utility to normalize answer
@@ -140,7 +150,7 @@ const Pasapalabras: React.FC = () => {
 
           <article className="p-4 rounded-lg border bg-white/70">
             <p className="text-sm text-gray-600 mb-2">Categoría: <strong className="capitalize">{current.category}</strong></p>
-            <p className="text-lg">Con la <strong>{current.letter}</strong>: {current.clue}</p>
+            <p className="text-lg">{current.clue}</p>
           </article>
 
           <div className="flex flex-col sm:flex-row gap-3">
