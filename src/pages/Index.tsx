@@ -86,9 +86,9 @@ const Index = () => {
                     <ChevronRight className="ml-2 h-5 w-5" />
                   </Button>
                 </Link>
-                <Link to="/quiz">
+                <Link to="/practica">
                   <Button size="lg" variant="outline" className="border-red-600 text-red-600 hover:bg-red-50 px-8 py-3">
-                    {t('main.takeQuiz')}
+                    Practica y juega
                   </Button>
                 </Link>
               </>
