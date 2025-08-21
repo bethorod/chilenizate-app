@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Mail, Lock, User, Eye, EyeOff } from 'lucide-react';
+import { ArrowLeft, Mail, Lock, User, Eye, EyeOff, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
 import { useAuth } from '@/contexts/AuthContext';
 
@@ -13,6 +14,8 @@ const Auth = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [fullName, setFullName] = useState('');
+  const [countryOfOrigin, setCountryOfOrigin] = useState('');
+  const [yearsInChile, setYearsInChile] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   
@@ -48,7 +51,7 @@ const Auth = () => {
           navigate('/');
         }
       } else {
-        const { error } = await signUp(email, password, fullName);
+        const { error } = await signUp(email, password, fullName, countryOfOrigin, yearsInChile);
         if (error) {
           toast({
             title: "Error",
@@ -113,6 +116,77 @@ const Auth = () => {
                       required={!isLogin}
                     />
                   </div>
+                </div>
+              )}
+              
+              {!isLogin && (
+                <div className="space-y-2">
+                  <Label htmlFor="countryOfOrigin">País de origen</Label>
+                  <div className="relative">
+                    <Globe className="absolute left-3 top-3 h-4 w-4 text-gray-400 z-10" />
+                    <Select 
+                      value={countryOfOrigin} 
+                      onValueChange={setCountryOfOrigin}
+                      required={!isLogin}
+                    >
+                      <SelectTrigger className="pl-10">
+                        <SelectValue placeholder="Selecciona tu país de origen" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="Chile">Chile</SelectItem>
+                        <SelectItem value="Argentina">Argentina</SelectItem>
+                        <SelectItem value="Perú">Perú</SelectItem>
+                        <SelectItem value="Bolivia">Bolivia</SelectItem>
+                        <SelectItem value="Colombia">Colombia</SelectItem>
+                        <SelectItem value="Ecuador">Ecuador</SelectItem>
+                        <SelectItem value="Venezuela">Venezuela</SelectItem>
+                        <SelectItem value="Brasil">Brasil</SelectItem>
+                        <SelectItem value="Uruguay">Uruguay</SelectItem>
+                        <SelectItem value="Paraguay">Paraguay</SelectItem>
+                        <SelectItem value="México">México</SelectItem>
+                        <SelectItem value="Estados Unidos">Estados Unidos</SelectItem>
+                        <SelectItem value="Canadá">Canadá</SelectItem>
+                        <SelectItem value="España">España</SelectItem>
+                        <SelectItem value="Francia">Francia</SelectItem>
+                        <SelectItem value="Alemania">Alemania</SelectItem>
+                        <SelectItem value="Italia">Italia</SelectItem>
+                        <SelectItem value="Reino Unido">Reino Unido</SelectItem>
+                        <SelectItem value="China">China</SelectItem>
+                        <SelectItem value="Japón">Japón</SelectItem>
+                        <SelectItem value="Corea del Sur">Corea del Sur</SelectItem>
+                        <SelectItem value="Otro">Otro</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+              )}
+
+              {!isLogin && countryOfOrigin && countryOfOrigin !== 'Chile' && (
+                <div className="space-y-2">
+                  <Label htmlFor="yearsInChile">Años residiendo en Chile</Label>
+                  <Select 
+                    value={yearsInChile} 
+                    onValueChange={setYearsInChile}
+                    required={!isLogin && countryOfOrigin !== 'Chile'}
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Selecciona los años" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="menos-1">Menos de 1 año</SelectItem>
+                      <SelectItem value="1">1 año</SelectItem>
+                      <SelectItem value="2">2 años</SelectItem>
+                      <SelectItem value="3">3 años</SelectItem>
+                      <SelectItem value="4">4 años</SelectItem>
+                      <SelectItem value="5">5 años</SelectItem>
+                      <SelectItem value="6">6 años</SelectItem>
+                      <SelectItem value="7">7 años</SelectItem>
+                      <SelectItem value="8">8 años</SelectItem>
+                      <SelectItem value="9">9 años</SelectItem>
+                      <SelectItem value="10">10 años</SelectItem>
+                      <SelectItem value="mas-10">Más de 10 años</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
               )}
               
