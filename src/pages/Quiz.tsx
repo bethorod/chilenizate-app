@@ -273,7 +273,111 @@ const Quiz = () => {
       correct: 0,
       explanation: t('quiz.q30.explanation'),
       difficulty: 'hard'
-    }
+    },
+    {
+      id: 31,
+      question: t('quiz.q31.question'), // ¿En qué año se firmó el Tratado de Paz y Amistad entre Chile y Argentina?
+      options: [
+        t('quiz.q31.opt1'), // 1881
+        t('quiz.q31.opt2'), // 1902
+        t('quiz.q31.opt3'), // 1945
+        t('quiz.q31.opt4'), // 1978
+      ],
+      correct: 0,
+      explanation: t('quiz.q31.explanation'), // El Tratado de Paz y Amistad se firmó en 1881.
+      difficulty: 'hard'
+    },
+    {
+      id: 32,
+      question: t('quiz.q32.question'), // ¿Cuál es el nombre oficial del himno nacional de Chile?
+      options: [
+        t('quiz.q32.opt1'), // Canción Nacional
+        t('quiz.q32.opt2'), // Himno Patrio
+        t('quiz.q32.opt3'), // Marcha de Chile
+        t('quiz.q32.opt4'), // Gloria Chilena
+      ],
+      correct: 0,
+      explanation: t('quiz.q32.explanation'), // El nombre oficial es "Canción Nacional".
+      difficulty: 'hard'
+    },
+    {
+      id: 33,
+      question: t('quiz.q33.question'), // ¿Cuál es la comuna más extensa de Chile en superficie?
+      options: [
+        t('quiz.q33.opt1'), // Punta Arenas
+        t('quiz.q33.opt2'), // Antofagasta
+        t('quiz.q33.opt3'), // Alto Hospicio
+        t('quiz.q33.opt4'), // Natales
+      ],
+      correct: 3,
+      explanation: t('quiz.q33.explanation'), // Natales es la comuna más extensa de Chile.
+      difficulty: 'hard'
+    },
+    {
+      id: 34,
+      question: t('quiz.q34.question'), // ¿Qué recurso natural chileno es considerado el mayor yacimiento mundial?
+      options: [
+        t('quiz.q34.opt1'), // Litio
+        t('quiz.q34.opt2'), // Plata
+        t('quiz.q34.opt3'), // Salitre
+        t('quiz.q34.opt4'), // Cobre
+      ],
+      correct: 0,
+      explanation: t('quiz.q34.explanation'), // Chile posee el mayor yacimiento de litio del mundo.
+      difficulty: 'hard'
+    },
+    {
+      id: 35,
+      question: t('quiz.q35.question'), // ¿En qué año la selección chilena de fútbol obtuvo el tercer lugar en un Mundial?
+      options: [
+        t('quiz.q35.opt1'), // 1950
+        t('quiz.q35.opt2'), // 1962
+        t('quiz.q35.opt3'), // 1974
+        t('quiz.q35.opt4'), // 1998
+      ],
+      correct: 1,
+      explanation: t('quiz.q35.explanation'), // En 1962, Chile fue tercero en el Mundial organizado en el país.
+      difficulty: 'hard'
+    },
+    {
+      id: 36,
+      question: t('quiz.q36.question'), // ¿Cuál es el nombre del instrumento de viento típico en la música folclórica chilena?
+      options: [
+        t('quiz.q36.opt1'), // Zampoña
+        t('quiz.q36.opt2'), // Quena
+        t('quiz.q36.opt3'), // Trutruca
+        t('quiz.q36.opt4'), // Charango
+      ],
+      correct: 2,
+      explanation: t('quiz.q36.explanation'), // La trutruca es un instrumento mapuche típico de Chile.
+      difficulty: 'hard'
+    },
+    {
+      id: 37,
+      question: t('quiz.q37.question'), // ¿Qué región chilena no tiene salida al mar?
+      options: [
+        t('quiz.q37.opt1'), // Región de O'Higgins
+        t('quiz.q37.opt2'), // Región de Los Ríos
+        t('quiz.q37.opt3'), // Región de La Araucanía
+        t('quiz.q37.opt4'), // Región de Magallanes
+      ],
+      correct: 2,
+      explanation: t('quiz.q37.explanation'), // La Araucanía es la única región continental sin litoral.
+      difficulty: 'hard'
+    },
+    {
+      id: 38,
+      question: t('quiz.q38.question'), // ¿Quién fue el primer presidente de la República de Chile?
+      options: [
+        t('quiz.q38.opt1'), // Bernardo O'Higgins
+        t('quiz.q38.opt2'), // Manuel Bulnes
+        t('quiz.q38.opt3'), // Manuel Blanco Encalada
+        t('quiz.q38.opt4'), // José Miguel Carrera
+      ],
+      correct: 2,
+      explanation: t('quiz.q38.explanation'), // Manuel Blanco Encalada fue el primer presidente.
+      difficulty: 'hard'
+    },
   ];
 
   useEffect(() => {
