@@ -1,190 +1,93 @@
-
-import { useState } from 'react';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Book, Trophy, AlertCircle, ChevronRight, MapPin, Calendar, Users, LogOut, User, Music2 } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { useLanguage } from '@/contexts/LanguageContext';
-import { useAuth } from '@/contexts/AuthContext';
+import { ArrowRight, BookOpen, Flag, Gamepad2, MapPin, Music2, Sparkles } from 'lucide-react';
 
-const Index = () => {
-  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
-  const { t } = useLanguage();
-  const { user, signOut } = useAuth();
+const explorations = [
+  { title: 'Historia de Chile', description: 'Desde los pueblos originarios hasta el Chile contemporáneo.', icon: BookOpen, link: '/history', accent: 'bg-blue-950' },
+  { title: 'Mapa interactivo', description: 'Recorre las 16 regiones y descubre sus comunas.', icon: MapPin, link: '/mapa', accent: 'bg-red-600' },
+  { title: 'Símbolos patrios', description: 'Conoce el himno, su letra y su contexto.', icon: Music2, link: '/himno', accent: 'bg-blue-700' },
+];
 
-  const features = [
-    {
-      id: 'history',
-      title: t('features.exploreHistory'),
-      description: t('features.exploreHistoryDesc'),
-      icon: Book,
-      color: 'from-red-500 to-red-600',
-      link: '/history'
-    },
-    {
-      id: 'quiz',
-      title: t('features.quiz30'),
-      description: t('features.quiz30Desc'),
-      icon: Trophy,
-      color: 'from-blue-500 to-blue-600',
-      link: '/quiz'
-    },
-    {
-      id: 'errors',
-      title: t('features.errorBin'),
-      description: t('features.errorBinDesc'),
-      icon: AlertCircle,
-      color: 'from-amber-500 to-amber-600',
-      link: '/error-bin'
-    },
-    {
-      id: 'mapa',
-      title: 'Geografía territorial',
-      description: 'Navega por las 16 regiones y sus comunas para comprender la organización territorial del país.',
-      icon: MapPin,
-      color: 'from-emerald-500 to-emerald-600',
-      link: '/mapa'
-    },
-    {
-      id: 'himno',
-      title: 'Símbolos patrios',
-      description: 'Conoce el himno nacional, su significado y contexto histórico.',
-      icon: Music2,
-      color: 'from-fuchsia-500 to-fuchsia-600',
-      link: '/himno'
-    }
-  ];
-
-  const stats = [
-    { icon: MapPin, label: t('stats.regionsCovered'), value: '16' },
-    { icon: Calendar, label: t('stats.historicalPeriods'), value: '8' },
-    { icon: Users, label: t('stats.keyFigures'), value: '50+' }
-  ];
-
-  const handleSignOut = async () => {
-    await signOut();
-  };
+export default function Index() {
+  useEffect(() => {
+    document.title = 'Chilenízate | Descubre Chile jugando';
+  }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-red-50 via-white to-blue-50">
-      {/* Hero Section */}
-      <section className="py-10 md:py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
-            Conoce Chile en profundidad
-            <span className="block text-xl md:text-3xl text-red-600 mt-2">Tu guía completa para estudios e integración</span>
-          </h2>
-          <p className="text-base md:text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-            Descubre la historia, cultura y territorio chileno. Ideal para estudiantes, investigadores y extranjeros que buscan integrarse al país.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            {user ? (
-              <>
-                <Link to="/history">
-                  <Button size="lg" className="bg-red-600 hover:bg-red-700 text-white px-8 py-3">
-                    {t('main.startLearning')}
-                    <ChevronRight className="ml-2 h-5 w-5" />
-                  </Button>
-                </Link>
-                <Link to="/practica">
-                  <Button size="lg" variant="outline" className="border-red-600 text-red-600 hover:bg-red-50 px-8 py-3">
-                    Practica y juega
-                  </Button>
-                </Link>
-              </>
-            ) : (
-              <>
-                <Link to="/history">
-                  <Button size="lg" className="bg-red-600 hover:bg-red-700 text-white px-8 py-3">
-                    Explorar contenido
-                    <ChevronRight className="ml-2 h-5 w-5" />
-                  </Button>
-                </Link>
-                <Link to="/practica">
-                  <Button size="lg" variant="outline" className="border-red-600 text-red-600 hover:bg-red-50 px-8 py-3">
-                    Practica y juega
-                  </Button>
-                </Link>
-              </>
-            )}
+    <main className="min-h-screen bg-[#f7f5ef]">
+      <section className="relative isolate overflow-hidden bg-blue-950 text-white">
+        <img src="/images/fiestas/fonda-hero.png" alt="Una fonda chilena durante las Fiestas Patrias" className="absolute inset-0 -z-20 h-full w-full object-cover object-[62%_center]" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-blue-950 via-blue-950/95 to-blue-950/15" />
+        <div className="mx-auto grid min-h-[640px] max-w-7xl items-center px-4 py-20 sm:px-6 lg:px-8">
+          <div className="max-w-2xl">
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-bold backdrop-blur"><Flag className="h-4 w-4 text-red-400" /> Chile, de norte a sur</div>
+            <h1 className="mt-6 text-5xl font-black leading-[0.98] tracking-[-0.04em] sm:text-7xl">Chile no se memoriza.<br /><span className="text-red-400">Se vive.</span></h1>
+            <p className="mt-6 max-w-xl text-lg leading-8 text-blue-50">Descubre la historia, los territorios y las costumbres que dan forma al país. Aprende a tu ritmo y pon a prueba lo que sabes.</p>
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+              <Link to="/fiestas-patrias" className="inline-flex h-13 items-center justify-center gap-2 rounded-xl bg-red-600 px-6 py-3.5 text-sm font-bold shadow-lg shadow-red-950/30 transition hover:-translate-y-0.5 hover:bg-red-500">Explorar Especial 18 <ArrowRight className="h-4 w-4" /></Link>
+              <Link to="/practica" className="inline-flex h-13 items-center justify-center gap-2 rounded-xl border border-white/30 bg-white/10 px-6 py-3.5 text-sm font-bold backdrop-blur transition hover:bg-white/20"><Gamepad2 className="h-4 w-4" /> Jugar ahora</Link>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8 bg-white/50">
-        <div className="max-w-4xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {stats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="inline-flex items-center justify-center w-12 h-12 bg-red-100 rounded-lg mb-4">
-                  <stat.icon className="h-6 w-6 text-red-600" />
+      <section className="bg-white py-16 sm:py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
+            <div>
+              <p className="text-sm font-bold uppercase tracking-[0.2em] text-red-600">Nuevo recorrido</p>
+              <h2 className="mt-3 text-4xl font-black tracking-tight text-blue-950 sm:text-5xl">Todo lo que hace único al 18</h2>
+              <p className="mt-5 max-w-xl leading-7 text-slate-600">Una guía clara y visual para conocer las comidas, juegos, bailes, vestimentas y tradiciones de las Fiestas Patrias.</p>
+              <Link to="/fiestas-patrias" className="mt-6 inline-flex items-center gap-2 text-sm font-black text-red-600 transition hover:gap-3">Ver la guía completa <ArrowRight className="h-4 w-4" /></Link>
+            </div>
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-5">
+              {[
+                ['🥟', 'Comidas'], ['💃', 'Bailes'], ['👗', 'Vestimenta'], ['🎯', 'Juegos'], ['🇨🇱', 'Tradiciones'],
+              ].map(([emoji, label], index) => (
+                <div key={label} className={`rounded-2xl border border-slate-200 p-4 text-center shadow-sm transition hover:-translate-y-1 hover:shadow-md ${index === 4 ? 'col-span-2 sm:col-span-1' : ''}`}>
+                  <span className="text-3xl" aria-hidden="true">{emoji}</span><p className="mt-2 text-xs font-bold text-blue-950 sm:text-sm">{label}</p>
                 </div>
-                <div className="text-3xl font-bold text-gray-900 mb-1">{stat.value}</div>
-                <div className="text-gray-600">{stat.label}</div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-gray-900 mb-4">{t('features.title')}</h3>
-            <p className="text-gray-600 text-lg">{t('features.subtitle')}</p>
+      <section className="border-y border-slate-200 bg-[#f7f5ef] py-16 sm:py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
+            <div>
+              <p className="flex items-center gap-2 text-sm font-bold uppercase tracking-[0.2em] text-red-600"><Sparkles className="h-4 w-4" /> Sigue explorando</p>
+              <h2 className="mt-3 text-3xl font-black tracking-tight text-blue-950 sm:text-5xl">Chile en tres miradas</h2>
+            </div>
+            <p className="max-w-md text-sm leading-6 text-slate-600 sm:text-right">Contenido pensado para estudiantes, personas migrantes y cualquiera que quiera comprender mejor el país.</p>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {features.map((feature) => (
-              <Link key={feature.id} to={feature.link}>
-                <Card 
-                  className={`h-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1 cursor-pointer ${
-                    hoveredCard === feature.id ? 'ring-2 ring-red-200' : ''
-                  }`}
-                  onMouseEnter={() => setHoveredCard(feature.id)}
-                  onMouseLeave={() => setHoveredCard(null)}
-                >
-                  <CardHeader>
-                    <div className={`w-12 h-12 rounded-lg bg-gradient-to-r ${feature.color} flex items-center justify-center mb-4`}>
-                      <feature.icon className="h-6 w-6 text-white" />
-                    </div>
-                    <CardTitle className="text-xl font-semibold">{feature.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <CardDescription className="text-gray-600 leading-relaxed">
-                      {feature.description}
-                    </CardDescription>
-                  </CardContent>
-                </Card>
+          <div className="mt-10 grid gap-5 md:grid-cols-3">
+            {explorations.map(({ title, description, icon: Icon, link, accent }) => (
+              <Link key={title} to={link} className="group rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl">
+                <div className={`flex h-12 w-12 items-center justify-center rounded-2xl text-white ${accent}`}><Icon className="h-5 w-5" /></div>
+                <h3 className="mt-6 text-xl font-black text-blue-950">{title}</h3>
+                <p className="mt-2 min-h-12 text-sm leading-6 text-slate-600">{description}</p>
+                <span className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-red-600 transition group-hover:gap-3">Explorar <ArrowRight className="h-4 w-4" /></span>
               </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto text-center">
-          <div className="flex items-center justify-center space-x-3 mb-4">
-            <div className="w-8 h-8 bg-gradient-to-br from-red-500 to-blue-500 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold">🇨🇱</span>
-            </div>
-            <h4 className="text-xl font-bold">Chilenízate</h4>
-          </div>
-          <p className="text-gray-400 mb-6">{t('main.interactiveWay')}</p>
-          <div className="flex justify-center space-x-6 text-sm text-gray-400">
-            <Link to="/history" className="hover:text-white transition-colors">{t('nav.history')}</Link>
-            <Link to="/mapa" className="hover:text-white transition-colors">Mapa</Link>
-            <Link to="/himno" className="hover:text-white transition-colors">Himno</Link>
-            <Link to="/quiz" className="hover:text-white transition-colors">{t('nav.quiz')}</Link>
-            <Link to="/error-bin" className="hover:text-white transition-colors">{t('nav.errorBin')}</Link>
-          </div>
+      <section className="bg-red-600 px-4 py-16 text-white">
+        <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-8 text-center md:flex-row md:text-left">
+          <div><p className="text-sm font-bold uppercase tracking-[0.2em] text-red-100">Aprender también es jugar</p><h2 className="mt-2 text-3xl font-black sm:text-4xl">Acepta el desafío chileno</h2><p className="mt-3 max-w-xl text-red-50">Ruta del 18, Pasapalabras y un quiz de 30 preguntas te esperan.</p></div>
+          <Link to="/practica" className="inline-flex shrink-0 items-center gap-2 rounded-xl bg-white px-6 py-3.5 text-sm font-black text-red-700 shadow-lg transition hover:-translate-y-0.5 hover:bg-red-50">Ir a los juegos <Gamepad2 className="h-4 w-4" /></Link>
+        </div>
+      </section>
+
+      <footer className="bg-[#04112a] px-4 py-10 text-white">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-5 sm:flex-row">
+          <div className="flex items-center gap-3"><span className="flex h-9 w-9 items-center justify-center rounded-xl bg-white text-lg">🇨🇱</span><div><p className="font-black">Chilenízate</p><p className="text-xs text-blue-200">Chile se aprende viviéndolo.</p></div></div>
+          <nav className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-xs font-semibold text-blue-100" aria-label="Enlaces del pie"><Link to="/history" className="hover:text-white">Historia</Link><Link to="/fiestas-patrias" className="hover:text-white">Especial 18</Link><Link to="/mapa" className="hover:text-white">Mapa</Link><Link to="/practica" className="hover:text-white">Juegos</Link></nav>
         </div>
       </footer>
-    </div>
+    </main>
   );
-};
-
-export default Index;
+}

@@ -1,150 +1,70 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { BookOpen, Brain, Gamepad2, Sparkles, Trophy } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Link } from 'react-router-dom';
-import { Trophy, AlertTriangle, Gamepad2, BookOpen, Map } from 'lucide-react';
-import ProtectedRoute from '@/components/ProtectedRoute';
-import Quiz from './Quiz';
-import ErrorBin from './ErrorBin';
 import Pasapalabras from '@/components/games/Pasapalabras';
+import FondaChallenge from '@/components/games/FondaChallenge';
 
-const Practica: React.FC = () => {
+export default function Practica() {
   useEffect(() => {
-    document.title = 'Pon a prueba lo aprendido | Chilenízate';
+    document.title = 'Juegos de Chile y Fiestas Patrias | Chilenízate';
     const meta = document.querySelector('meta[name="description"]');
-    const content = 'Practica con Quiz, Bin de errores y el juego Pasapalabras sobre historia y cultura de Chile.';
-    if (meta) meta.setAttribute('content', content);
-    else {
-      const m = document.createElement('meta');
-      m.name = 'description';
-      m.content = content;
-      document.head.appendChild(m);
-    }
+    meta?.setAttribute('content', 'Aprende jugando con Ruta del 18, Pasapalabras y el quiz de conocimientos sobre Chile.');
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-card to-muted/30">
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
-        {/* Hero Section */}
-        <section className="text-center mb-8 sm:mb-12">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
-            Practica y Juega
-          </h1>
-          <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto px-4">
-            Pon a prueba tus conocimientos sobre Chile con nuestras herramientas interactivas
-          </p>
-        </section>
+    <main className="min-h-screen bg-[#f7f5ef]">
+      <section className="relative overflow-hidden bg-blue-950 px-4 py-14 text-white sm:px-6 sm:py-20">
+        <div className="absolute -left-20 top-0 h-64 w-64 rounded-full bg-blue-700/30 blur-3xl" />
+        <div className="absolute -right-20 bottom-0 h-64 w-64 rounded-full bg-red-600/30 blur-3xl" />
+        <div className="relative mx-auto max-w-4xl text-center">
+          <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-bold text-blue-100"><Sparkles className="h-4 w-4 text-red-400" /> Aprende jugando</div>
+          <h1 className="mt-5 text-4xl font-black tracking-tight sm:text-6xl">Desafíos con sabor a Chile</h1>
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-blue-100 sm:text-lg">Elige tu juego, supera cada ronda y descubre datos que te ayudarán a conocer mejor nuestra historia y cultura.</p>
+        </div>
+      </section>
 
-        {/* Main Selection Tabs */}
-        <Tabs defaultValue="evaluacion" className="w-full">
-          <TabsList className="grid w-full grid-cols-2 mb-6 sm:mb-8 h-12 sm:h-14">
-            <TabsTrigger value="evaluacion" className="flex items-center gap-2 text-sm sm:text-base px-2 sm:px-4">
-              <Trophy className="h-4 w-4 sm:h-5 sm:w-5" />
-              <span className="hidden xs:inline">Evaluación</span>
-              <span className="xs:hidden">Quiz</span>
+      <section className="mx-auto max-w-5xl px-4 py-10 sm:px-6 sm:py-16 lg:px-8">
+        <Tabs defaultValue="ruta18" className="w-full">
+          <TabsList className="mb-8 grid h-auto w-full grid-cols-3 rounded-2xl bg-white p-2 shadow-sm ring-1 ring-slate-200">
+            <TabsTrigger value="ruta18" className="min-h-12 gap-2 rounded-xl px-2 text-xs data-[state=active]:bg-red-600 data-[state=active]:text-white sm:text-sm">
+              <Gamepad2 className="h-4 w-4" /><span className="hidden sm:inline">Ruta del </span>18
             </TabsTrigger>
-            <TabsTrigger value="pasapalabras" className="flex items-center gap-2 text-sm sm:text-base px-2 sm:px-4">
-              <Gamepad2 className="h-4 w-4 sm:h-5 sm:w-5" />
-              Pasapalabras
+            <TabsTrigger value="pasapalabras" className="min-h-12 gap-2 rounded-xl px-2 text-xs data-[state=active]:bg-blue-950 data-[state=active]:text-white sm:text-sm">
+              <Brain className="h-4 w-4" /><span className="hidden sm:inline">Pasa</span>palabras
+            </TabsTrigger>
+            <TabsTrigger value="quiz" className="min-h-12 gap-2 rounded-xl px-2 text-xs data-[state=active]:bg-blue-950 data-[state=active]:text-white sm:text-sm">
+              <Trophy className="h-4 w-4" /> Quiz Chile
             </TabsTrigger>
           </TabsList>
 
-          {/* Evaluación Content */}
-          <TabsContent value="evaluacion" className="space-y-0">
-            <Card className="w-full">
-              <CardHeader className="pb-4 sm:pb-6">
-                <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
-                  <div className="p-2 sm:p-3 rounded-lg bg-primary/10 w-fit">
-                    <Trophy className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
-                  </div>
-                  <div className="flex-1">
-                    <CardTitle className="text-xl sm:text-2xl mb-1 sm:mb-2">Evaluación de Conocimientos</CardTitle>
-                    <CardDescription className="text-sm sm:text-base">
-                      Prueba tus conocimientos con quiz y revisa tus errores frecuentes
-                    </CardDescription>
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent className="pt-0">
-                <Tabs defaultValue="quiz" className="w-full">
-                  <TabsList className="grid w-full grid-cols-2 mb-4 sm:mb-6">
-                    <TabsTrigger value="quiz" className="flex items-center gap-2 text-sm sm:text-base">
-                      <Trophy className="h-3 w-3 sm:h-4 sm:w-4" />
-                      Quiz
-                    </TabsTrigger>
-                    <TabsTrigger value="errores" className="flex items-center gap-2 text-sm sm:text-base">
-                      <AlertTriangle className="h-3 w-3 sm:h-4 sm:w-4" />
-                      <span className="hidden sm:inline">Bin de errores</span>
-                      <span className="sm:hidden">Errores</span>
-                    </TabsTrigger>
-                  </TabsList>
-
-                  <TabsContent value="quiz">
-                    <div className="bg-card/50 rounded-lg p-3 sm:p-4 border min-h-[400px] sm:min-h-[500px]">
-                      <ProtectedRoute>
-                        <Quiz />
-                      </ProtectedRoute>
-                    </div>
-                  </TabsContent>
-
-                  <TabsContent value="errores">
-                    <div className="bg-card/50 rounded-lg p-3 sm:p-4 border min-h-[400px] sm:min-h-[500px]">
-                      <ErrorBin />
-                    </div>
-                  </TabsContent>
-                </Tabs>
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          {/* Pasapalabras Content */}
-          <TabsContent value="pasapalabras" className="space-y-0">
-            <Card className="w-full">
-              <CardHeader className="pb-4 sm:pb-6">
-                <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
-                  <div className="p-2 sm:p-3 rounded-lg bg-secondary/20 w-fit">
-                    <Gamepad2 className="h-5 w-5 sm:h-6 sm:w-6 text-secondary-foreground" />
-                  </div>
-                  <div className="flex-1">
-                    <CardTitle className="text-xl sm:text-2xl mb-1 sm:mb-2">Pasapalabras Chile</CardTitle>
-                    <CardDescription className="text-sm sm:text-base">
-                      Juego de palabras sobre historia, cultura y geografía chilena
-                    </CardDescription>
+          <TabsContent value="ruta18" className="mt-0"><FondaChallenge /></TabsContent>
+          <TabsContent value="pasapalabras" className="mt-0"><Pasapalabras /></TabsContent>
+          <TabsContent value="quiz" className="mt-0">
+            <section className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-xl shadow-blue-950/5">
+              <div className="grid gap-8 p-7 sm:p-10 md:grid-cols-[1fr_auto] md:items-center">
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-red-600">Evaluación completa</p>
+                  <h2 className="mt-2 text-3xl font-black text-blue-950">30 preguntas sobre Chile</h2>
+                  <p className="mt-3 max-w-xl leading-7 text-slate-600">Repasa historia, geografía y cultura. Inicia sesión para guardar tu resultado y volver a practicar tus errores.</p>
+                  <div className="mt-5 flex flex-wrap gap-2 text-xs font-semibold text-slate-600">
+                    <span className="rounded-full bg-slate-100 px-3 py-1.5">30 preguntas</span>
+                    <span className="rounded-full bg-slate-100 px-3 py-1.5">Progreso guardado</span>
+                    <span className="rounded-full bg-slate-100 px-3 py-1.5">Explicaciones</span>
                   </div>
                 </div>
-              </CardHeader>
-              <CardContent className="pt-0">
-                <div className="bg-card/50 rounded-lg p-3 sm:p-4 border min-h-[400px] sm:min-h-[500px]">
-                  <Pasapalabras />
-                </div>
-              </CardContent>
-            </Card>
+                <Link to="/quiz"><Button className="h-12 w-full rounded-xl bg-red-600 px-6 font-bold hover:bg-red-700">Comenzar quiz <Trophy className="h-4 w-4" /></Button></Link>
+              </div>
+            </section>
           </TabsContent>
         </Tabs>
 
-        {/* Navigation Actions */}
-        <div className="mt-8 sm:mt-12 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4 sm:px-0">
-          <Link to="/history" className="w-full sm:w-auto">
-            <Button variant="outline" className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 sm:px-6 py-2 sm:py-3">
-              <BookOpen className="h-4 w-4" />
-              Volver a aprender
-            </Button>
-          </Link>
-          <Link to="/mapa" className="w-full sm:w-auto">
-            <Button variant="secondary" className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 sm:px-6 py-2 sm:py-3">
-              <Map className="h-4 w-4" />
-              Ver mapa
-            </Button>
-          </Link>
+        <div className="mt-10 flex flex-col items-center justify-center gap-3 text-center sm:flex-row">
+          <Link to="/fiestas-patrias"><Button variant="outline" className="h-11 rounded-xl border-slate-300 text-blue-950"><BookOpen className="h-4 w-4" /> Repasar el Especial 18</Button></Link>
+          <p className="text-sm text-slate-500">Aprende primero o lánzate directo al desafío.</p>
         </div>
-      </main>
-
-      <footer className="py-6 sm:py-8 text-center text-sm text-muted-foreground border-t bg-card/30 mt-8">
-        <p>Chilenízate · Practica interactiva</p>
-      </footer>
-    </div>
+      </section>
+    </main>
   );
-};
-
-export default Practica;
+}

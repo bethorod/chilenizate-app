@@ -1,198 +1,173 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { Check, Clock3, Lightbulb, RotateCcw, SkipForward, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Badge } from '@/components/ui/badge';
-
-interface RoscoItem {
-  letter: string;
-  clue: string;
-  answer: string; // lowercase expected
-  category: 'historia' | 'moneda' | 'modismos' | 'cultura';
-}
+import { Progress } from '@/components/ui/progress';
 
 type Status = 'pendiente' | 'acierto' | 'error' | 'pasapalabra';
 
-const sampleData: RoscoItem[] = [
-  { letter: 'A', clue: 'Sistema político español que impuso el dominio absoluto en Chile colonial, contiene la letra A.', answer: 'absolutismo', category: 'historia' },
-  { letter: 'B', clue: 'Poeta chileno, Premio Nobel de Literatura en 1971, con la letra B.', answer: 'neruda', category: 'cultura' },
-  { letter: 'C', clue: 'Proceso militar que derrocó al gobierno de Allende en 1973, contiene la letra C.', answer: 'pronunciamiento', category: 'historia' },
-  { letter: 'D', clue: 'Régimen político instaurado tras el golpe militar, contiene la letra D.', answer: 'dictadura', category: 'historia' },
-  { letter: 'E', clue: 'Proceso de transición hacia la democracia chilena, contiene la letra E.', answer: 'democratización', category: 'historia' },
-  { letter: 'F', clue: 'Presidente socialista chileno derrocado en 1973, contiene la letra F.', answer: 'allende', category: 'historia' },
-  { letter: 'G', clue: 'Escritora chilena Premio Nobel de Literatura 1945, contiene la letra G.', answer: 'mistral', category: 'cultura' },
-  { letter: 'H', clue: 'Prócer de la independencia chilena, contiene la letra H.', answer: 'ohiggins', category: 'historia' },
-  { letter: 'I', clue: 'Pueblo originario de la Región de Tarapacá, contiene la letra I.', answer: 'aimara', category: 'cultura' },
-  { letter: 'J', clue: 'Líder mapuche que resistió la conquista española, contiene la letra J.', answer: 'lautaro', category: 'historia' },
-  { letter: 'K', clue: 'Instrumento ceremonial mapuche de percusión, contiene la letra K.', answer: 'kultrun', category: 'cultura' },
-  { letter: 'L', clue: 'Joven mapuche que se enfrentó a los españoles, contiene la letra L.', answer: 'lautaro', category: 'historia' },
-  { letter: 'M', clue: 'Pueblo originario del centro-sur de Chile, contiene la letra M.', answer: 'mapuche', category: 'cultura' },
-  { letter: 'N', clue: 'Poeta surrealista chileno, contiene la letra N.', answer: 'neruda', category: 'cultura' },
-  { letter: 'Ñ', clue: 'Expresión cariñosa muy chilena para referirse a alguien, contiene la letra Ñ.', answer: 'ñoño', category: 'modismos' },
-  { letter: 'O', clue: 'Director de la Independencia y primer gobierno patrio, contiene la letra O.', answer: 'ohiggins', category: 'historia' },
-  { letter: 'P', clue: 'Dictador militar que gobernó Chile entre 1973-1990, contiene la letra P.', answer: 'pinochet', category: 'historia' },
-  { letter: 'Q', clue: 'Pueblo originario del altiplano andino, contiene la letra Q.', answer: 'quechua', category: 'cultura' },
-  { letter: 'R', clue: 'Sistema de gobierno instaurado tras la independencia, contiene la letra R.', answer: 'republica', category: 'historia' },
-  { letter: 'S', clue: 'Político socialista chileno, fundador del partido, contiene la letra S.', answer: 'allende', category: 'historia' },
-  { letter: 'T', clue: 'Transición política hacia la democracia, contiene la letra T.', answer: 'transicion', category: 'historia' },
-  { letter: 'U', clue: 'Partido político histórico de Chile, contiene la letra U.', answer: 'conservador', category: 'historia' },
-  { letter: 'V', clue: 'Ciudad puerto patrimonio de la humanidad, contiene la letra V.', answer: 'valparaiso', category: 'cultura' },
-  { letter: 'W', clue: 'Territorio ancestral mapuche, contiene la letra W.', answer: 'wallmapu', category: 'cultura' },
-  { letter: 'X', clue: 'Poeta chileno cuyo apellido contiene la letra X.', answer: 'huidobro', category: 'cultura' },
-  { letter: 'Y', clue: 'Pueblo originario del extremo sur chileno, contiene la letra Y.', answer: 'yaganes', category: 'historia' },
-  { letter: 'Z', clue: 'Región minera del norte que contiene la letra Z.', answer: 'antofagasta', category: 'historia' },
+const rosco = [
+  { letter: 'A', clue: 'Con la A: brocheta con carne y verduras preparada a la parrilla.', answer: 'anticucho', category: 'Sabores' },
+  { letter: 'B', clue: 'Con la B: emblema tricolor que se luce durante Fiestas Patrias.', answer: 'bandera', category: 'Símbolos' },
+  { letter: 'C', clue: 'Con la C: danza nacional que se baila con pañuelo.', answer: 'cueca', category: 'Bailes' },
+  { letter: 'D', clue: 'Con la D: forma popular de llamar al 18 de septiembre.', answer: 'dieciocho', category: 'Tradiciones' },
+  { letter: 'E', clue: 'Con la E: juguete de madera que debe encajarse en su mango.', answer: 'emboque', category: 'Juegos' },
+  { letter: 'F', clue: 'Con la F: recinto popular con comida, música y baile.', answer: 'fonda', category: 'Tradiciones' },
+  { letter: 'H', clue: 'Con la H: jinete tradicional de la zona central chilena.', answer: 'huaso', category: 'Vestimenta' },
+  { letter: 'M', clue: 'Con la M: trigo cocido que acompaña a los huesillos.', answer: 'mote', category: 'Sabores' },
+  { letter: 'P', clue: 'Con la P: salsa fresca de tomate, cebolla, cilantro y ají.', answer: 'pebre', category: 'Sabores' },
+  { letter: 'R', clue: 'Con la R: juego de puntería en el que se lanzan tejos.', answer: 'rayuela', category: 'Juegos' },
+  { letter: 'S', clue: 'Contiene la S: paso suave de la cueca que imita barrer el suelo.', answer: 'escobillado', category: 'Bailes' },
+  { letter: 'T', clue: 'Con la T: juguete que gira sobre una punta después de lanzarlo.', answer: 'trompo', category: 'Juegos' },
+  { letter: 'V', clue: 'Con la V: cometa de papel que se eleva durante septiembre.', answer: 'volantin', category: 'Juegos' },
+  { letter: 'Z', clue: 'Con la Z: paso fuerte y rítmico característico de la cueca.', answer: 'zapateo', category: 'Bailes' },
 ];
 
-// Utility to normalize answer
-const normalize = (s: string) => s.trim().toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, '');
+const normalize = (value: string) => value.trim().toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, '');
 
-const Pasapalabras: React.FC = () => {
+export default function Pasapalabras() {
   const [index, setIndex] = useState(0);
   const [value, setValue] = useState('');
-  const [statuses, setStatuses] = useState<Status[]>(() => sampleData.map(() => 'pendiente'));
+  const [statuses, setStatuses] = useState<Status[]>(() => rosco.map(() => 'pendiente'));
+  const [feedback, setFeedback] = useState<'acierto' | 'error' | null>(null);
   const [finished, setFinished] = useState(false);
+  const [seconds, setSeconds] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const remaining = useMemo(() => statuses.filter(s => s === 'pendiente' || s === 'pasapalabra').length, [statuses]);
-  const correct = useMemo(() => statuses.filter(s => s === 'acierto').length, [statuses]);
-  const wrong = useMemo(() => statuses.filter(s => s === 'error').length, [statuses]);
-
-  const current = sampleData[index];
-
-  useEffect(() => {
-    document.title = 'Pasapalabras Chile | Practica';
-  }, []);
+  const correct = useMemo(() => statuses.filter((status) => status === 'acierto').length, [statuses]);
+  const wrong = useMemo(() => statuses.filter((status) => status === 'error').length, [statuses]);
+  const answered = correct + wrong;
+  const current = rosco[index];
 
   useEffect(() => {
-    inputRef.current?.focus();
-  }, [index, finished]);
+    if (finished) return;
+    const timer = window.setInterval(() => setSeconds((currentSeconds) => currentSeconds + 1), 1000);
+    return () => window.clearInterval(timer);
+  }, [finished]);
 
-  const goNext = () => {
-    // Find next unanswered or passed
-    const nextIdx = sampleData.findIndex((_, i) => i > index && (statuses[i] === 'pendiente' || statuses[i] === 'pasapalabra'));
-    if (nextIdx !== -1) {
-      setIndex(nextIdx);
-      return;
+  useEffect(() => {
+    if (!feedback && !finished) inputRef.current?.focus();
+  }, [index, feedback, finished]);
+
+  const findNext = (nextStatuses: Status[], from: number) => {
+    for (let step = 1; step <= rosco.length; step += 1) {
+      const candidate = (from + step) % rosco.length;
+      if (nextStatuses[candidate] === 'pendiente' || nextStatuses[candidate] === 'pasapalabra') return candidate;
     }
-    // Loop from start
-    const loopIdx = sampleData.findIndex((_, i) => (statuses[i] === 'pendiente' || statuses[i] === 'pasapalabra'));
-    if (loopIdx !== -1) {
-      setIndex(loopIdx);
-    } else {
-      setFinished(true);
-    }
+    return -1;
   };
 
-  const handleAnswer = () => {
-    if (finished) return;
-    const user = normalize(value);
-    const expected = normalize(current.answer);
-    setStatuses(prev => {
-      const next = [...prev];
-      next[index] = user === expected ? 'acierto' : 'error';
+  const answer = () => {
+    if (!value.trim() || feedback || finished) return;
+    const result = normalize(value) === normalize(current.answer) ? 'acierto' : 'error';
+    setStatuses((previous) => {
+      const next = [...previous];
+      next[index] = result;
       return next;
     });
-    setValue('');
-    goNext();
+    setFeedback(result);
   };
 
-  const handlePass = () => {
-    if (finished) return;
-    setStatuses(prev => {
-      const next = [...prev];
-      if (next[index] === 'pendiente') next[index] = 'pasapalabra';
-      return next;
-    });
+  const continueGame = () => {
+    const nextIndex = findNext(statuses, index);
     setValue('');
-    goNext();
+    setFeedback(null);
+    if (nextIndex === -1) setFinished(true);
+    else setIndex(nextIndex);
   };
 
-  const handleFinish = () => {
-    setFinished(true);
+  const pass = () => {
+    if (feedback || finished) return;
+    const nextStatuses = [...statuses];
+    nextStatuses[index] = 'pasapalabra';
+    const nextIndex = findNext(nextStatuses, index);
+    setStatuses(nextStatuses);
+    setValue('');
+    if (nextIndex !== -1) setIndex(nextIndex);
   };
 
   const reset = () => {
-    setStatuses(sampleData.map(() => 'pendiente'));
     setIndex(0);
     setValue('');
+    setStatuses(rosco.map(() => 'pendiente'));
+    setFeedback(null);
     setFinished(false);
+    setSeconds(0);
   };
 
+  if (finished) {
+    const percentage = Math.round((correct / rosco.length) * 100);
+    return (
+      <section className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-xl shadow-blue-950/5">
+        <div className="bg-blue-950 px-6 py-10 text-center text-white sm:px-10">
+          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-red-600 text-3xl">🇨🇱</div>
+          <p className="mt-5 text-sm font-bold uppercase tracking-[0.2em] text-red-300">Rosco completado</p>
+          <h3 className="mt-2 text-4xl font-black">{correct} de {rosco.length}</h3>
+          <p className="mt-2 text-blue-100">{percentage >= 80 ? '¡Seco para el 18!' : percentage >= 50 ? '¡Vas por muy buen camino!' : 'Una vuelta más y quedas listo para la fonda.'}</p>
+        </div>
+        <div className="grid gap-4 p-6 sm:grid-cols-3 sm:p-8">
+          <div className="rounded-2xl bg-emerald-50 p-4 text-center"><strong className="block text-2xl text-emerald-700">{correct}</strong><span className="text-sm text-emerald-800">Aciertos</span></div>
+          <div className="rounded-2xl bg-red-50 p-4 text-center"><strong className="block text-2xl text-red-700">{wrong}</strong><span className="text-sm text-red-800">Por repasar</span></div>
+          <div className="rounded-2xl bg-blue-50 p-4 text-center"><strong className="block text-2xl text-blue-800">{Math.floor(seconds / 60)}:{String(seconds % 60).padStart(2, '0')}</strong><span className="text-sm text-blue-800">Tiempo</span></div>
+          <Button onClick={reset} className="mt-2 h-12 rounded-xl bg-red-600 hover:bg-red-700 sm:col-span-3"><RotateCcw className="h-4 w-4" /> Jugar otra vez</Button>
+        </div>
+      </section>
+    );
+  }
+
   return (
-    <section className="space-y-6">
-      <header className="flex items-center justify-between">
-        <h3 className="text-xl font-semibold">Juego: Pasapalabras</h3>
-        <div className="flex gap-2 items-center">
-          <Badge variant="secondary">Pendientes: {remaining}</Badge>
-          <Badge className="bg-green-600 text-white">Aciertos: {correct}</Badge>
-          <Badge className="bg-red-600 text-white">Errores: {wrong}</Badge>
+    <section className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-xl shadow-blue-950/5">
+      <div className="border-b border-slate-100 p-5 sm:p-7">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-red-600">Rosco chileno</p>
+            <h3 className="mt-1 text-2xl font-black text-blue-950">Pasapalabras del 18</h3>
+          </div>
+          <div className="flex items-center gap-4 text-sm font-semibold text-slate-600">
+            <span className="flex items-center gap-1.5"><Check className="h-4 w-4 text-emerald-600" /> {correct}</span>
+            <span className="flex items-center gap-1.5"><X className="h-4 w-4 text-red-600" /> {wrong}</span>
+            <span className="flex items-center gap-1.5"><Clock3 className="h-4 w-4 text-blue-700" /> {Math.floor(seconds / 60)}:{String(seconds % 60).padStart(2, '0')}</span>
+          </div>
         </div>
-      </header>
+        <Progress value={(answered / rosco.length) * 100} className="mt-5 h-2 bg-slate-100 [&>div]:bg-red-600" />
+      </div>
 
-      {!finished ? (
-        <div className="grid gap-4">
-          <div className="flex flex-wrap gap-2">
-            {sampleData.map((item, i) => (
-              <span
-                key={item.letter}
-                className={
-                  'w-8 h-8 rounded-full flex items-center justify-center text-sm border ' +
-                  (i === index ? 'ring-2 ring-blue-400 ' : '') +
-                  (statuses[i] === 'acierto' ? 'bg-green-100 border-green-300 text-green-700' :
-                   statuses[i] === 'error' ? 'bg-red-100 border-red-300 text-red-700' :
-                   statuses[i] === 'pasapalabra' ? 'bg-yellow-100 border-yellow-300 text-yellow-700' : 'bg-white')
-                }
-                aria-label={`Letra ${item.letter}`}
-              >
+      <div className="grid gap-8 p-5 sm:p-7 lg:grid-cols-[0.7fr_1.3fr] lg:items-center">
+        <div className="grid grid-cols-7 gap-2 lg:grid-cols-5" aria-label="Estado de las letras">
+          {rosco.map((item, itemIndex) => {
+            const status = statuses[itemIndex];
+            return (
+              <div key={item.letter} aria-label={`Letra ${item.letter}: ${status}`} className={`flex aspect-square items-center justify-center rounded-full text-sm font-black transition ${itemIndex === index ? 'scale-110 ring-4 ring-blue-200' : ''} ${status === 'acierto' ? 'bg-emerald-600 text-white' : status === 'error' ? 'bg-red-600 text-white' : status === 'pasapalabra' ? 'bg-amber-100 text-amber-800' : 'bg-blue-950 text-white'}`}>
                 {item.letter}
-              </span>
-            ))}
-          </div>
+              </div>
+            );
+          })}
+        </div>
 
-          <article className="p-4 rounded-lg border bg-white/70">
-            <p className="text-sm text-gray-600 mb-2">Categoría: <strong className="capitalize">{current.category}</strong></p>
-            <p className="text-lg">{current.clue}</p>
-          </article>
+        <div>
+          <span className="inline-flex rounded-full bg-blue-50 px-3 py-1 text-xs font-bold text-blue-800">{current.category}</span>
+          <p className="mt-4 text-xl font-bold leading-8 text-slate-900 sm:text-2xl">{current.clue}</p>
 
-          <div className="flex flex-col sm:flex-row gap-3">
-            <Input
-              ref={inputRef}
-              value={value}
-              onChange={(e) => setValue(e.target.value)}
-              placeholder="Escribe tu respuesta..."
-              onKeyDown={(e) => { if (e.key === 'Enter') handleAnswer(); }}
-            />
-            <div className="flex gap-2">
-              <Button onClick={handleAnswer}>Responder</Button>
-              <Button variant="secondary" onClick={handlePass}>Pasapalabra</Button>
-              <Button variant="outline" onClick={handleFinish}>Terminar</Button>
+          {feedback ? (
+            <div className={`mt-6 rounded-2xl border p-5 ${feedback === 'acierto' ? 'border-emerald-200 bg-emerald-50' : 'border-red-200 bg-red-50'}`} role="status">
+              <div className="flex gap-3">
+                <div className={`mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-white ${feedback === 'acierto' ? 'bg-emerald-600' : 'bg-red-600'}`}>{feedback === 'acierto' ? <Check className="h-4 w-4" /> : <X className="h-4 w-4" />}</div>
+                <div><p className="font-bold text-slate-900">{feedback === 'acierto' ? '¡Correcto!' : 'Casi. La respuesta era:'}</p><p className="mt-1 text-slate-700">{feedback === 'acierto' ? current.answer : <strong className="capitalize">{current.answer}</strong>}</p></div>
+              </div>
+              <Button onClick={continueGame} className="mt-4 h-11 w-full rounded-xl bg-blue-950 hover:bg-blue-900">Continuar</Button>
             </div>
-          </div>
+          ) : (
+            <form className="mt-6 space-y-3" onSubmit={(event) => { event.preventDefault(); answer(); }}>
+              <Input ref={inputRef} value={value} onChange={(event) => setValue(event.target.value)} placeholder="Escribe tu respuesta" aria-label="Tu respuesta" className="h-12 rounded-xl border-slate-300 text-base focus-visible:ring-blue-800" />
+              <div className="grid grid-cols-2 gap-3">
+                <Button type="submit" disabled={!value.trim()} className="h-12 rounded-xl bg-red-600 font-bold hover:bg-red-700">Responder</Button>
+                <Button type="button" variant="outline" onClick={pass} className="h-12 rounded-xl border-slate-300 font-bold text-blue-950"><SkipForward className="h-4 w-4" /> Pasapalabra</Button>
+              </div>
+            </form>
+          )}
+          <div className="mt-4 flex items-start gap-2 text-xs leading-5 text-slate-500"><Lightbulb className="mt-0.5 h-4 w-4 shrink-0 text-amber-500" /> Puedes escribir con o sin tilde. Las palabras pasadas volverán a aparecer.</div>
         </div>
-      ) : (
-        <div className="grid gap-4">
-          <div className="p-4 rounded-lg border bg-white/70">
-            <h4 className="text-lg font-semibold mb-2">Resultados</h4>
-            <p className="text-gray-700">Aciertos: <strong>{correct}</strong> · Errores: <strong>{wrong}</strong></p>
-          </div>
-          <div className="flex gap-2">
-            <Button onClick={reset}>Jugar de nuevo</Button>
-          </div>
-          <details className="p-4 rounded-lg border bg-white/50">
-            <summary className="cursor-pointer">Ver respuestas</summary>
-            <ul className="mt-2 space-y-1 text-sm">
-              {sampleData.map((item, i) => (
-                <li key={i} className="flex items-center gap-2">
-                  <Badge variant="outline">{item.letter}</Badge>
-                  <span className="text-gray-700">{item.clue}</span>
-                  <span className="ml-auto font-medium">{item.answer}</span>
-                </li>
-              ))}
-            </ul>
-          </details>
-        </div>
-      )}
+      </div>
     </section>
   );
-};
-
-export default Pasapalabras;
+}

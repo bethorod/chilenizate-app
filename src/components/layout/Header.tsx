@@ -6,20 +6,23 @@ import { useAuth } from "@/contexts/AuthContext";
 
 const navItems = [
   { to: "/", label: "Inicio" },
-  { to: "/history", label: "Contenido" },
+  { to: "/fiestas-patrias", label: "Especial 18" },
+  { to: "/history", label: "Aprende" },
+  { to: "/mapa", label: "Mapa" },
+  { to: "/practica", label: "Juegos" },
 ];
 
 export default function Header() {
   const { user, signOut } = useAuth();
 
   return (
-    <header className="sticky top-0 z-40 bg-card/80 backdrop-blur supports-[backdrop-filter]:bg-card/60 border-b">
-      <div className="mx-auto max-w-7xl px-3 sm:px-4 lg:px-6 h-14 flex items-center justify-between">
+    <header className="sticky top-0 z-40 border-b border-slate-200/80 bg-white/90 backdrop-blur-xl">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-3 sm:px-4 lg:px-8">
         <Link to="/" className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-md bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center shadow-sm">
-            <span aria-label="Chile" className="text-primary-foreground text-base">🇨🇱</span>
+          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-950 shadow-sm">
+            <span aria-label="Chile" className="text-lg">🇨🇱</span>
           </div>
-          <span className="font-bold text-sm md:text-lg tracking-tight text-foreground">Chilenízate</span>
+          <span className="text-sm font-black tracking-tight text-blue-950 md:text-lg">Chilenízate</span>
         </Link>
 
         <nav className="hidden md:flex items-center gap-4 text-sm">
@@ -30,7 +33,7 @@ export default function Header() {
               end
               className={({ isActive }) =>
                 `px-2 py-1.5 rounded-md transition-colors ${
-                  isActive ? "bg-muted text-foreground" : "text-muted-foreground hover:text-foreground hover:bg-muted/60"
+                  isActive ? "bg-blue-50 text-blue-950" : "text-slate-600 hover:bg-slate-50 hover:text-blue-950"
                 }`
               }
             >
@@ -46,14 +49,14 @@ export default function Header() {
                 <User className="h-4 w-4" />
                 <span className="truncate max-w-[200px]">{user.email}</span>
               </div>
-              <Button variant="outline" size="sm" onClick={signOut}>
+              <Button variant="outline" size="sm" onClick={signOut} className="rounded-lg border-slate-300">
                 <LogOut className="h-4 w-4 mr-1" />
                 Salir
               </Button>
             </>
           ) : (
             <Link to="/auth">
-              <Button size="sm">
+              <Button size="sm" className="rounded-lg bg-red-600 hover:bg-red-700">
                 <LogIn className="h-4 w-4 mr-1" />
                 Entrar
               </Button>
@@ -65,20 +68,20 @@ export default function Header() {
         <div className="md:hidden flex items-center gap-2">
           {user ? null : (
             <Link to="/auth" aria-label="Entrar">
-              <Button variant="ghost" size="icon">
+              <Button variant="ghost" size="icon" className="text-blue-950">
                 <LogIn className="h-5 w-5" />
               </Button>
             </Link>
           )}
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" aria-label="Abrir menú">
+              <Button variant="ghost" size="icon" aria-label="Abrir menú" className="text-blue-950">
                 <Menu className="h-5 w-5" />
               </Button>
             </SheetTrigger>
             <SheetContent side="left" className="w-[80%] sm:max-w-sm">
               <SheetHeader>
-                <SheetTitle className="text-left">Menú</SheetTitle>
+                <SheetTitle className="text-left text-blue-950">Menú</SheetTitle>
               </SheetHeader>
               <div className="mt-4 flex flex-col gap-1">
                 {navItems.map((item) => (
@@ -88,7 +91,7 @@ export default function Header() {
                     end
                     className={({ isActive }) =>
                       `px-3 py-2 rounded-md text-sm ${
-                        isActive ? "bg-muted text-foreground" : "text-muted-foreground hover:text-foreground hover:bg-muted/60"
+                        isActive ? "bg-blue-50 text-blue-950" : "text-slate-600 hover:bg-slate-50 hover:text-blue-950"
                       }`
                     }
                   >
@@ -103,7 +106,7 @@ export default function Header() {
                     </Button>
                   ) : (
                     <Link to="/auth" className="block">
-                      <Button className="w-full">
+                      <Button className="w-full bg-red-600 hover:bg-red-700">
                         <LogIn className="h-4 w-4 mr-2" />
                         Iniciar sesión
                       </Button>

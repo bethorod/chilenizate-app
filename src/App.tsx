@@ -16,6 +16,7 @@ import NotFound from "./pages/NotFound";
 import MapaChile from "./pages/MapaChile";
 import HimnoChile from "./pages/HimnoChile";
 import Practica from "./pages/Practica";
+import FiestasPatrias from "./pages/FiestasPatrias";
 import Layout from "@/components/layout/Layout";
 
 const queryClient = new QueryClient();
@@ -42,6 +43,7 @@ const App = () => (
                 <Route path="/himno" element={<HimnoChile />} />
                 <Route path="/mapa" element={<MapaChile />} />
                 <Route path="/practica" element={<Practica />} />
+                <Route path="/fiestas-patrias" element={<FiestasPatrias />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Route>
