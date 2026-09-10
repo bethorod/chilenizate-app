@@ -5,7 +5,7 @@ import { ArrowRight, BookOpen, Flag, Gamepad2, MapPin, Music2, Sparkles } from '
 const explorations = [
   { title: 'Historia de Chile', description: 'Desde los pueblos originarios hasta el Chile contemporáneo.', icon: BookOpen, link: '/history', accent: 'bg-blue-950' },
   { title: 'Mapa interactivo', description: 'Recorre las 16 regiones y descubre sus comunas.', icon: MapPin, link: '/mapa', accent: 'bg-red-600' },
-  { title: 'Símbolos patrios', description: 'Conoce el himno, su letra y su contexto.', icon: Music2, link: '/himno', accent: 'bg-blue-700' },
+  { title: 'Símbolos patrios', description: 'Descubre la bandera, el escudo, el himno y los símbolos naturales.', icon: Music2, link: '/himno', accent: 'bg-blue-700' },
 ];
 
 export default function Index() {

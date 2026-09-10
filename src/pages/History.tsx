@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { ArrowLeft, Calendar, Globe, Map, Music, Image as ImageIcon } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+// import { Link } from 'react-router-dom'; // TODO(quiz): reactivar junto con el botón de evaluación.
+import { Calendar, Globe, Map, Music, Image as ImageIcon } from 'lucide-react';
+// import { Button } from '@/components/ui/button'; // TODO(quiz): reactivar junto con el botón de evaluación.
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import HistoricalPeriod from '@/components/history/HistoricalPeriod';
 import CulturalSection from '@/components/history/CulturalSection';
@@ -118,6 +118,7 @@ const History = () => {
           </TabsContent>
         </Tabs>
 
+        {/* TODO(quiz): reactivar cuando la evaluación y la autenticación estén listas.
         <div className="text-center mt-12">
           <Link to="/quiz">
             <Button size="lg" className="bg-red-600 hover:bg-red-700 px-8">
@@ -125,6 +126,7 @@ const History = () => {
             </Button>
           </Link>
         </div>
+        */}
       </div>
     </div>
   );
