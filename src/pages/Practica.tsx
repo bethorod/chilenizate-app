@@ -6,12 +6,13 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import Pasapalabras from '@/components/games/Pasapalabras';
 import FondaChallenge from '@/components/games/FondaChallenge';
+import AhorcadoDieciochero from '@/components/games/AhorcadoDieciochero';
 
 export default function Practica() {
   useEffect(() => {
     document.title = 'Juegos de Chile y Fiestas Patrias | Chilenízate';
     const meta = document.querySelector('meta[name="description"]');
-    meta?.setAttribute('content', 'Aprende jugando con Ruta del 18 y Pasapalabras sobre Chile.');
+    meta?.setAttribute('content', 'Aprende jugando con Ahorcado Dieciochero, Ruta del 18 y Pasapalabras sobre Chile.');
   }, []);
 
   return (
@@ -27,8 +28,11 @@ export default function Practica() {
       </section>
 
       <section className="mx-auto max-w-5xl px-4 py-10 sm:px-6 sm:py-16 lg:px-8">
-        <Tabs defaultValue="ruta18" className="w-full">
-          <TabsList className="mb-8 grid h-auto w-full grid-cols-2 rounded-2xl bg-white p-2 shadow-sm ring-1 ring-slate-200">
+        <Tabs defaultValue="ahorcado" className="w-full">
+          <TabsList className="mb-8 grid h-auto w-full grid-cols-3 rounded-2xl bg-white p-2 shadow-sm ring-1 ring-slate-200">
+            <TabsTrigger value="ahorcado" className="min-h-12 gap-2 rounded-xl px-1 text-xs data-[state=active]:bg-red-600 data-[state=active]:text-white sm:px-2 sm:text-sm">
+              <Sparkles className="h-4 w-4" /> Ahorcado
+            </TabsTrigger>
             <TabsTrigger value="ruta18" className="min-h-12 gap-2 rounded-xl px-2 text-xs data-[state=active]:bg-red-600 data-[state=active]:text-white sm:text-sm">
               <Gamepad2 className="h-4 w-4" /><span className="hidden sm:inline">Ruta del </span>18
             </TabsTrigger>
@@ -42,6 +46,7 @@ export default function Practica() {
             */}
           </TabsList>
 
+          <TabsContent value="ahorcado" className="mt-0"><AhorcadoDieciochero /></TabsContent>
           <TabsContent value="ruta18" className="mt-0"><FondaChallenge /></TabsContent>
           <TabsContent value="pasapalabras" className="mt-0"><Pasapalabras /></TabsContent>
           {/* TODO(auth): reactivar el contenido del Quiz Chile junto con su tab.
