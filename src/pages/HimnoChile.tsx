@@ -24,6 +24,8 @@ const officialSymbols = [
     subtitle: 'La Estrella Solitaria',
     icon: Flag,
     accent: 'bg-blue-950',
+    image: '/images/symbols/bandera-chile.jpg',
+    imageAlt: 'Bandera chilena ondeando con la cordillera de los Andes al fondo',
     description: 'Está formada por dos franjas horizontales: blanca y roja. En el extremo superior izquierdo lleva un cuadrado azul con una estrella blanca de cinco puntas.',
     facts: [
       'El diseño actual fue establecido en 1817, durante el proceso de independencia.',
@@ -36,6 +38,8 @@ const officialSymbols = [
     subtitle: 'Fuerza y territorio',
     icon: Shield,
     accent: 'bg-red-600',
+    image: '/images/symbols/escudo-chile-ilustrado.jpg',
+    imageAlt: 'Interpretación ilustrada del escudo de Chile con un huemul y un cóndor',
     description: 'Su campo azul y rojo está coronado por un penacho tricolor. Lo sostienen un huemul y un cóndor, ambos animales propios de Chile.',
     facts: [
       'El diseño fue oficializado en 1834 y se atribuye al artista Carlos Wood Taylor.',
@@ -48,6 +52,8 @@ const officialSymbols = [
     subtitle: 'La canción de la República',
     icon: Music2,
     accent: 'bg-blue-700',
+    image: '/images/symbols/himno-partitura.jpg',
+    imageAlt: 'Partitura antigua y batuta que representan el Himno Nacional de Chile',
     description: 'El himno que se interpreta actualmente combina la música de Ramón Carnicer con versos de Eusebio Lillo y el coro heredado de Bernardo de Vera y Pintado.',
     facts: [
       'La música fue compuesta por Ramón Carnicer y estrenada en 1828.',
@@ -118,12 +124,16 @@ export default function HimnoChile() {
         </div>
 
         <div className="grid gap-5 lg:grid-cols-3">
-          {officialSymbols.map(({ title, subtitle, icon: Icon, accent, description, facts }) => (
+          {officialSymbols.map(({ title, subtitle, icon: Icon, accent, image, imageAlt, description, facts }) => (
             <article key={title} className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-              <div className={`${accent} p-6 text-white`}>
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15"><Icon className="h-6 w-6" /></div>
-                <p className="mt-6 text-xs font-bold uppercase tracking-[0.18em] text-white/70">{subtitle}</p>
-                <h3 className="mt-1 text-2xl font-black">{title}</h3>
+              <div className="relative h-56 overflow-hidden">
+                <img src={image} alt={imageAlt} loading="lazy" className="h-full w-full object-cover transition duration-500 hover:scale-105" />
+                <div className="absolute inset-0 bg-gradient-to-t from-blue-950 via-blue-950/20 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 p-6 text-white">
+                  <div className={`mb-3 flex h-10 w-10 items-center justify-center rounded-xl ${accent} shadow-lg`}><Icon className="h-5 w-5" /></div>
+                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-white/75">{subtitle}</p>
+                  <h3 className="mt-1 text-2xl font-black">{title}</h3>
+                </div>
               </div>
               <div className="p-6">
                 <p className="text-sm leading-6 text-slate-600">{description}</p>
@@ -172,6 +182,13 @@ export default function HimnoChile() {
           <h2 className="mt-3 text-3xl font-black text-blue-950 sm:text-5xl">Símbolos naturales</h2>
           <p className="mt-4 leading-7 text-slate-600">No todos son emblemas constitucionales, pero ocupan un lugar importante en la memoria, la educación y la cultura chilena.</p>
         </div>
+        <figure className="mb-8 overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+          <img src="/images/symbols/naturaleza-chilena.jpg" alt="Huemul, cóndor andino y flores de copihue en un paisaje del sur de Chile" loading="lazy" className="aspect-[16/7] w-full object-cover" />
+          <figcaption className="flex flex-col justify-between gap-1 border-t border-slate-100 px-5 py-4 text-sm sm:flex-row sm:items-center">
+            <span className="font-bold text-blue-950">Naturaleza que representa al territorio</span>
+            <span className="text-xs text-slate-500">Ilustración educativa</span>
+          </figcaption>
+        </figure>
         <div className="grid gap-5 md:grid-cols-3">
           {naturalSymbols.map(({ title, label, icon: Icon, text }) => (
             <article key={title} className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">

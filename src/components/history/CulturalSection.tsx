@@ -257,20 +257,22 @@ const CulturalSection = ({ section, isExpanded, onToggle }: CulturalSectionProps
             </div>
           )}
           {culturalSectionImages[section.id]?.length ? (
-            <div className="mt-6 grid grid-cols-2 md:grid-cols-3 gap-3">
+            <div className={`mt-6 grid gap-3 ${culturalSectionImages[section.id].length === 1 ? 'grid-cols-1' : 'grid-cols-2'}`}>
               {culturalSectionImages[section.id].map((img, i) => (
                 <figure key={i} className="overflow-hidden rounded-lg border bg-white/70">
                   <img
                     src={img.imageUrl}
                     alt={img.title}
                     loading="lazy"
-                    className="w-full h-32 sm:h-40 object-cover"
+                    className={`w-full object-cover ${culturalSectionImages[section.id].length === 1 ? 'h-48 sm:h-72' : 'h-32 sm:h-48'}`}
                   />
                   <figcaption className="p-2">
                     <p className="text-sm font-medium line-clamp-1">{img.title}</p>
-                    <p className="text-[11px] text-muted-foreground">
-                      Fuente: <a href={img.sourceUrl} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">{img.sourceName}</a>
-                    </p>
+                    {img.sourceUrl && img.sourceName ? (
+                      <p className="text-[11px] text-muted-foreground">Fuente: <a href={img.sourceUrl} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">{img.sourceName}</a></p>
+                    ) : (
+                      <p className="text-[11px] text-muted-foreground">Ilustración educativa</p>
+                    )}
                   </figcaption>
                 </figure>
               ))}
