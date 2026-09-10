@@ -1,5 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
-import { Menu, LogIn, LogOut, User } from "lucide-react";
+import { Menu, LogOut, User } from "lucide-react";
+// import { LogIn } from "lucide-react"; // TODO(auth): reactivar junto con los accesos de inicio de sesión.
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { useAuth } from "@/contexts/AuthContext";
@@ -55,23 +56,31 @@ export default function Header() {
               </Button>
             </>
           ) : (
-            <Link to="/auth">
-              <Button size="sm" className="rounded-lg bg-red-600 hover:bg-red-700">
-                <LogIn className="h-4 w-4 mr-1" />
-                Entrar
-              </Button>
-            </Link>
+            <>
+              {/* TODO(auth): reactivar cuando se retome la autenticación.
+              <Link to="/auth">
+                <Button size="sm" className="rounded-lg bg-red-600 hover:bg-red-700">
+                  <LogIn className="h-4 w-4 mr-1" />
+                  Entrar
+                </Button>
+              </Link>
+              */}
+            </>
           )}
         </div>
 
         {/* Mobile */}
         <div className="md:hidden flex items-center gap-2">
           {user ? null : (
-            <Link to="/auth" aria-label="Entrar">
-              <Button variant="ghost" size="icon" className="text-blue-950">
-                <LogIn className="h-5 w-5" />
-              </Button>
-            </Link>
+            <>
+              {/* TODO(auth): reactivar el acceso móvil cuando la autenticación esté lista.
+              <Link to="/auth" aria-label="Entrar">
+                <Button variant="ghost" size="icon" className="text-blue-950">
+                  <LogIn className="h-5 w-5" />
+                </Button>
+              </Link>
+              */}
+            </>
           )}
           <Sheet>
             <SheetTrigger asChild>
@@ -105,12 +114,16 @@ export default function Header() {
                       Cerrar sesión
                     </Button>
                   ) : (
-                    <Link to="/auth" className="block">
-                      <Button className="w-full bg-red-600 hover:bg-red-700">
-                        <LogIn className="h-4 w-4 mr-2" />
-                        Iniciar sesión
-                      </Button>
-                    </Link>
+                    <>
+                      {/* TODO(auth): reactivar el acceso del menú cuando la autenticación esté lista.
+                      <Link to="/auth" className="block">
+                        <Button className="w-full bg-red-600 hover:bg-red-700">
+                          <LogIn className="h-4 w-4 mr-2" />
+                          Iniciar sesión
+                        </Button>
+                      </Link>
+                      */}
+                    </>
                   )}
                 </div>
               </div>

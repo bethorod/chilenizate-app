@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { BookOpen, Brain, Gamepad2, Sparkles, Trophy } from 'lucide-react';
+import { BookOpen, Brain, Gamepad2, Sparkles } from 'lucide-react';
+// import { Trophy } from 'lucide-react'; // TODO(auth): reactivar junto con el tab Quiz Chile.
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import Pasapalabras from '@/components/games/Pasapalabras';
@@ -10,7 +11,7 @@ export default function Practica() {
   useEffect(() => {
     document.title = 'Juegos de Chile y Fiestas Patrias | Chilenízate';
     const meta = document.querySelector('meta[name="description"]');
-    meta?.setAttribute('content', 'Aprende jugando con Ruta del 18, Pasapalabras y el quiz de conocimientos sobre Chile.');
+    meta?.setAttribute('content', 'Aprende jugando con Ruta del 18 y Pasapalabras sobre Chile.');
   }, []);
 
   return (
@@ -27,20 +28,23 @@ export default function Practica() {
 
       <section className="mx-auto max-w-5xl px-4 py-10 sm:px-6 sm:py-16 lg:px-8">
         <Tabs defaultValue="ruta18" className="w-full">
-          <TabsList className="mb-8 grid h-auto w-full grid-cols-3 rounded-2xl bg-white p-2 shadow-sm ring-1 ring-slate-200">
+          <TabsList className="mb-8 grid h-auto w-full grid-cols-2 rounded-2xl bg-white p-2 shadow-sm ring-1 ring-slate-200">
             <TabsTrigger value="ruta18" className="min-h-12 gap-2 rounded-xl px-2 text-xs data-[state=active]:bg-red-600 data-[state=active]:text-white sm:text-sm">
               <Gamepad2 className="h-4 w-4" /><span className="hidden sm:inline">Ruta del </span>18
             </TabsTrigger>
             <TabsTrigger value="pasapalabras" className="min-h-12 gap-2 rounded-xl px-2 text-xs data-[state=active]:bg-blue-950 data-[state=active]:text-white sm:text-sm">
               <Brain className="h-4 w-4" /><span className="hidden sm:inline">Pasa</span>palabras
             </TabsTrigger>
+            {/* TODO(auth): reactivar cuando el nuevo flujo de autenticación esté listo.
             <TabsTrigger value="quiz" className="min-h-12 gap-2 rounded-xl px-2 text-xs data-[state=active]:bg-blue-950 data-[state=active]:text-white sm:text-sm">
               <Trophy className="h-4 w-4" /> Quiz Chile
             </TabsTrigger>
+            */}
           </TabsList>
 
           <TabsContent value="ruta18" className="mt-0"><FondaChallenge /></TabsContent>
           <TabsContent value="pasapalabras" className="mt-0"><Pasapalabras /></TabsContent>
+          {/* TODO(auth): reactivar el contenido del Quiz Chile junto con su tab.
           <TabsContent value="quiz" className="mt-0">
             <section className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-xl shadow-blue-950/5">
               <div className="grid gap-8 p-7 sm:p-10 md:grid-cols-[1fr_auto] md:items-center">
@@ -58,6 +62,7 @@ export default function Practica() {
               </div>
             </section>
           </TabsContent>
+          */}
         </Tabs>
 
         <div className="mt-10 flex flex-col items-center justify-center gap-3 text-center sm:flex-row">
