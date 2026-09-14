@@ -122,7 +122,7 @@ export default function FiestasPatrias() {
             <p className="text-sm font-bold uppercase tracking-[0.18em] text-red-100">Ahora te toca a ti</p>
             <h2 className="mt-2 text-3xl font-black">¿Cuánto aprendiste del 18?</h2>
           </div>
-          <Link to="/practica" className="inline-flex h-12 items-center gap-2 rounded-xl bg-white px-6 text-sm font-bold text-red-700 shadow-lg transition hover:-translate-y-0.5 hover:bg-red-50">
+          <Link to="/juegos" className="inline-flex h-12 items-center gap-2 rounded-xl bg-white px-6 text-sm font-bold text-red-700 shadow-lg transition hover:-translate-y-0.5 hover:bg-red-50">
             Jugar Ruta del 18 <Gamepad2 className="h-4 w-4" />
           </Link>
         </div>

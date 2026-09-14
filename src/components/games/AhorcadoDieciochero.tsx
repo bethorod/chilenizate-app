@@ -4,7 +4,15 @@ import { Button } from '@/components/ui/button';
 
 type WordItem = {
   word: string;
-  category: 'Bailes' | 'Tradiciones' | 'Comidas' | 'Personajes históricos' | 'Infaltables del asado';
+  category:
+    | 'Bailes'
+    | 'Tradiciones'
+    | 'Comidas'
+    | 'Bebidas dieciocheras'
+    | 'Cultura chilena'
+    | 'Modismos chilenos'
+    | 'Personajes históricos'
+    | 'Infaltables del asado';
   hint: string;
 };
 
@@ -14,18 +22,64 @@ const WORDS: WordItem[] = [
   { word: 'REFALOSA', category: 'Bailes', hint: 'Baile de pareja cuyo nombre recuerda un movimiento resbalado.' },
   { word: 'CUECA NORTINA', category: 'Bailes', hint: 'Variante que suele acompañarse con bandas de bronce.' },
   { word: 'CUECA CHILOTA', category: 'Bailes', hint: 'Variante sureña conocida por su zapateo enérgico.' },
+  { word: 'CACHIMBO', category: 'Bailes', hint: 'Baile tradicional del norte de Chile, especialmente de Tarapacá.' },
+  { word: 'TROTE TARAPAQUEÑO', category: 'Bailes', hint: 'Danza nortina de pasos cortos y ritmo alegre.' },
+  { word: 'SIRILLA', category: 'Bailes', hint: 'Danza de origen español que forma parte del folclore chilote.' },
   { word: 'FONDA', category: 'Tradiciones', hint: 'Lugar de encuentro con música, comida y baile.' },
   { word: 'RAMADA', category: 'Tradiciones', hint: 'Recinto festivo que antiguamente se cubría con ramas.' },
   { word: 'VOLANTÍN', category: 'Tradiciones', hint: 'Sube al cielo en septiembre, siempre lejos de los cables.' },
   { word: 'RAYUELA', category: 'Tradiciones', hint: 'Juego donde se lanzan tejos hacia una lienza.' },
   { word: 'EMBOQUE', category: 'Tradiciones', hint: 'Juguete de madera que exige puntería y coordinación.' },
+  { word: 'TROMPO', category: 'Tradiciones', hint: 'Juguete que gira sobre una punta después de lanzarlo con una cuerda.' },
+  { word: 'PALO ENSEBADO', category: 'Tradiciones', hint: 'Desafío festivo que consiste en trepar un poste resbaladizo.' },
+  { word: 'PAÑUELO', category: 'Tradiciones', hint: 'Accesorio que los bailarines agitan durante la cueca.' },
+  { word: 'DIECIOCHO', category: 'Tradiciones', hint: 'Forma popular de llamar a las celebraciones de Fiestas Patrias.' },
+  { word: 'BRINDIS', category: 'Tradiciones', hint: 'Gesto de levantar los vasos para celebrar y compartir buenos deseos.' },
   { word: 'EMPANADA', category: 'Comidas', hint: 'Masa horneada cuyo relleno tradicional se llama pino.' },
   { word: 'ANTICUCHO', category: 'Comidas', hint: 'Brocheta que combina carne y verduras a la parrilla.' },
   { word: 'SOPAIPILLA', category: 'Comidas', hint: 'Masa frita que puede acompañarse con pebre.' },
   { word: 'MOTE CON HUESILLOS', category: 'Comidas', hint: 'Bebida dulce con trigo cocido y duraznos deshidratados.' },
   { word: 'CHORIPÁN', category: 'Comidas', hint: 'Pan caliente con una longaniza recién salida de la parrilla.' },
   { word: 'PEBRE', category: 'Comidas', hint: 'Mezcla fresca con tomate, cebolla, cilantro y ají.' },
-  { word: 'BERNARDO O HIGGINS', category: 'Personajes históricos', hint: 'Director Supremo asociado a la consolidación de la independencia.' },
+  { word: 'PASTEL DE CHOCLO', category: 'Comidas', hint: 'Preparación horneada con una cubierta de choclo molido y relleno de pino.' },
+  { word: 'HUMITA', category: 'Comidas', hint: 'Pasta de choclo aliñada y cocida dentro de sus propias hojas.' },
+  { word: 'COMPLETO', category: 'Comidas', hint: 'Pan con vienesa que puede llevar tomate, palta y mayonesa.' },
+  { word: 'CAZUELA', category: 'Comidas', hint: 'Caldo casero con carne, papas, zapallo y otras verduras.' },
+  { word: 'CALZONES ROTOS', category: 'Comidas', hint: 'Masa dulce frita, tradicional en los días fríos.' },
+  { word: 'ALFAJOR', category: 'Comidas', hint: 'Dulce formado por dos tapas unidas con manjar.' },
+  { word: 'CHICHA', category: 'Bebidas dieciocheras', hint: 'Bebida fermentada tradicional muy asociada a las Fiestas Patrias.' },
+  { word: 'PIPEÑO', category: 'Bebidas dieciocheras', hint: 'Vino joven y dulce usado para preparar el terremoto; solo para adultos.' },
+  { word: 'TERREMOTO', category: 'Bebidas dieciocheras', hint: 'Bebida para adultos preparada con pipeño y helado de piña.' },
+  { word: 'BORGOÑA', category: 'Bebidas dieciocheras', hint: 'Mezcla para adultos de vino tinto con frutillas.' },
+  { word: 'NAVEGADO', category: 'Bebidas dieciocheras', hint: 'Vino caliente para adultos que se aromatiza con naranja y especias.' },
+  { word: 'CHICHA DE MANZANA', category: 'Bebidas dieciocheras', hint: 'Bebida fermentada típica del sur, elaborada con una fruta muy conocida.' },
+  { word: 'COPIHUE', category: 'Cultura chilena', hint: 'Flor nacional de Chile, habitualmente de color rojo.' },
+  { word: 'HUEMUL', category: 'Cultura chilena', hint: 'Ciervo nativo que aparece en el escudo nacional.' },
+  { word: 'CÓNDOR', category: 'Cultura chilena', hint: 'Gran ave andina representada en el escudo nacional.' },
+  { word: 'CHINCHINERO', category: 'Cultura chilena', hint: 'Artista popular que baila mientras toca un bombo sujeto a su espalda.' },
+  { word: 'ORGANILLERO', category: 'Cultura chilena', hint: 'Artista callejero que interpreta melodías con un instrumento de manivela.' },
+  { word: 'KULTRÚN', category: 'Cultura chilena', hint: 'Tambor ceremonial del pueblo Mapuche.' },
+  { word: 'PALÍN', category: 'Cultura chilena', hint: 'Juego ancestral Mapuche practicado con bastones y una pelota.' },
+  { word: 'MINGA CHILOTA', category: 'Cultura chilena', hint: 'Trabajo comunitario de Chiloé en el que vecinos colaboran en una gran tarea.' },
+  { word: 'CHAMANTO', category: 'Cultura chilena', hint: 'Prenda reversible tejida que forma parte del atuendo del huaso.' },
+  { word: 'CHUPALLA', category: 'Cultura chilena', hint: 'Sombrero de paja tradicional usado por el huaso.' },
+  { word: 'RAPA NUI', category: 'Cultura chilena', hint: 'Nombre originario de la isla chilena famosa por sus moáis.' },
+  { word: 'VIOLETA PARRA', category: 'Cultura chilena', hint: 'Artista, compositora e investigadora fundamental del folclore chileno.' },
+  { word: 'GABRIELA MISTRAL', category: 'Cultura chilena', hint: 'Poeta chilena que recibió el Premio Nobel de Literatura.' },
+  { word: 'BACÁN', category: 'Modismos chilenos', hint: 'Se dice de algo muy bueno, entretenido o admirable.' },
+  { word: 'AL TIRO', category: 'Modismos chilenos', hint: 'Expresión chilena que significa hacer algo de inmediato.' },
+  { word: 'CACHAI', category: 'Modismos chilenos', hint: 'Pregunta coloquial usada para saber si alguien entendió.' },
+  { word: 'FOME', category: 'Modismos chilenos', hint: 'Palabra chilena para algo aburrido o sin gracia.' },
+  { word: 'POLOLO', category: 'Modismos chilenos', hint: 'Nombre coloquial que se da en Chile a una pareja o novio.' },
+  { word: 'CARRETE', category: 'Modismos chilenos', hint: 'Forma coloquial chilena de llamar a una fiesta.' },
+  { word: 'GUAGUA', category: 'Modismos chilenos', hint: 'Palabra muy usada en Chile para referirse a un bebé.' },
+  { word: 'LUCA', category: 'Modismos chilenos', hint: 'Forma coloquial de referirse a mil pesos.' },
+  { word: 'PEGA', category: 'Modismos chilenos', hint: 'Manera informal de llamar al trabajo.' },
+  { word: 'PITUTO', category: 'Modismos chilenos', hint: 'Trabajo ocasional o contacto que ayuda a conseguir una oportunidad.' },
+  { word: 'COPUCHA', category: 'Modismos chilenos', hint: 'Noticia informal o chisme que se cuenta entre conocidos.' },
+  { word: 'APAÑAR', category: 'Modismos chilenos', hint: 'Acompañar, apoyar o sumarse al plan de otra persona.' },
+  { word: 'PIOLA', category: 'Modismos chilenos', hint: 'Puede describir algo tranquilo, discreto o agradable.' },
+  { word: "BERNARDO O'HIGGINS", category: 'Personajes históricos', hint: 'Director Supremo asociado a la consolidación de la independencia.' },
   { word: 'JAVIERA CARRERA', category: 'Personajes históricos', hint: 'Patriota recordada por su apoyo a la causa independentista.' },
   { word: 'JOSÉ MIGUEL CARRERA', category: 'Personajes históricos', hint: 'Líder de la Patria Vieja y miembro de una destacada familia patriota.' },
   { word: 'MATEO DE TORO Y ZAMBRANO', category: 'Personajes históricos', hint: 'Presidió la Primera Junta Nacional de Gobierno de 1810.' },
@@ -35,6 +89,9 @@ const WORDS: WordItem[] = [
   { word: 'PINZAS', category: 'Infaltables del asado', hint: 'Utensilio para dar vuelta los alimentos sin pincharlos.' },
   { word: 'LONGANIZA', category: 'Infaltables del asado', hint: 'Embutido muy popular en la parrilla chilena.' },
   { word: 'ENSALADA CHILENA', category: 'Infaltables del asado', hint: 'Acompañamiento de tomate, cebolla y cilantro.' },
+  { word: 'BRASAS', category: 'Infaltables del asado', hint: 'Carbones encendidos, sin llama alta, que entregan calor parejo.' },
+  { word: 'SAL GRUESA', category: 'Infaltables del asado', hint: 'Condimento de cristales grandes usado para sazonar la carne.' },
+  { word: 'MARQUETA', category: 'Infaltables del asado', hint: 'Pan chileno crujiente que también se conoce como pan batido.' },
 ];
 
 const LETTERS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'Ñ', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
@@ -43,16 +100,25 @@ const MAX_MISTAKES = 6;
 const normalize = (value: string) => value.toUpperCase().replace(/Ñ/g, '§').normalize('NFD').replace(/\p{Diacritic}/gu, '').replace(/§/g, 'Ñ');
 const isLetter = (character: string) => /[A-ZÑÁÉÍÓÚÜ]/i.test(character);
 
-function chooseNextWord(previousIndex = -1) {
-  if (WORDS.length === 1) return 0;
-  let next = Math.floor(Math.random() * WORDS.length);
-  while (next === previousIndex) next = Math.floor(Math.random() * WORDS.length);
-  return next;
+function createShuffledDeck(avoidFirstIndex = -1) {
+  const deck = WORDS.map((_, index) => index);
+
+  for (let index = deck.length - 1; index > 0; index -= 1) {
+    const randomIndex = Math.floor(Math.random() * (index + 1));
+    [deck[index], deck[randomIndex]] = [deck[randomIndex], deck[index]];
+  }
+
+  if (deck.length > 1 && deck[0] === avoidFirstIndex) {
+    [deck[0], deck[1]] = [deck[1], deck[0]];
+  }
+
+  return deck;
 }
 
 export default function AhorcadoDieciochero() {
   const gameRef = useRef<HTMLDivElement>(null);
-  const [wordIndex, setWordIndex] = useState(() => chooseNextWord());
+  const [wordDeck, setWordDeck] = useState(() => createShuffledDeck());
+  const [deckPosition, setDeckPosition] = useState(0);
   const [guessed, setGuessed] = useState<string[]>([]);
   const [status, setStatus] = useState<'playing' | 'won' | 'lost'>('playing');
   const [empanadas, setEmpanadas] = useState(0);
@@ -63,6 +129,7 @@ export default function AhorcadoDieciochero() {
   const [isPseudoFullscreen, setIsPseudoFullscreen] = useState(false);
   const [soundOn, setSoundOn] = useState(true);
   const [newReward, setNewReward] = useState<string | null>(null);
+  const wordIndex = wordDeck[deckPosition];
   const item = WORDS[wordIndex];
   const normalizedWord = normalize(item.word);
 
@@ -150,7 +217,12 @@ export default function AhorcadoDieciochero() {
   }, [guessLetter]);
 
   const nextWord = () => {
-    setWordIndex((current) => chooseNextWord(current));
+    if (deckPosition < wordDeck.length - 1) {
+      setDeckPosition((current) => current + 1);
+    } else {
+      setWordDeck(createShuffledDeck(wordIndex));
+      setDeckPosition(0);
+    }
     setGuessed([]);
     setStatus('playing');
     setRound((value) => value + 1);
@@ -158,7 +230,8 @@ export default function AhorcadoDieciochero() {
   };
 
   const resetSession = () => {
-    setWordIndex((current) => chooseNextWord(current));
+    setWordDeck(createShuffledDeck(wordIndex));
+    setDeckPosition(0);
     setGuessed([]);
     setStatus('playing');
     setEmpanadas(0);
@@ -198,7 +271,7 @@ export default function AhorcadoDieciochero() {
             <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-red-600 text-lg shadow">🇨🇱</div>
             <div className="min-w-0">
               <p className="truncate text-sm font-black sm:text-lg">Ahorcado Dieciochero</p>
-              <p className="text-[10px] font-semibold text-blue-200 sm:text-xs">Ronda {round} · {remainingAttempts} intentos</p>
+              <p className="text-[10px] font-semibold text-blue-200 sm:text-xs">Ronda {round} · {remainingAttempts} intentos · {deckPosition + 1}/{wordDeck.length}</p>
             </div>
           </div>
 
@@ -265,7 +338,7 @@ export default function AhorcadoDieciochero() {
               {wordTokens.map((token, tokenIndex) => (
                 <div key={`${token}-${tokenIndex}`} className="flex gap-1 sm:gap-1.5">
                   {[...token].map((character, characterIndex) => {
-                    const reveal = status === 'lost' || guessed.includes(normalize(character));
+                    const reveal = !isLetter(character) || status === 'lost' || guessed.includes(normalize(character));
                     return (
                       <span key={`${character}-${characterIndex}`} className={`flex h-9 w-6 items-center justify-center border-b-[3px] text-lg font-black sm:h-12 sm:w-9 sm:text-2xl ${reveal ? 'border-blue-950 text-blue-950' : 'border-slate-400 text-transparent'}`}>
                         {reveal ? character : '•'}

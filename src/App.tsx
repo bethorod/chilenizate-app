@@ -15,6 +15,7 @@ import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
 import MapaChile from "./pages/MapaChile";
 import HimnoChile from "./pages/HimnoChile";
+import Juegos from "./pages/Juegos";
 import Practica from "./pages/Practica";
 import FiestasPatrias from "./pages/FiestasPatrias";
 import Layout from "@/components/layout/Layout";
@@ -42,6 +43,7 @@ const App = () => (
                 <Route path="/error-bin" element={<ErrorBin />} />
                 <Route path="/himno" element={<HimnoChile />} />
                 <Route path="/mapa" element={<MapaChile />} />
+                <Route path="/juegos" element={<Juegos />} />
                 <Route path="/practica" element={<Practica />} />
                 <Route path="/fiestas-patrias" element={<FiestasPatrias />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

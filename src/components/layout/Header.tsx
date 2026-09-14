@@ -10,7 +10,7 @@ const navItems = [
   { to: "/fiestas-patrias", label: "Especial 18" },
   { to: "/history", label: "Aprende" },
   { to: "/mapa", label: "Mapa" },
-  { to: "/practica", label: "Juegos" },
+  { to: "/juegos", label: "Juegos" },
 ];
 
 export default function Header() {

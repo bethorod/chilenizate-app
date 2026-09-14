@@ -25,7 +25,7 @@ export default function Index() {
             <p className="mt-6 max-w-xl text-lg leading-8 text-blue-50">Descubre la historia, los territorios y las costumbres que dan forma al país. Aprende a tu ritmo y pon a prueba lo que sabes.</p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <Link to="/fiestas-patrias" className="inline-flex h-13 items-center justify-center gap-2 rounded-xl bg-red-600 px-6 py-3.5 text-sm font-bold shadow-lg shadow-red-950/30 transition hover:-translate-y-0.5 hover:bg-red-500">Explorar Especial 18 <ArrowRight className="h-4 w-4" /></Link>
-              <Link to="/practica" className="inline-flex h-13 items-center justify-center gap-2 rounded-xl border border-white/30 bg-white/10 px-6 py-3.5 text-sm font-bold backdrop-blur transition hover:bg-white/20"><Gamepad2 className="h-4 w-4" /> Jugar ahora</Link>
+              <Link to="/juegos" className="inline-flex h-13 items-center justify-center gap-2 rounded-xl border border-white/30 bg-white/10 px-6 py-3.5 text-sm font-bold backdrop-blur transition hover:bg-white/20"><Gamepad2 className="h-4 w-4" /> Jugar ahora</Link>
             </div>
           </div>
         </div>
@@ -77,15 +77,15 @@ export default function Index() {
 
       <section className="bg-red-600 px-4 py-16 text-white">
         <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-8 text-center md:flex-row md:text-left">
-          <div><p className="text-sm font-bold uppercase tracking-[0.2em] text-red-100">Aprender también es jugar</p><h2 className="mt-2 text-3xl font-black sm:text-4xl">Acepta el desafío chileno</h2><p className="mt-3 max-w-xl text-red-50">Ruta del 18, Pasapalabras y un quiz de 30 preguntas te esperan.</p></div>
-          <Link to="/practica" className="inline-flex shrink-0 items-center gap-2 rounded-xl bg-white px-6 py-3.5 text-sm font-black text-red-700 shadow-lg transition hover:-translate-y-0.5 hover:bg-red-50">Ir a los juegos <Gamepad2 className="h-4 w-4" /></Link>
+          <div><p className="text-sm font-bold uppercase tracking-[0.2em] text-red-100">Aprender también es jugar</p><h2 className="mt-2 text-3xl font-black sm:text-4xl">Acepta el desafío chileno</h2><p className="mt-3 max-w-xl text-red-50">Ahorcado Dieciochero y Ruta del 18 te esperan.</p></div>
+          <Link to="/juegos" className="inline-flex shrink-0 items-center gap-2 rounded-xl bg-white px-6 py-3.5 text-sm font-black text-red-700 shadow-lg transition hover:-translate-y-0.5 hover:bg-red-50">Ir a los juegos <Gamepad2 className="h-4 w-4" /></Link>
         </div>
       </section>
 
       <footer className="bg-[#04112a] px-4 py-10 text-white">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-5 sm:flex-row">
           <div className="flex items-center gap-3"><span className="flex h-9 w-9 items-center justify-center rounded-xl bg-white text-lg">🇨🇱</span><div><p className="font-black">Chilenízate</p><p className="text-xs text-blue-200">Chile se aprende viviéndolo.</p></div></div>
-          <nav className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-xs font-semibold text-blue-100" aria-label="Enlaces del pie"><Link to="/history" className="hover:text-white">Historia</Link><Link to="/fiestas-patrias" className="hover:text-white">Especial 18</Link><Link to="/mapa" className="hover:text-white">Mapa</Link><Link to="/practica" className="hover:text-white">Juegos</Link></nav>
+          <nav className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-xs font-semibold text-blue-100" aria-label="Enlaces del pie"><Link to="/history" className="hover:text-white">Historia</Link><Link to="/fiestas-patrias" className="hover:text-white">Especial 18</Link><Link to="/mapa" className="hover:text-white">Mapa</Link><Link to="/juegos" className="hover:text-white">Juegos</Link></nav>
         </div>
       </footer>
     </main>
