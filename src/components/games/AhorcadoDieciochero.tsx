@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Eye, Flag, Lightbulb, Maximize2, Minimize2, RefreshCcw, RotateCcw, Volume2, VolumeX } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 
 type WordItem = {
   word: string;
@@ -127,6 +128,7 @@ export default function AhorcadoDieciochero() {
   const [streak, setStreak] = useState(0);
   const [isNativeFullscreen, setIsNativeFullscreen] = useState(false);
   const [isPseudoFullscreen, setIsPseudoFullscreen] = useState(false);
+  const [fullscreenPopoverOpen, setFullscreenPopoverOpen] = useState(false);
   const [soundOn, setSoundOn] = useState(true);
   const [newReward, setNewReward] = useState<string | null>(null);
   const wordIndex = wordDeck[deckPosition];
@@ -242,6 +244,7 @@ export default function AhorcadoDieciochero() {
   };
 
   const toggleFullscreen = async () => {
+    setFullscreenPopoverOpen(false);
     if (document.fullscreenElement) {
       await document.exitFullscreen();
       return;
@@ -264,7 +267,7 @@ export default function AhorcadoDieciochero() {
   const wordTokens = item.word.split(' ');
 
   return (
-    <div ref={gameRef} className={`relative overflow-y-auto bg-[#f7f1e4] text-slate-900 ${isExpanded ? `min-h-screen min-h-[100svh] ${isPseudoFullscreen ? 'fixed inset-0 z-[100]' : ''}` : 'rounded-3xl border border-slate-200 shadow-xl shadow-blue-950/10'}`}>
+    <div ref={gameRef} className={`relative overflow-y-auto bg-[#f7f1e4] text-slate-900 ${isExpanded ? `min-h-screen min-h-[100svh] ${isPseudoFullscreen ? 'fixed inset-0 z-[100]' : ''}` : 'border-y border-slate-200 shadow-xl shadow-blue-950/10 sm:rounded-3xl sm:border'}`}>
       <div className="sticky top-0 z-20 border-b border-white/10 bg-blue-950 px-3 py-3 text-white sm:px-6">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-2">
           <div className="flex min-w-0 items-center gap-2 sm:gap-3">
@@ -281,7 +284,25 @@ export default function AhorcadoDieciochero() {
               <span title="Sopaipillas ganadas">🫓 {sopaipillas}</span>
             </div>
             <button type="button" onClick={() => setSoundOn((value) => !value)} className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/10 transition hover:bg-white/20" aria-label={soundOn ? 'Silenciar juego' : 'Activar sonido'}>{soundOn ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4" />}</button>
-            <button type="button" onClick={toggleFullscreen} className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/10 transition hover:bg-white/20" aria-label={isExpanded ? 'Salir de pantalla completa' : 'Ampliar a pantalla completa'}>{isExpanded ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}</button>
+            {isExpanded ? (
+              <button type="button" onClick={toggleFullscreen} className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/10 transition hover:bg-white/20" aria-label="Salir de pantalla completa"><Minimize2 className="h-4 w-4" /></button>
+            ) : (
+              <Popover open={fullscreenPopoverOpen} onOpenChange={setFullscreenPopoverOpen}>
+                <PopoverTrigger asChild>
+                  <button type="button" className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/10 transition hover:bg-white/20" aria-label="Conocer la opción de pantalla completa"><Maximize2 className="h-4 w-4" /></button>
+                </PopoverTrigger>
+                <PopoverContent align="end" sideOffset={10} className="w-[min(18rem,calc(100vw-1rem))] rounded-2xl border-blue-100 p-4 text-slate-900 shadow-2xl">
+                  <div className="flex items-start gap-3">
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-950 text-white"><Maximize2 className="h-4 w-4" /></span>
+                    <div>
+                      <p className="font-black text-blue-950">Juega sin distracciones</p>
+                      <p className="mt-1 text-xs leading-5 text-slate-600">Amplía el Ahorcado a toda la pantalla. Puedes salir cuando quieras con el mismo botón.</p>
+                    </div>
+                  </div>
+                  <Button type="button" onClick={() => void toggleFullscreen()} className="mt-4 h-10 w-full rounded-xl bg-red-600 font-black hover:bg-red-700"><Maximize2 className="h-4 w-4" /> Usar pantalla completa</Button>
+                </PopoverContent>
+              </Popover>
+            )}
           </div>
         </div>
       </div>
@@ -353,12 +374,12 @@ export default function AhorcadoDieciochero() {
           {status === 'playing' ? (
             <div className="rounded-2xl border border-slate-200 bg-white p-2.5 shadow-sm sm:p-4">
               <p className="mb-2 text-center text-[10px] font-bold uppercase tracking-[0.15em] text-slate-400 sm:text-xs">Toca una letra</p>
-              <div className="mx-auto grid max-w-2xl grid-cols-9 gap-1.5 sm:gap-2">
+              <div className="mx-auto grid w-full max-w-3xl grid-cols-7 gap-1.5 min-[430px]:grid-cols-9 sm:gap-2">
                 {LETTERS.map((letter) => {
                   const wasUsed = guessed.includes(letter);
                   const wasCorrect = wasUsed && normalizedWord.includes(letter);
                   return (
-                    <button key={letter} type="button" onClick={() => guessLetter(letter)} disabled={wasUsed} aria-label={`Letra ${letter}`} className={`aspect-square min-h-8 rounded-lg text-xs font-black transition focus:outline-none focus:ring-2 focus:ring-blue-800 focus:ring-offset-1 sm:min-h-11 sm:rounded-xl sm:text-sm ${wasCorrect ? 'bg-emerald-100 text-emerald-700 ring-1 ring-emerald-200' : wasUsed ? 'bg-slate-100 text-slate-300' : 'bg-blue-950 text-white shadow-sm hover:-translate-y-0.5 hover:bg-blue-800 active:translate-y-0'}`}>
+                    <button key={letter} type="button" onClick={() => guessLetter(letter)} disabled={wasUsed} aria-label={`Letra ${letter}`} className={`h-10 w-full rounded-xl text-sm font-black transition focus:outline-none focus:ring-2 focus:ring-blue-800 focus:ring-offset-1 sm:h-12 sm:text-base ${wasCorrect ? 'bg-emerald-100 text-emerald-700 ring-1 ring-emerald-200' : wasUsed ? 'bg-slate-100 text-slate-300' : 'bg-blue-950 text-white shadow-sm hover:-translate-y-0.5 hover:bg-blue-800 active:translate-y-0'}`}>
                       {letter}
                     </button>
                   );

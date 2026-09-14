@@ -77,7 +77,7 @@ export default function Index() {
 
       <section className="bg-red-600 px-4 py-16 text-white">
         <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-8 text-center md:flex-row md:text-left">
-          <div><p className="text-sm font-bold uppercase tracking-[0.2em] text-red-100">Aprender también es jugar</p><h2 className="mt-2 text-3xl font-black sm:text-4xl">Acepta el desafío chileno</h2><p className="mt-3 max-w-xl text-red-50">Ahorcado Dieciochero y Ruta del 18 te esperan.</p></div>
+          <div><p className="text-sm font-bold uppercase tracking-[0.2em] text-red-100">Aprender también es jugar</p><h2 className="mt-2 text-3xl font-black sm:text-4xl">Acepta el desafío chileno</h2><p className="mt-3 max-w-xl text-red-50">El Ahorcado Dieciochero te espera con 75 palabras de nuestra cultura.</p></div>
           <Link to="/juegos" className="inline-flex shrink-0 items-center gap-2 rounded-xl bg-white px-6 py-3.5 text-sm font-black text-red-700 shadow-lg transition hover:-translate-y-0.5 hover:bg-red-50">Ir a los juegos <Gamepad2 className="h-4 w-4" /></Link>
         </div>
       </section>
