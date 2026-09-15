@@ -95,7 +95,12 @@ const WORDS: WordItem[] = [
   { word: 'MARQUETA', category: 'Infaltables del asado', hint: 'Pan chileno crujiente que también se conoce como pan batido.' },
 ];
 
-const LETTERS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'Ñ', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+const KEYBOARD_ROWS = [
+  ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
+  ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Ñ'],
+  ['Z', 'X', 'C', 'V', 'B', 'N', 'M'],
+];
+const LETTERS = KEYBOARD_ROWS.flat();
 const MAX_MISTAKES = 6;
 
 const normalize = (value: string) => value.toUpperCase().replace(/Ñ/g, '§').normalize('NFD').replace(/\p{Diacritic}/gu, '').replace(/§/g, 'Ñ');
@@ -374,16 +379,20 @@ export default function AhorcadoDieciochero() {
           {status === 'playing' ? (
             <div className="rounded-2xl border border-slate-200 bg-white p-2.5 shadow-sm sm:p-4">
               <p className="mb-2 text-center text-[10px] font-bold uppercase tracking-[0.15em] text-slate-400 sm:text-xs">Toca una letra</p>
-              <div className="mx-auto grid w-full max-w-3xl grid-cols-7 gap-1.5 min-[430px]:grid-cols-9 sm:gap-2">
-                {LETTERS.map((letter) => {
-                  const wasUsed = guessed.includes(letter);
-                  const wasCorrect = wasUsed && normalizedWord.includes(letter);
-                  return (
-                    <button key={letter} type="button" onClick={() => guessLetter(letter)} disabled={wasUsed} aria-label={`Letra ${letter}`} className={`h-10 w-full rounded-xl text-sm font-black transition focus:outline-none focus:ring-2 focus:ring-blue-800 focus:ring-offset-1 sm:h-12 sm:text-base ${wasCorrect ? 'bg-emerald-100 text-emerald-700 ring-1 ring-emerald-200' : wasUsed ? 'bg-slate-100 text-slate-300' : 'bg-blue-950 text-white shadow-sm hover:-translate-y-0.5 hover:bg-blue-800 active:translate-y-0'}`}>
-                      {letter}
-                    </button>
-                  );
-                })}
+              <div className="mx-auto flex w-full max-w-3xl flex-col items-center gap-1.5 sm:gap-2" aria-label="Teclado QWERTY">
+                {KEYBOARD_ROWS.map((keyboardRow, rowIndex) => (
+                  <div key={keyboardRow.join('')} className={`flex justify-center gap-1 sm:gap-2 ${rowIndex === 0 ? 'w-full' : rowIndex === 1 ? 'w-[96%]' : 'w-[72%]'}`}>
+                    {keyboardRow.map((letter) => {
+                      const wasUsed = guessed.includes(letter);
+                      const wasCorrect = wasUsed && normalizedWord.includes(letter);
+                      return (
+                        <button key={letter} type="button" onClick={() => guessLetter(letter)} disabled={wasUsed} aria-label={`Letra ${letter}`} className={`h-10 min-w-0 flex-1 rounded-lg text-sm font-black transition focus:outline-none focus:ring-2 focus:ring-blue-800 focus:ring-offset-1 sm:h-12 sm:max-w-16 sm:rounded-xl sm:text-base ${wasCorrect ? 'bg-emerald-100 text-emerald-700 ring-1 ring-emerald-200' : wasUsed ? 'bg-slate-100 text-slate-300' : 'bg-blue-950 text-white shadow-sm hover:-translate-y-0.5 hover:bg-blue-800 active:translate-y-0'}`}>
+                          {letter}
+                        </button>
+                      );
+                    })}
+                  </div>
+                ))}
               </div>
             </div>
           ) : (
